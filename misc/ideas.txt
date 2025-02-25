@@ -1,0 +1,7 @@
+STACK IDEA:
+
+Astro
+Node
+Sass
+Typescript
+Redis??
