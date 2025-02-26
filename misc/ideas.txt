@@ -3,5 +3,12 @@ STACK IDEA:
 Astro
 Node
 Sass
+Eslint
+Tailwindcss
+Stylelint
 Typescript
+Astro-seo
+Docker
+Docker-compose
+
 Redis??
