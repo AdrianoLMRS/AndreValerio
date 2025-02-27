@@ -10,5 +10,6 @@ Typescript
 Astro-seo
 Docker
 Docker-compose
+Nginx
 
 Redis??
