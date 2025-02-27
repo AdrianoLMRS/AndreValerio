@@ -7,5 +7,9 @@ export default defineConfig({
         '@styles': new URL('./src/styles', import.meta.url),
       },
     },
+    // * Need css minify for css to run
+    css: {
+      minify: true,
+    },
   },
 });
