@@ -1,4 +1,5 @@
 import { defineConfig } from 'astro/config';
+const BASE_URL = import.meta.env.BASE_URL
 
 export default defineConfig({
   vite: {
@@ -11,5 +12,7 @@ export default defineConfig({
     css: {
       minify: true,
     },
+    site: BASE_URL.toString(),
+    base: 'website',
   },
 });
