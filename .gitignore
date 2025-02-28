@@ -22,3 +22,8 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# For obsidian config in misc folder
+.obsidian
+misc/*.png
+misc/*.svg
