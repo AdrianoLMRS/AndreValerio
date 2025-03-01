@@ -2,12 +2,12 @@
     * Collor pallete
     * Using Monochromatic colors of green
 */
-
-$primary-color: #004953;
-$secondary-color: #B2C9AB;
-$third-color: #008B8B;
-$fourth-color: #006D6F;
-$highlight-color: #FA8334;
+$primary-color: #004953; // Midnight green - rgb(0, 73, 83)
+$secondary-color: #B2C9AB; // Celadon - rgb(178, 201, 171)
+$third-color: #008B8B; // Dark cyan - rgb(0, 139, 139)
+$fourth-color: #006D6F; // Caribbean Current - rgb(0, 109, 111)
+$highlight-color: #FA8334; // Pumpkin - rgb(250, 131, 52)
+$white-color: #FFFAFA; // Snow - rgb(255, 250, 250)
 
 // * Common breakpoints for responsiveness
 $breakpoint-sx: 345px;  // smaller
@@ -16,17 +16,24 @@ $breakpoint-md: 768px;  // medium
 $breakpoint-lg: 992px;  // large
 $breakpoint-xl: 1200px; // extra-large
 
-:root {
-    --primary-color: #{$primary};
-    --secondary-color: #{$secondary-color};
-    --third-color: #{third-color};
-    --fourth-color: #{fourth-color};
-    --highlight-color: #{highlight-color};
+// * Font family - Poppins + Merriweather
+// Default values in :root
+$font-family: "Poppins", sans-serif;
+$font-style: normal;
 
-    // font-family: $font-family;
+:root {
+    --primary-color: #{$primary-color};
+    --secondary-color: #{$secondary-color};
+    --third-color: #{$third-color};
+    --fourth-color: #{$fourth-color};
+    --highlight-color: #{$highlight-color};
+    --white-color: #{$white-color};
+
+    font-family: $font-family;
+    font-style: $font-style;
     // font-size: size(regular1);
-    // background-color: var(--primary);
-    // color: var(--secondary);
+    background-color: var(--primary-color);
+    color: var(--white-color);
 
     --sx-breakpoint: #{$breakpoint-sx};
     --sm-breakpoint: #{$breakpoint-sm};

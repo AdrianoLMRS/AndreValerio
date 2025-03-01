@@ -1,9 +1,18 @@
+// * Forward .scss files
+@forward './variables';
+
+// * Resets
 *,
 *::after
 *::before {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+body, html {
+	min-height: 100%;
+	min-width: 100%;
 }
 
 /*
