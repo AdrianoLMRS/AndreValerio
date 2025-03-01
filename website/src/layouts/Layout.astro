@@ -10,7 +10,9 @@ const { title } = Astro.props;
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
+		<meta name="license" content="MIT" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="license" itemprop="license" href="https://github.com/AdrianoLMRS/AndreValerio/blob/main/LICENSE" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{ title ? title : "No title" }</title>
 		{/* GOOGLE FONTS - Poppins + Merriweather */}
@@ -22,3 +24,12 @@ const { title } = Astro.props;
 		<slot />
 	</body>
 </html>
+{/*
+<style is:global>
+:global(.sr-only) {
+	position: absolute !important;
+	top: -100% !important; 
+	left: -100% !important;
+}
+</style>
+*/}

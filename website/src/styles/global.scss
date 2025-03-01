@@ -10,10 +10,29 @@
     box-sizing: border-box;
 }
 
-body, html {
-	min-height: 100%;
-	min-width: 100%;
+img {
+    display: block;
+    max-width: 100%;
+    overflow: hidden;
 }
+
+// Hides SEO things
+.sr-only {
+	position: fixed !important;
+	top: -100% !important; 
+	left: -100% !important;
+	opacity: 0 !important;
+}
+
+// Hides title="" HTML atribute
+.hide-title.title {
+	visibility: hidden !important;
+}
+
+// body, html {
+// 	min-height: 100%;
+// 	min-width: 100%;
+// }
 
 /*
 	html,

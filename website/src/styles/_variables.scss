@@ -8,6 +8,7 @@ $third-color: #008B8B; // Dark cyan - rgb(0, 139, 139)
 $fourth-color: #006D6F; // Caribbean Current - rgb(0, 109, 111)
 $highlight-color: #FA8334; // Pumpkin - rgb(250, 131, 52)
 $white-color: #FFFAFA; // Snow - rgb(255, 250, 250)
+$black-color: #333333; // Dark slate gray - rgb(51, 51, 51)
 
 // * Common breakpoints for responsiveness
 $breakpoint-sx: 345px;  // smaller
@@ -28,11 +29,12 @@ $font-style: normal;
     --fourth-color: #{$fourth-color};
     --highlight-color: #{$highlight-color};
     --white-color: #{$white-color};
+    --black-color: #{$black-color};
 
     font-family: $font-family;
     font-style: $font-style;
     // font-size: size(regular1);
-    background-color: var(--primary-color);
+    background-color: var(--fourth-color);
     color: var(--white-color);
 
     --sx-breakpoint: #{$breakpoint-sx};
