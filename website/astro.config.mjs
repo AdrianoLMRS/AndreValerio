@@ -1,5 +1,5 @@
 import { defineConfig } from 'astro/config';
-const BASE_URL = import.meta.env.BASE_URL
+// const BASE_URL = import.meta.env.BASE_URL
 
 export default defineConfig({
   vite: {
@@ -12,7 +12,15 @@ export default defineConfig({
     css: {
       minify: true,
     },
-    site: BASE_URL.toString(),
-    base: 'website',
+    // site: BASE_URL.toString(),
+    // base: 'website',
   },
 });
+
+// css: {
+//   minify: 'esbuild',
+// },
+// esbuild: {
+//   minify: true,     // * Need css minify for css to run
+//   legalComments: 'none',
+// },

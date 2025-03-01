@@ -1,0 +1,36 @@
+/*
+    * Collor pallete
+    * Using Monochromatic colors of green
+*/
+
+$primary-color: #004953;
+$secondary-color: #B2C9AB;
+$third-color: #008B8B;
+$fourth-color: #006D6F;
+$highlight-color: #FA8334;
+
+// * Common breakpoints for responsiveness
+$breakpoint-sx: 345px;  // smaller
+$breakpoint-sm: 602px;  // small
+$breakpoint-md: 768px;  // medium
+$breakpoint-lg: 992px;  // large
+$breakpoint-xl: 1200px; // extra-large
+
+:root {
+    --primary-color: #{$primary};
+    --secondary-color: #{$secondary-color};
+    --third-color: #{third-color};
+    --fourth-color: #{fourth-color};
+    --highlight-color: #{highlight-color};
+
+    // font-family: $font-family;
+    // font-size: size(regular1);
+    // background-color: var(--primary);
+    // color: var(--secondary);
+
+    --sx-breakpoint: #{$breakpoint-sx};
+    --sm-breakpoint: #{$breakpoint-sm};
+    --md-breakpoint: #{$breakpoint-md};
+    --lg-breakpoint: #{$breakpoint-lg};
+    --xl-breakpoint: #{$breakpoint-xl};
+}
