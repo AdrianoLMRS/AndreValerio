@@ -15,5 +15,4 @@ const useToggleMenu = (): ComponentProps => {
     return { menuOpen, toggleMenu };
 };
 
-export { useToggleMenu };
-export type { ComponentProps };
+export { useToggleMenu, type ComponentProps };

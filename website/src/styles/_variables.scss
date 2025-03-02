@@ -17,6 +17,8 @@ $breakpoint-md: 768px;  // medium
 $breakpoint-lg: 992px;  // large
 $breakpoint-xl: 1200px; // extra-large
 
+$navbar-breakpoint: $breakpoint-md;
+
 // * Font family - Poppins + Merriweather
 // Default values in :root
 $font-family: "Poppins", sans-serif;
