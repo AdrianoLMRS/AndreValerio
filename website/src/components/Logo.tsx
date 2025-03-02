@@ -1,4 +1,4 @@
-const size : string = "48px";
+const size : string = '48px';
 
 const Logo: React.FC = () => {
     return (
