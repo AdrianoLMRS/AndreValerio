@@ -1,3 +1,8 @@
+/*
+    Component returns <a> element with interactions
+    Use in Navbar/Footer
+*/
+
 import React, { useCallback, useRef } from 'react';
 
 interface UrlLinkProps {
@@ -8,9 +13,10 @@ interface UrlLinkProps {
   className?: string;
   target?: string;
   rel?: string;
+  toggleMenu: () => void;
 }
 
-const UrlLink: React.FC<UrlLinkProps> = ({ href, title, ariaLabel, children, target, rel, className }) => {
+const UrlLink: React.FC<UrlLinkProps> = ({ href, title, ariaLabel, children, target, rel, className, toggleMenu }) => {
     const linkRef = useRef<HTMLAnchorElement | null>(null);
 
     const handleClick = useCallback(() => {
@@ -21,6 +27,8 @@ const UrlLink: React.FC<UrlLinkProps> = ({ href, title, ariaLabel, children, tar
         // Remove all aria-current
         document.querySelectorAll('.aria-link').forEach(link => link.removeAttribute('aria-current'));
         linkRef.current?.setAttribute('aria-current', 'page'); // Add aria to the link clicked
+
+        toggleMenu() // Closes/Open sidebar
     }, []);
 
   

@@ -1,33 +1,12 @@
-import { useState } from 'react';
-import Logo from '@components/Logo';
 import Pages from '@data/pages';
-import UrlLink from '@components/urlLink';
+import { useToggleMenu } from '@hooks/useToggleMenu';
+import Logo from '@components/Logo';
+import UrlLink from '@components/nav/urlLink';
+import NavBtn from '@components/nav/navBtn';
 import '@styles/_components/Navbar.scss';
 
 const Header: React.FC = () => {
-    const [menuOpen, setMenuOpen] = useState(false);
-    
-    const toggleMenu = () => setMenuOpen(prev => !prev);
-
-    // useEffect(() => {
-    //     const links = document.querySelectorAll(".nav-link");
-    //     links.forEach(link => {
-    //         link.addEventListener("click", () => {
-    //             links.forEach(l => l.classList.remove("last-clicked"));
-    //             link.classList.add("last-clicked");
-    //         });
-    //     });
-    // }, []);
-
-    // useEffect(() => {
-    //     const linksAria = document.querySelectorAll(".aria-link");
-    //     linksAria.forEach(link => {
-    //         link.addEventListener("click", () => {
-    //             linksAria.forEach(l => l.removeAttribute("aria-current"));
-    //             link.setAttribute("aria-current", "page");
-    //         });
-    //     });
-    // }, []);
+    const { menuOpen, toggleMenu } = useToggleMenu();
 
     return (
         <header data-style="Header" itemScope itemType="https://schema.org/WPHeader">
@@ -45,7 +24,8 @@ const Header: React.FC = () => {
                         <UrlLink 
                             href={Pages.home} 
                             title="Home Page - André Valério" 
-                            ariaLabel="Home" 
+                            ariaLabel="Home"
+                            toggleMenu={toggleMenu} // For Open/Closing Navbar
                         >
                             Home
                         </UrlLink>
@@ -53,7 +33,8 @@ const Header: React.FC = () => {
                         <UrlLink 
                             href={Pages.about} 
                             title="About section - André Valério" 
-                            ariaLabel="About" 
+                            ariaLabel="About"
+                            toggleMenu={toggleMenu} // For Open/Closing Navbar
                         >
                             About
                         </UrlLink>
@@ -63,6 +44,7 @@ const Header: React.FC = () => {
                             title="Songs/Albums Page - André Valério" 
                             ariaLabel="Songs/Albums" 
                             target="_blank"
+                            toggleMenu={toggleMenu} // For Open/Closing Navbar
                         >
                             Songs/Albums
                         </UrlLink>
@@ -72,6 +54,7 @@ const Header: React.FC = () => {
                             title="Contact Page - André Valério" 
                             ariaLabel="Contact" 
                             target="_blank"
+                            toggleMenu={toggleMenu} // For Open/Closing Navbar
                         >
                             Contact
                         </UrlLink>
@@ -81,6 +64,7 @@ const Header: React.FC = () => {
                             title="Shop/Merchant Page - André Valério" 
                             ariaLabel="Shop" 
                             target="_blank"
+                            toggleMenu={toggleMenu} // For Open/Closing Navbar
                         >
                             Shop
                         </UrlLink>
@@ -88,12 +72,8 @@ const Header: React.FC = () => {
                     </ul>
                 </nav>
 
-                <button tabIndex={0} onClick={toggleMenu} className="menu-btn" 
-                    type="button" aria-controls="navbar" aria-expanded={menuOpen} 
-                    aria-label="Open/Close Navigation bar" title="Open/Close navbar">
-                    <span className="sr-only">Open/Close Navigation bar</span>
-                    {menuOpen ? '✖' : '☰'}
-                </button>
+                {/* toggleMenu hook to button */}
+                <NavBtn menuOpen={menuOpen} toggleMenu={toggleMenu} />
             </div>
         </header>
     );
