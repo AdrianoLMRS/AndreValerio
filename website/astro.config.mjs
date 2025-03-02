@@ -1,17 +1,19 @@
 import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 // const BASE_URL = import.meta.env.BASE_URL
+const ALIAS_URL = import.meta.url
 
 export default defineConfig({
     vite: {
         resolve: {
             alias: {
-                '@styles': new URL('./src/styles', import.meta.url),
-                '@layouts': new URL('./src/layouts', import.meta.url),
-                '@components': new URL('./src/components', import.meta.url),
-                '@pages': new URL('./src/pages', import.meta.url),
-                '@data': new URL('./src/data', import.meta.url),
-                '@assets': new URL('./src/assets', import.meta.url),
+                '@styles': new URL('./src/styles', ALIAS_URL),
+                '@layouts': new URL('./src/layouts', ALIAS_URL),
+                '@components': new URL('./src/components', ALIAS_URL),
+                '@pages': new URL('./src/pages', ALIAS_URL),
+                '@data': new URL('./src/data', ALIAS_URL),
+                '@assets': new URL('./src/assets', ALIAS_URL),
+                '@hooks': new URL('./src/hooks', ALIAS_URL),
             },
         },
         // * Need css minify for css to run
