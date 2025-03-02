@@ -31,7 +31,7 @@ const Header: React.FC = () => {
     }, []);
 
     return (
-        <header itemScope itemType="https://schema.org/WPHeader">
+        <header data-style="Header" itemScope itemType="https://schema.org/WPHeader">
             <div>
                 <a title="Home Page - André Valério" className="aria-link" href={Pages.home} 
                     rel="noopener noreferrer" aria-current="page" itemProp="url">

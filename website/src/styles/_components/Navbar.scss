@@ -1,6 +1,6 @@
 $header-height: 56px;
 
-header {
+header[data-style="Header"] {
     position: fixed;
     top: 0;
     left: 0;
@@ -31,46 +31,47 @@ header {
             // May need to style later for accessibility reasons...
         }
     }
-}
-
-nav {
-    position: fixed;
-    background-color: var(--black-color);
-    right: 100%;
-    bottom: 0;
-    height: calc(100% - $header-height);
-    width: 100%;
-    overflow-y: auto;
-    overflow-x: hidden;
-
-    &.visible {
-        right: 0 !important;
-    }
-
-    transition: right 300ms ease-in-out;
-
-    .nav-list {
-        position: relative;
+    
+    // * Navbar
+    nav {
+        position: fixed;
+        background-color: var(--black-color);
+        right: 100%;
+        bottom: 0;
+        height: calc(100% - $header-height);
         width: 100%;
-        left: 0;
-        padding: 0;
-
-        .nav-item {
-            padding: 10px 0 10px 0;
-            list-style: none;
-            font-size: 2rem;
-            margin-left: 20px;
-            
-            a.nav-link {
-                text-align: center;
-                color: var(--white-color);
-                text-decoration: none;
-
-                &.last-clicked {
-                    text-decoration: underline;
+        overflow-y: auto;
+        overflow-x: hidden;
+    
+        &.visible {
+            right: 0 !important;
+        }
+    
+        transition: right 300ms ease-in-out;
+    
+        .nav-list {
+            position: relative;
+            width: 100%;
+            left: 0;
+            padding: 0;
+    
+            .nav-item {
+                padding: 10px 0 10px 0;
+                list-style: none;
+                font-size: 2rem;
+                margin-left: 20px;
+                
+                a.nav-link {
+                    text-align: center;
+                    color: var(--white-color);
+                    text-decoration: none;
+    
+                    &.last-clicked {
+                        text-decoration: underline;
+                    }
                 }
+    
             }
-
         }
     }
 }
