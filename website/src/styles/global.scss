@@ -26,6 +26,7 @@ img {
 
 // Hides title="" HTML atribute
 .hide-title.title {
+	display: hidden !important;
 	visibility: hidden !important;
 }
 

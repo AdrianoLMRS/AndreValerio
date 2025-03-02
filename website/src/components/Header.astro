@@ -1,62 +1,60 @@
 ---
-
 import Logo from "./Logo.astro";
 import Pages from '@data/pages.ts';
-
 ---
 
-<header>
+<header itemscope itemtype="https://schema.org/WPHeader">
     <div>
-        <a title="Home Page - André Valério" class="aria-link" href={Pages.home} rel="noopener noreferrer" aria-current="page">
+        <a title="Home Page - André Valério" class="aria-link" href={Pages.home} 
+           rel="noopener noreferrer" aria-current="page" itemprop="url">
             <Logo />
         </a>
 
-        <nav id="navbar" aria-label="Main navigation">
+        <nav id="navbar" aria-label="Main navigation" itemscope itemtype="https://schema.org/SiteNavigationElement">
             <ul aria-label="Navigation list" title="Navigation list" class="nav-list hide-title">
                 <hr>
                 <li class="nav-item">
-                    <a href={Pages.home} class="nav-link aria-link" onclick="toggleMenu();" rel="noopener noreferrer"
-                    aria-current="page" title="Home Page - André Valério">Home</a>
+                    <a href={Pages.home} class="nav-link aria-link" onclick="toggleMenu();" 
+                       rel="noopener noreferrer" aria-current="page" title="Home Page - André Valério" 
+                       itemprop="url">Home</a>
                 </li>
                 <hr>
                 <li class="nav-item">
-                    <a href={Pages.about} class="nav-link aria-link" onclick="toggleMenu();" rel="noopener noreferrer"
-                    title="About section - André Valério">About</a>
+                    <a href={Pages.about} class="nav-link aria-link" onclick="toggleMenu();" 
+                       rel="noopener noreferrer" title="About section - André Valério" 
+                       itemprop="url">About</a>
                 </li>
                 <hr>
                 <li class="nav-item">
-                    <a href={Pages.songs} class="nav-link aria-link" onclick="toggleMenu();" target="_blank" rel="noopener noreferrer"
-                    title="Songs/Albums Page - André Valério">Songs/Albums</a>
+                    <a href={Pages.songs} class="nav-link aria-link" onclick="toggleMenu();" 
+                       target="_blank" rel="noopener noreferrer" title="Songs/Albums Page - André Valério" 
+                       itemprop="url">Songs/Albums</a>
                 </li>
                 <hr>
                 <li class="nav-item">
-                    <a href={Pages.contact} class="nav-link aria-link" onclick="toggleMenu();" target="_blank" rel="noopener noreferrer"
-                    title="Contact Page - André Valério">Contact</a>
+                    <a href={Pages.contact} class="nav-link aria-link" onclick="toggleMenu();" 
+                       target="_blank" rel="noopener noreferrer" title="Contact Page - André Valério" 
+                       itemprop="url">Contact</a>
                 </li>
                 <hr>
                 <li class="nav-item">
-                    <a href={Pages.shop} class="nav-link aria-link" onclick="toggleMenu();" target="_blank" rel="noopener noreferrer"
-                    title="Shop/Merchant Page - André Valério">Shop</a>
+                    <a href={Pages.shop} class="nav-link aria-link" onclick="toggleMenu();" 
+                       target="_blank" rel="noopener noreferrer" title="Shop/Merchant Page - André Valério" 
+                       itemprop="url">Shop</a>
                 </li>
                 <hr>
             </ul>
         </nav>
 
-        <button
-            tabindex="0"
-            onclick="toggleMenu();"
-            class="menu-btn" 
-            type="button"
-            aria-controls="navbar"
-            aria-expanded="false"
-            aria-label="Open/Close Navigation bar"
-            title="Open/Close navbar">
+        <button tabindex="0" onclick="toggleMenu();" class="menu-btn" 
+                type="button" aria-controls="navbar" aria-expanded="false" 
+                aria-label="Open/Close Navigation bar" title="Open/Close navbar">
             <span class="sr-only">Open/Close Navigation bar</span>
             ☰ {/* Default Menu icon */}
         </button>
     </div>
-    <script>window.onload(toggleMenu())</script>
 </header>
+
 
 <script defer>
     function toggleMenu() {
