@@ -1,7 +1,7 @@
 import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 // const BASE_URL = import.meta.env.BASE_URL
-const ALIAS_URL = import.meta.url
+const ALIAS_URL = import.meta.url;
 
 export default defineConfig({
     vite: {

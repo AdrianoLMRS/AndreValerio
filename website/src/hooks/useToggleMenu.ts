@@ -13,7 +13,7 @@ const useToggleMenu = (): ComponentProps => {
     const toggleMenu = useCallback(() => setMenuOpen(prev => !prev), []);
 
     return { menuOpen, toggleMenu };
-}
+};
 
 export { useToggleMenu };
 export type { ComponentProps };

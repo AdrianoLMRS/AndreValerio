@@ -28,7 +28,7 @@ const UrlLink: React.FC<UrlLinkProps> = ({ href, title, ariaLabel, children, tar
         document.querySelectorAll('.aria-link').forEach(link => link.removeAttribute('aria-current'));
         linkRef.current?.setAttribute('aria-current', 'page'); // Add aria to the link clicked
 
-        toggleMenu() // Closes/Open sidebar
+        toggleMenu(); // Closes/Open sidebar
     }, []);
 
   

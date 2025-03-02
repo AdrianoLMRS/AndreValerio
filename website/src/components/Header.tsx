@@ -1,3 +1,4 @@
+import React from 'react';
 import Pages from '@data/pages';
 import { useToggleMenu } from '@hooks/useToggleMenu';
 import Logo from '@components/Logo';
