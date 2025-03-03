@@ -1,6 +1,9 @@
 @use "@styles/variables" as v;
 
 $header-height: 56px;
+$h1-width: 250px;
+$separator: $h1-width / 2;
+$sidebar-transition: 300ms ease-in-out;
 
 @mixin center-hr($position: absolute) {
     position: $position;
@@ -37,6 +40,15 @@ header[data-style="Header"] {
             color: var(--white-color);
         }
     }
+
+    .page-title {
+        @include center-hr(absolute);
+        max-height: $h1-width;
+        overflow-x: hidden;
+        white-space: nowrap;
+        cursor: pointer;
+        z-index: 10;
+    }
 }
 
 // * Desktop breakpoint
@@ -44,10 +56,6 @@ header[data-style="Header"] {
     header[data-style="Header"] {
         & > div {
             width: calc(100% - 25px);
-        }
-
-        .page-title {
-            @include center-hr(absolute);
         }
 
         .author {
@@ -61,23 +69,24 @@ header[data-style="Header"] {
             left: 0;
 
             .nav-list {
-                @include center-hr();
+                @include center-hr(relative);
                 padding: 0;
                 display: inline-flex;
-                justify-content: center;
+                justify-content: space-between;
                 align-items: center;
-                gap: 50px;
-                padding-right: 11vw;
+                width: 100%;
+                // padding-right: 11vw;
 
                 .nav-item {
                     white-space: nowrap;
                 }
 
-                .separator {
-                    white-space: nowrap;
-                    // width: 300px;
-                    // @include center-hr(relative);
-                    // width: 60px;
+                [class^="part"] {
+                    display: inline-flex;
+                    font-weight: 600;
+                    column-gap: 30px;
+                    flex-grow: 1;
+                    justify-content: center;
                 }
 
                 hr {
@@ -93,7 +102,7 @@ header[data-style="Header"] {
 }
 
 // * Mobile breakpoint
-@media only screen and (max-width: v.$navbar-breakpoint) {
+@media only screen and (max-width: #{v.$navbar-breakpoint - 1}) {
     header[data-style="Header"] {
     
         & > div {
@@ -129,7 +138,7 @@ header[data-style="Header"] {
                 right: 0 !important;
             }
         
-            transition: right 300ms ease-in-out;
+            transition: right $sidebar-transition;
         
             .nav-list {
                 position: relative;
@@ -156,3 +165,35 @@ header[data-style="Header"] {
     }
 }
 
+// * Page Title media query
+@media only screen and (max-width: v.$h1-breakpoint) {
+    header[data-style="Header"] {
+
+        .page-title {
+            position: fixed !important;
+            transform: initial !important;
+            bottom: 0;
+
+            transition: left $sidebar-transition;
+        }
+    }
+}
+
+// * Page Title transition
+@media only screen and (min-width: #{v.$h1-breakpoint + 1}) {
+    header[data-style="Header"] {
+        .page-title {
+            left: 50% !important;
+        }
+    }
+}
+
+// * Layout quick fix
+@media only screen and (max-width: 1060px) and (min-width: v.$navbar-breakpoint) {
+    // TODO: Eliminate this media query!
+    header[data-style="Header"] {
+        .part-1 .nav-item:last-child {
+            padding-right: 75px;
+        }
+    }
+}

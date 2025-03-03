@@ -4,16 +4,22 @@ import { author } from "@data/author"
 const name : string = author.name;
 const job : string = author.job
 
-const AuthorHeader: React.FC = () => {
+interface props {
+    style?: React.CSSProperties;
+}
+
+const AuthorHeader: React.FC<props> = ({ style }) => {
     return (
         <h1
             id='author'
-            className="page-title author"
+            className={"page-title author "}
+            style={style ? style : undefined}
             aria-label="Page Header"
             itemProp="Author"
             itemScope
             itemType="https://schema.org/Person"
             title='Page Header'
+            onClick={() => { window.location.href = '/#'; }}
         >
             <strong
                 className='author-name'

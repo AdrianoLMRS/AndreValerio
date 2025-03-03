@@ -17,7 +17,8 @@ $breakpoint-md: 768px;  // medium
 $breakpoint-lg: 992px;  // large
 $breakpoint-xl: 1200px; // extra-large
 
-$navbar-breakpoint: $breakpoint-md;
+$navbar-breakpoint: $breakpoint-lg;
+$h1-breakpoint: $breakpoint-sx + 20px;
 
 // * Font family - Poppins + Merriweather
 // Default values in :root
@@ -39,9 +40,9 @@ $font-style: normal;
     background-color: var(--fourth-color);
     color: var(--white-color);
 
-    --sx-breakpoint: #{$breakpoint-sx};
-    --sm-breakpoint: #{$breakpoint-sm};
-    --md-breakpoint: #{$breakpoint-md};
-    --lg-breakpoint: #{$breakpoint-lg};
-    --xl-breakpoint: #{$breakpoint-xl};
+    // --sx-breakpoint: #{$breakpoint-sx};
+    // --sm-breakpoint: #{$breakpoint-sm};
+    // --md-breakpoint: #{$breakpoint-md};
+    // --lg-breakpoint: #{$breakpoint-lg};
+    // --xl-breakpoint: #{$breakpoint-xl};
 }

@@ -16,7 +16,7 @@ interface UrlLinkProps {
   toggleMenu: () => void;
 }
 
-const UrlLink: React.FC<UrlLinkProps> = ({ href, title, ariaLabel, children, target, rel, className, toggleMenu }) => {
+const UrlLink: React.FC<UrlLinkProps> = ({ href, title, ariaLabel, children, target, rel, className, toggleMenu, ...rest }) => {
     const linkRef = useRef<HTMLAnchorElement | null>(null);
 
     const handleClick = useCallback(() => {
@@ -44,6 +44,7 @@ const UrlLink: React.FC<UrlLinkProps> = ({ href, title, ariaLabel, children, tar
                 title={title}
                 ref={linkRef}
                 itemProp="url"
+                { ...rest } // Aditional atributes
             >
                 {children}
             </a>

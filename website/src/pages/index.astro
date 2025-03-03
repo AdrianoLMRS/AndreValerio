@@ -1,7 +1,7 @@
 ---
 // import Home from '@components/Home/Index.astro';
 import Layout from '@layouts/Layout.astro';
-import Navbar from '@components/Header.tsx';
+import Header from '@components/Header.tsx';
 import Footer from '@components/Footer.astro';
 // import "@styles/_components/Navbar.scss";
 
@@ -10,7 +10,7 @@ import Footer from '@components/Footer.astro';
 ---
 
 <Layout title="André Valério - Composer & Guitarist">
-	<Navbar client:load />
+	<Header client:load />
 	<main style="height: 500vh;">
 		Main content
 	</main>
