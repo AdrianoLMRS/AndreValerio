@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useToggleMenu } from '@hooks/useToggleMenu';
-import { handleScroll } from "../utils/handleScroll"
+import { handleScroll } from "@utils/handleScroll"
 import Pages from '@data/pages';
 import AuthorHeader from '@components/authorHeader';
 import Logo from '@components/Logo';

@@ -7,6 +7,7 @@ export default defineConfig({
     vite: {
         resolve: {
             alias: {
+                '@': new URL('./src', ALIAS_URL),
                 '@styles': new URL('./src/styles', ALIAS_URL),
                 '@layouts': new URL('./src/layouts', ALIAS_URL),
                 '@components': new URL('./src/components', ALIAS_URL),
@@ -14,6 +15,7 @@ export default defineConfig({
                 '@data': new URL('./src/data', ALIAS_URL),
                 '@assets': new URL('./src/assets', ALIAS_URL),
                 '@hooks': new URL('./src/hooks', ALIAS_URL),
+                '@utils': new URL('./src/utils', ALIAS_URL),
             },
         },
         // * Need css minify for css to run

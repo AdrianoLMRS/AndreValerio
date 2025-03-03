@@ -10,14 +10,21 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
+      "@*": ["src/*"],
       "@styles/*": ["src/styles/*"],
       "@layouts/*": ["src/layouts/*"],
       "@components/*": ["src/components/*"],
       "@pages/*": ["src/pages/*"],
       "@data/*": ["src/data/*"],
       "@assets/*": ["src/assets/*"],
-      "@hooks/*": ["src/hooks/*"]
+      "@hooks/*": ["src/hooks/*"],
+      "@utils/*": ["src/utils/*"],
     },
+    "plugins": [
+      {
+        "name": "@astrojs/ts-plugin"
+      },
+    ],
     "jsx": "react-jsx",
     "jsxImportSource": "react"
   }

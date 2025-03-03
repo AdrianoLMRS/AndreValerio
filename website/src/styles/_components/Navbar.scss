@@ -1,5 +1,6 @@
 @use "@styles/variables" as v;
 @use "sass:math";
+@use "sass:color";
 
 $header: 'header[data-style="Header"]';
 $header-height: 56px;
@@ -26,7 +27,7 @@ $sidebar-transition: 300ms ease-in-out;
         // Function in ts.  PATH: 'utils/handleScroll.ts'
         background-color: var(--black-color);
     }
-    background-color: transparentize(v.$black-color, 0.8);
+    background-color: color.adjust($color: v.$black-color, $alpha: -0.8 );
     height: $header-height;
 
     transition: background-color $sidebar-transition;
@@ -213,11 +214,11 @@ $sidebar-transition: 300ms ease-in-out;
 }
 
 // * Layout quick fix
-@media only screen and (max-width: 1060px) and (min-width: v.$navbar-breakpoint) {
+@media only screen and (max-width: 1200px) and (min-width: v.$navbar-breakpoint) {
     // TODO: Eliminate this media query!
     #{header} {
         .part-1 .nav-item:last-child {
-            padding-right: 75px;
+            padding-right: 100px;
         }
     }
 }
