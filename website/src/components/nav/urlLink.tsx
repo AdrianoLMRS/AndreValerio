@@ -36,7 +36,7 @@ const UrlLink: React.FC<UrlLinkProps> = ({ href, title, ariaLabel, children, tar
         <li className="nav-item">
             <a 
                 href={href} 
-                className={className ? className : 'nav-link aria-link' }
+                className={className ? className : 'nav-link aria-link pseudo-link' }
                 onClick={handleClick} 
                 target={target} 
                 rel={rel ? rel : 'noopener noreferrer'} 

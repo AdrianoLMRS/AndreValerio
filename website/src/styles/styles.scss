@@ -1,0 +1,30 @@
+$color: var(--white-color);
+$height: 2px;
+
+@mixin hover-animation {
+    color: $color;
+    &::before {
+        transform: scaleX(1);
+    }
+}
+
+.pseudo-link {
+	position: relative;
+	transition: color .3s ease-in-out;
+	
+	&::before {
+		content: '';
+		position: absolute;
+		top: 100%;
+		width: 100%;
+		height: $height;
+		background-color: $color;
+		transform: scaleX(0);
+		transition: transform .3s ease-in-out;
+        // z-index: 100;
+	}
+}
+
+.pseudo-link:hover, header[data-style="Header"] .last-clicked {
+    @include hover-animation()
+}

@@ -1,8 +1,11 @@
 @use "@styles/variables" as v;
+@use "sass:math";
 
+$header: 'header[data-style="Header"]';
 $header-height: 56px;
 $h1-width: 250px;
-$separator: $h1-width / 2;
+$separator: math.div($h1-width, 2);
+// @debug "Separator: #{$separator}";
 $sidebar-transition: 300ms ease-in-out;
 
 @mixin center-hr($position: absolute) {
@@ -24,7 +27,7 @@ $sidebar-transition: 300ms ease-in-out;
 }
 
 // * Shared styles
-header[data-style="Header"] {
+#{header} {
     @include header-default();
 
     & > div {
@@ -53,7 +56,7 @@ header[data-style="Header"] {
 
 // * Desktop breakpoint
 @media only screen and (min-width: v.$navbar-breakpoint) {
-    header[data-style="Header"] {
+    #{header} {
         & > div {
             width: calc(100% - 25px);
         }
@@ -79,6 +82,19 @@ header[data-style="Header"] {
 
                 .nav-item {
                     white-space: nowrap;
+
+                    .nav-link {
+                        opacity: 0.7;
+                        transition: opacity $sidebar-transition;
+
+                        &:hover {
+                            opacity: 1;
+                        }
+                    }
+
+                    .last-clicked {
+                        opacity: 1;
+                    }
                 }
 
                 [class^="part"] {
@@ -103,7 +119,7 @@ header[data-style="Header"] {
 
 // * Mobile breakpoint
 @media only screen and (max-width: #{v.$navbar-breakpoint - 1}) {
-    header[data-style="Header"] {
+    #{header} {
     
         & > div {
             width: clamp(100px, 95%, 99%);
@@ -167,7 +183,7 @@ header[data-style="Header"] {
 
 // * Page Title media query
 @media only screen and (max-width: v.$h1-breakpoint) {
-    header[data-style="Header"] {
+    #{header} {
 
         .page-title {
             position: fixed !important;
@@ -181,7 +197,7 @@ header[data-style="Header"] {
 
 // * Page Title transition
 @media only screen and (min-width: #{v.$h1-breakpoint + 1}) {
-    header[data-style="Header"] {
+    #{header} {
         .page-title {
             left: 50% !important;
         }
@@ -191,7 +207,7 @@ header[data-style="Header"] {
 // * Layout quick fix
 @media only screen and (max-width: 1060px) and (min-width: v.$navbar-breakpoint) {
     // TODO: Eliminate this media query!
-    header[data-style="Header"] {
+    #{header} {
         .part-1 .nav-item:last-child {
             padding-right: 75px;
         }
