@@ -1,17 +1,31 @@
-import React from 'react';
-import Pages from '@data/pages';
+import React, { useEffect, useState } from 'react';
 import { useToggleMenu } from '@hooks/useToggleMenu';
+import { handleScroll } from "../utils/handleScroll"
+import Pages from '@data/pages';
 import AuthorHeader from '@components/authorHeader';
 import Logo from '@components/Logo';
 import UrlLink from '@components/nav/urlLink';
 import NavBtn from '@components/nav/navBtn';
 import '@styles/_components/Navbar.scss';
 
-const Header: React.FC = () => {
+interface HeaderProps {
+    anime?: boolean; // Default: false
+}
+
+const Header: React.FC<HeaderProps> = ({ anime = false }) => {
     const { menuOpen, toggleMenu } = useToggleMenu();
+    const [ isScrolled, setIsScrolled ] = useState(false)
+    
+    useEffect(() => {
+        if (anime) {
+            const cleanup = handleScroll(800, () => setIsScrolled(true), () => setIsScrolled(false));
+            return cleanup;
+        }
+    }, [anime]);
 
     return (
-        <header data-style="Header" itemScope itemType="https://schema.org/WPHeader">
+        <header id='navbar-header' data-style="Header" className={isScrolled ? 'scrolled' : ''}
+        itemScope itemType="https://schema.org/WPHeader">
             <div>
                 <a title="Home Page - André Valério" href={Pages.home} 
                     rel="noopener noreferrer" itemProp="url">
@@ -20,7 +34,8 @@ const Header: React.FC = () => {
                 <AuthorHeader style={menuOpen ? { left: '20px' } : { left: '-150%' } } />
                 <nav id="navbar" aria-label="Main navigation" 
                     itemScope itemType="https://schema.org/SiteNavigationElement"
-                    className={menuOpen ? 'visible' : ''}>
+                    className={menuOpen ? 'visible' : ''}
+                >
                     <ul aria-label="Navigation list" title="Navigation list" className="nav-list hide-title">
                         <hr />
                         <div className="part-1">

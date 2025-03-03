@@ -4,15 +4,15 @@
 import Layout from '@layouts/Layout.astro';
 import Header from '@components/Header.tsx';
 import Footer from '@components/Footer.astro';
+import AuthorHeader from '@components/authorHeader.tsx';
 import Imgs from '@data/imgs';
-import AuthorHeader from '@components/authorHeader';
 // import "@styles/_components/Navbar.scss";
 
 ---
 
 <Layout title="André Valério - Composer & Guitarist">
-	<Header client:load />
-	<main style="height: 500vh;">
+	<Header anime={true} client:load />
+	<main style="height: 2000vh;">
 		<section 
 			class="apresentation"
 			{/* TODO: Make SEO atributes */}
@@ -38,7 +38,12 @@ import AuthorHeader from '@components/authorHeader';
 <style lang="scss">
 	main {
 		.apresentation {
+			width: 100%;
+			height: 100dvh;
 
+			.content {
+				height: 100%;
+			}
 		}
 	}
 </style>
