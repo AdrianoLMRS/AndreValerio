@@ -1,20 +1,44 @@
 ---
+
 // import Home from '@components/Home/Index.astro';
 import Layout from '@layouts/Layout.astro';
 import Header from '@components/Header.tsx';
 import Footer from '@components/Footer.astro';
+import Imgs from '@data/imgs';
+import AuthorHeader from '@components/authorHeader';
 // import "@styles/_components/Navbar.scss";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout title="André Valério - Composer & Guitarist">
 	<Header client:load />
 	<main style="height: 500vh;">
-		Main content
+		<section 
+			class="apresentation"
+			{/* TODO: Make SEO atributes */}
+		>
+			<div class="content">
+				<img 
+					src={Imgs.cdn.background} alt="André Valério photo" sizes="" srcset=""
+					{/* TODO: Make SEO  atributes*/}
+				>
+				<AuthorHeader headingLevel={2} />
+
+				{/*	
+					TODO: Scroll gif
+					<img src="" alt="" >
+				*/}
+			</div>
+
+		</section>
 	</main>
 	<Footer />
 </Layout>
 
+<style lang="scss">
+	main {
+		.apresentation {
 
+		}
+	}
+</style>

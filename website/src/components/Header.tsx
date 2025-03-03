@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Pages from '@data/pages';
 import { useToggleMenu } from '@hooks/useToggleMenu';
-import AuthorHeader from "@components/authorHeader";
+import AuthorHeader from '@components/authorHeader';
 import Logo from '@components/Logo';
 import UrlLink from '@components/nav/urlLink';
 import NavBtn from '@components/nav/navBtn';
@@ -17,7 +17,7 @@ const Header: React.FC = () => {
                     rel="noopener noreferrer" itemProp="url">
                     <Logo />
                 </a>
-                <AuthorHeader style={menuOpen ? { left: "20px" } : { left: "-150%" } } />
+                <AuthorHeader style={menuOpen ? { left: '20px' } : { left: '-150%' } } />
                 <nav id="navbar" aria-label="Main navigation" 
                     itemScope itemType="https://schema.org/SiteNavigationElement"
                     className={menuOpen ? 'visible' : ''}>
