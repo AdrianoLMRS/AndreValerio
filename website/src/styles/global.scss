@@ -18,13 +18,15 @@ img {
 
 // Hides SEO things
 .sr-only {
+	$distance: -1000%;
 	position: fixed !important;
-	top: -100% !important; 
-	left: -100% !important;
+	top: $distance !important; 
+	left: $distance !important;
 	opacity: 0 !important;
+	color: black !important; // Added because acessibility contrast errrors
 }
 
-// Hides title="" HTML atribute
+// Try to hide title="" HTML atribute
 .hide-title.title {
 	display: hidden !important;
 	visibility: hidden !important;

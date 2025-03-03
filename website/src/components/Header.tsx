@@ -1,5 +1,6 @@
 import React from 'react';
 import Pages from '@data/pages';
+import { author } from '@data/author';
 import { useToggleMenu } from '@hooks/useToggleMenu';
 import AuthorHeader from "@components/authorHeader";
 import Logo from '@components/Logo';
@@ -51,6 +52,9 @@ const Header: React.FC = () => {
                             Songs/Albums
                         </UrlLink>
                         <hr />
+                        <div className="separator author">
+                            { author.name /* Need for css */}
+                        </div>
                         <UrlLink 
                             href={Pages.contact} 
                             title="Contact Page - André Valério" 
