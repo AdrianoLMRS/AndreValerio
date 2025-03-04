@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, type ReactNode } from 'react';
 import { useToggleMenu } from '@hooks/useToggleMenu';
 import { handleScroll } from "@utils/handleScroll"
 import Pages from '@data/pages';
 import AuthorHeader from '@components/authorHeader';
-import Logo from '@components/Logo';
 import UrlLink from '@components/nav/urlLink';
 import NavBtn from '@components/nav/navBtn';
 import '@styles/_components/Navbar.scss';
 
 interface HeaderProps {
-    anime?: boolean; // Default: false
+    anime?: boolean; // Default: false]
+    children: ReactNode;
 }
 
-const Header: React.FC<HeaderProps> = ({ anime = false }) => {
+const Header: React.FC<HeaderProps> = ({ anime = false, children }) => {
     const { menuOpen, toggleMenu } = useToggleMenu();
     const [ isScrolled, setIsScrolled ] = useState(false)
     
@@ -29,7 +29,7 @@ const Header: React.FC<HeaderProps> = ({ anime = false }) => {
             <div>
                 <a title="Home Page - André Valério" href={Pages.home} 
                     rel="noopener noreferrer" itemProp="url">
-                    <Logo />
+                    {children} {/* Logo .astro component */}
                 </a>
                 <AuthorHeader style={menuOpen ? { left: '20px' } : { left: '-150%' } } />
                 <nav id="navbar" aria-label="Main navigation" 

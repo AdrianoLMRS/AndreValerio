@@ -4,11 +4,16 @@ import Layout from '@layouts/Layout.astro';
 import Header from '@components/Header';
 import Footer from '@components/Footer.astro';
 import MainContent from '@components/_pages/index.astro'
+import Logo from "@components/Logo.astro"
+
+// import { getImage } from "astro:assets";
 
 ---
 
 <Layout title="André Valério - Composer & Guitarist">
-	<Header anime={true} client:load />
+	<Header anime={true} client:load >
+		<Logo />
+	</Header>
 	<MainContent />
 	<Footer />
 </Layout>
