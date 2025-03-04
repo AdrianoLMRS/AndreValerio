@@ -18,18 +18,22 @@ export default defineConfig({
                 '@utils': new URL('./src/utils', ALIAS_URL),
             },
         },
-        // * Need css minify for css to run
         css: {
+            // * Need css minify for css to run
             minify: true,
         },
-        image: {
-            domains: ["https://placehold.jp"],
-            remotePatterns: [{ protocol: "https" }],
-            service: passthroughImageService(),
-        }
-        // site: BASE_URL.toString(),
-        // base: 'website',
     },
+    image: {
+        domains: ["https://placehold.jp"],
+        remotePatterns: [{ protocol: "https" }],
+        service: passthroughImageService(),
+        // experimentalLayout: 'responsive',
+    },
+    experimental: {
+        responsiveImages: true,
+    },
+    // site: BASE_URL.toString(),
+    // base: 'website',
 
     integrations: [react()],
 });
