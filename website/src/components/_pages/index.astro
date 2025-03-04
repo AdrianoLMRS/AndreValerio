@@ -1,8 +1,11 @@
 ---
-
+import { Image, inferRemoteSize } from 'astro:assets';
 import AuthorHeader from '@components/authorHeader';
+// import "@styles/_pages/index.scss"; // * Import like this if global styles
 import Imgs from '@data/imgs';
+const { background } = Imgs.cdn;
 
+const {width, height} = await inferRemoteSize(background);
 ---
 
 <main style="height: 2000vh;">
@@ -11,10 +14,13 @@ import Imgs from '@data/imgs';
         {/* TODO: Make SEO atributes */}
     >
         <div class="content">
-            <img 
-                src={Imgs.cdn.background} alt="André Valério photo" sizes="" srcset=""
+            <Image 
+                src={background}
+                alt="André Valério photo"
+                width={width}
+                height={height}
                 {/* TODO: Make SEO  atributes*/}
-            >
+            />
             <AuthorHeader headingLevel={2} />
 
             {/*	
@@ -25,3 +31,6 @@ import Imgs from '@data/imgs';
 
     </section>
 </main>
+
+{/* Need for scoped styles... */}
+<style lang="scss">@forward "@styles/_pages/index";</style>
