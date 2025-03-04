@@ -1,4 +1,4 @@
-import { defineConfig } from 'astro/config';
+import { defineConfig, passthroughImageService } from 'astro/config';
 import react from '@astrojs/react';
 // const BASE_URL = import.meta.env.BASE_URL
 const ALIAS_URL = import.meta.url;
@@ -22,6 +22,11 @@ export default defineConfig({
         css: {
             minify: true,
         },
+        image: {
+            domains: ["https://placehold.jp"],
+            remotePatterns: [{ protocol: "https" }],
+            service: passthroughImageService(),
+        }
         // site: BASE_URL.toString(),
         // base: 'website',
     },
