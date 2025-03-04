@@ -1,6 +1,6 @@
 // * Forward .scss files
-@forward './variables';
-@forward './styles';
+@forward '@styles/variables';
+@forward '@styles/styles';
 
 // * Resets
 *,
@@ -9,6 +9,10 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+html, body {
+	overflow-x: hidden;
 }
 
 img {

@@ -1,3 +1,6 @@
+@use "@styles/variables" as v;
+
+// * .pseudo-link
 $color: var(--white-color);
 $height: 2px;
 
@@ -27,4 +30,13 @@ $height: 2px;
 
 .pseudo-link:hover, header[data-style="Header"] .last-clicked {
     @include hover-animation()
+}
+
+// * .overlay
+.overlay {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	opacity: v.$overlay-opacity;
+	background-color: black;
 }

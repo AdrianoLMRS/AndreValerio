@@ -1,0 +1,9 @@
+/*
+    * This file was created because a bug in Astro scoped files
+    Use very specific CSS selectors
+*/
+
+// * <h2> job-title <span>
+main section.apresentation#apresentation div.content h2.page-title span.author-job {
+    font-size: .50em !important;
+}

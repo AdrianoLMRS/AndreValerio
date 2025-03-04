@@ -31,7 +31,7 @@ const Header: React.FC<HeaderProps> = ({ anime = false, children }) => {
                     rel="noopener noreferrer" itemProp="url">
                     {children} {/* Logo .astro component */}
                 </a>
-                <AuthorHeader style={menuOpen ? { left: '20px' } : { left: '-150%' } } />
+                <AuthorHeader style={menuOpen ? { left: '20px' } : { left: '-150%' } } id="author" />
                 <nav id="navbar" aria-label="Main navigation" 
                     itemScope itemType="https://schema.org/SiteNavigationElement"
                     className={menuOpen ? 'visible' : ''}

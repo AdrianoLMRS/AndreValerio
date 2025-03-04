@@ -2,26 +2,34 @@
 import { Image, inferRemoteSize } from 'astro:assets';
 import AuthorHeader from '@components/authorHeader';
 // import "@styles/_pages/index.scss"; // * Import like this if global styles
+import "@styles/_components/indexGlobal.scss"; // * Need this because Astro scoped styles bug
 import Imgs from '@data/imgs';
 const { background } = Imgs.cdn;
 
 const {width, height} = await inferRemoteSize(background);
+
+// import test from "@assets/test.png"
 ---
 
 <main style="height: 2000vh;">
     <section 
         class="apresentation"
+        id="apresentation"
         {/* TODO: Make SEO atributes */}
     >
         <div class="content">
-            <Image 
+            <div class="overlay"></div>
+            <Image
                 src={background}
                 alt="André Valério photo"
                 width={width}
                 height={height}
+                fit="cover"
+                layout="full-width"
+                priority={true}
                 {/* TODO: Make SEO  atributes*/}
             />
-            <AuthorHeader headingLevel={2} />
+            <AuthorHeader headingLevel={2} hideJob={false} />
 
             {/*	
                 TODO: Scroll gif
@@ -33,4 +41,4 @@ const {width, height} = await inferRemoteSize(background);
 </main>
 
 {/* Need for scoped styles... */}
-<style lang="scss">@forward "@styles/_pages/index";</style>
+<style lang="scss" > @forward "@styles/_pages/index"; </style>

@@ -20,6 +20,8 @@ $breakpoint-xl: 1200px; // extra-large
 $navbar-breakpoint: $breakpoint-lg;
 $h1-breakpoint: $breakpoint-sx + 20px;
 
+$overlay-opacity: 0.4;
+
 // * Font family - Poppins + Merriweather
 // Default values in :root
 $font-family: "Poppins", sans-serif;
@@ -36,6 +38,7 @@ $font-style: normal;
 
     font-family: $font-family;
     font-style: $font-style;
+    font-size: 16px;
     // font-size: size(regular1);
     background-color: var(--fourth-color);
     color: var(--white-color);
