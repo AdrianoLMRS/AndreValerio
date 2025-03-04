@@ -18,13 +18,16 @@ main {
             }
 
             .author {
+                opacity: 0; // Only appears after animation
                 width: fit-content;
-                position: relative;
+                position: absolute;
                 z-index: 2;
                 font-size: clamp(2.5rem, 5vw, 4.5rem);
                 bottom: 33%;
                 left: clamp(50px, 10%, 500px);
             }
+
+
         }
     }
 }
@@ -32,7 +35,7 @@ main {
 @media only screen and (max-width: v.$breakpoint-sx) {
     main .apresentation .content .author {
         opacity: 0.8;
-        margin-top: clamp(100px, 15%, 400px);
+        margin-top: clamp(100px, 17.5%, 400px);
         text-align: center;
         bottom: initial !important;
         @include m.center(absolute);

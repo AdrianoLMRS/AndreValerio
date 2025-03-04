@@ -1,8 +1,8 @@
 /*
-    * Component for adding an class to children 
+    * Component for adding an class to children with intersectionObserver
 */
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 interface ScrollAnimationProps {
   children: React.ReactNode;
@@ -13,9 +13,12 @@ interface ScrollAnimationProps {
 
 const ScrollAnimation: React.FC<ScrollAnimationProps> = ({ children, className, threshold, repeat=false }) => {
     const ref = useRef<HTMLDivElement | null>(null);
+    const [rendered, setRendered] = useState(false);
     
     useEffect(() => {
         if (!ref.current) return;
+
+        setRendered(true);
 
         const current : HTMLDivElement = ref.current;
         const observer = new IntersectionObserver(
@@ -39,7 +42,7 @@ const ScrollAnimation: React.FC<ScrollAnimationProps> = ({ children, className, 
     }, [repeat, threshold]);
 
     return (
-        <div ref={ref} className={`${className || 'scroll-fade'}`}>
+        <div ref={ref} className={`${rendered ? 'rendered' : ''} ${className || 'animated'}`}>
             {children}
         </div>
     );

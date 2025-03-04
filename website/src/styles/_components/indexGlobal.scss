@@ -3,10 +3,23 @@
     Use very specific CSS selectors (global styles aplied)
 */
 
+@use "@styles/animations" as a;
+
+$h2-author: 'h2.page-title[data-style="presentation-header"]';
+$main-apresentation: 'main section.apresentation#apresentation';
+
 // * <h2> job-title <span>
-main section.apresentation#apresentation h2.page-title[data-style="presentation-header"] span.author-job {
+#{$main-apresentation} #{$h2-author} span.author-job {
     font-size: .50em !important;
     display: inline-block;
     width: 100%;
     text-align: center;
+}
+
+#{$main-apresentation} div.animated.visible #{$h2-author}  {
+    @include a.slide-in($duration: 700ms);
+}
+
+#{$main-apresentation} div.animated.rendered.visible #{$h2-author}  {
+    @include a.slide-in($duration: 700ms);  opacity: 1 !important;
 }
