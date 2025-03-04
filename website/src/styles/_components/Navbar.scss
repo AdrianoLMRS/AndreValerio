@@ -9,6 +9,7 @@ $h1-width: 250px;
 $separator: math.div($h1-width, 2);
 // @debug "Separator: #{$separator}";
 $sidebar-transition: 300ms ease-in-out;
+$z-index-high: 2;
 
 @mixin header-default {
     position: fixed;
@@ -53,7 +54,12 @@ $sidebar-transition: 300ms ease-in-out;
         overflow-x: hidden;
         white-space: nowrap;
         cursor: pointer;
-        z-index: 10;
+        z-index: $z-index-high;
+    }
+
+    .logo {
+        position: relative;
+        z-index: $z-index-high;
     }
 
 }
@@ -136,7 +142,7 @@ $sidebar-transition: 300ms ease-in-out;
             color: var(--white-color);
             cursor: pointer;
             font-size: 48px;
-            z-index: 10;
+            z-index: $z-index-high;
     
             &:focus {
                 // May need to style later for accessibility reasons...
