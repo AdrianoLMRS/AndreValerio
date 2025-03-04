@@ -1,0 +1,31 @@
+@mixin center($position: absolute, $important: false) {
+    position: $position #{if($important, '!important', '')};
+    top: 50% #{if($important, '!important', '')};
+    left: 50% #{if($important, '!important', '')};
+    transform: translate(-50%, -50%) #{if($important, '!important', '')};
+}
+
+@mixin center($position: absolute, $important: false) {
+    position: $position #{if($important, '!important', '')};
+    top: 50% #{if($important, '!important', '')};
+    left: 50% #{if($important, '!important', '')};
+    transform: translate(-50%, -50%) #{if($important, '!important', '')};
+}
+
+@mixin center-hr($position: absolute, $important: false) {
+    position: $position #{if($important, '!important', '')};
+    left: 50% #{if($important, '!important', '')};
+    transform: translate(-50%) #{if($important, '!important', '')};
+}
+
+@mixin center-vr($position: absolute, $important: false) {
+    position: $position #{if($important, '!important', '')};
+    top: 50% #{if($important, '!important', '')};
+    transform: translate(0, -50%) #{if($important, '!important', '')};
+}
+
+@mixin center-flex($flex: flex, $important: false) {
+    display: $flex #{if($important, '!important', '')};
+    justify-content: center #{if($important, '!important', '')};
+    align-items: center #{if($important, '!important', '')};
+}

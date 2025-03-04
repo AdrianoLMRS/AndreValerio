@@ -1,3 +1,6 @@
+@use "@styles/variables" as v;
+@use "@styles/mixins" as m;
+
 main {
     .apresentation {
         $height: 100dvh;
@@ -18,14 +21,20 @@ main {
                 width: fit-content;
                 position: relative;
                 z-index: 2;
-                font-size: clamp(2rem, 5vw, 4.5rem);
+                font-size: clamp(2.5rem, 5vw, 4.5rem);
                 bottom: 33%;
                 left: clamp(50px, 10%, 500px);
-
-                span {
-                    font-size: small !important;
-                }
             }
         }
+    }
+}
+
+@media only screen and (max-width: v.$breakpoint-sx) {
+    main .apresentation .content .author {
+        opacity: 0.8;
+        margin-top: clamp(100px, 15%, 400px);
+        text-align: center;
+        bottom: initial !important;
+        @include m.center(absolute);
     }
 }

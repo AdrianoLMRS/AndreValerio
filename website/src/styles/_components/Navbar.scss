@@ -1,4 +1,5 @@
 @use "@styles/variables" as v;
+@use "@styles/mixins" as m;
 @use "sass:math";
 @use "sass:color";
 
@@ -8,12 +9,6 @@ $h1-width: 250px;
 $separator: math.div($h1-width, 2);
 // @debug "Separator: #{$separator}";
 $sidebar-transition: 300ms ease-in-out;
-
-@mixin center-hr($position: absolute) {
-    position: $position;
-    left: 50%;
-    transform: translate(-50%);
-}
 
 @mixin header-default {
     position: fixed;
@@ -53,7 +48,7 @@ $sidebar-transition: 300ms ease-in-out;
     }
 
     .page-title {
-        @include center-hr(absolute);
+        @include m.center-hr(absolute);
         max-height: $h1-width;
         overflow-x: hidden;
         white-space: nowrap;
@@ -81,7 +76,7 @@ $sidebar-transition: 300ms ease-in-out;
             left: 0;
 
             .nav-list {
-                @include center-hr(relative);
+                @include m.center-hr(relative);
                 padding: 0;
                 display: inline-flex;
                 justify-content: space-between;

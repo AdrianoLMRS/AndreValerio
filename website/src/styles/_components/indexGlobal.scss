@@ -1,9 +1,12 @@
 /*
     * This file was created because a bug in Astro scoped files
-    Use very specific CSS selectors
+    Use very specific CSS selectors (global styles aplied)
 */
 
 // * <h2> job-title <span>
-main section.apresentation#apresentation div.content h2.page-title span.author-job {
+main section.apresentation#apresentation h2.page-title[data-style="presentation-header"] span.author-job {
     font-size: .50em !important;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
 }
