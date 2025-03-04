@@ -2,6 +2,7 @@
 import { Image, inferRemoteSize } from 'astro:assets';
 import AuthorHeader from '@components/authorHeader';
 import ScrollAnimation from "@components/scrollAnimation"
+import ScrollDown from '@components/scrollDown.astro';
 // import "@styles/_pages/index.scss"; // * Import like this if global styles
 import "@styles/_components/indexGlobal.scss"; // * Need this because Astro scoped styles bug
 import Imgs from '@data/imgs';
@@ -33,6 +34,10 @@ const {width, height} = await inferRemoteSize(background);
             <ScrollAnimation client:load repeat={true} >
                 <AuthorHeader headingLevel={2} hideJob={false} data-style="presentation-header" />
             </ScrollAnimation>
+
+            <div class="scroll-container">
+                <ScrollDown style="opacity: 0.4;" />
+            </div>
 
             {/*	
                 TODO: Scroll gif
