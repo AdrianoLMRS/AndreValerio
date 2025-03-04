@@ -1,37 +1,15 @@
 ---
 
-// import Home from '@components/Home/Index.astro';
 import Layout from '@layouts/Layout.astro';
-import Header from '@components/Header.tsx';
+import Header from '@components/Header';
 import Footer from '@components/Footer.astro';
-import AuthorHeader from '@components/authorHeader.tsx';
-import Imgs from '@data/imgs';
-// import "@styles/_components/Navbar.scss";
+import MainContent from '@components/_pages/index.astro'
 
 ---
 
 <Layout title="André Valério - Composer & Guitarist">
 	<Header anime={true} client:load />
-	<main style="height: 2000vh;">
-		<section 
-			class="apresentation"
-			{/* TODO: Make SEO atributes */}
-		>
-			<div class="content">
-				<img 
-					src={Imgs.cdn.background} alt="André Valério photo" sizes="" srcset=""
-					{/* TODO: Make SEO  atributes*/}
-				>
-				<AuthorHeader headingLevel={2} />
-
-				{/*	
-					TODO: Scroll gif
-					<img src="" alt="" >
-				*/}
-			</div>
-
-		</section>
-	</main>
+	<MainContent />
 	<Footer />
 </Layout>
 
