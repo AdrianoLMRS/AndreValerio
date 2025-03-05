@@ -1,7 +1,3 @@
-/*
-    * Component for adding an class to children with intersectionObserver
-*/
-
 import React, { useEffect, useRef, useState } from 'react';
 
 interface ScrollAnimationProps {
@@ -11,38 +7,33 @@ interface ScrollAnimationProps {
   repeat?: boolean;
 }
 
-const ScrollAnimation: React.FC<ScrollAnimationProps> = ({ children, className, threshold, repeat=false }) => {
-    const ref = useRef<HTMLDivElement | null>(null);
+const ScrollAnimation: React.FC<ScrollAnimationProps> = ({ children, className = 'animated', threshold = 0.1, repeat = false }) => {
+    const containerRef = useRef<HTMLDivElement>(null);
+    const [isVisible, setIsVisible] = useState(false);
     const [rendered, setRendered] = useState(false);
-    
+
     useEffect(() => {
-        if (!ref.current) return;
+        const container = containerRef.current;
+        if (!container) return;
 
         setRendered(true);
 
-        const current : HTMLDivElement = ref.current;
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                if (entry.isIntersecting) {
-                    current?.classList.add('visible');
-                    current?.classList.remove('hidden');
-                } else if (repeat) {
-                    current?.classList.add('hidden');
-                    current?.classList.remove('visible');
-                }
-            },
-            { threshold: threshold || 0.1 } // Active when 10% of the element is visible
-        );
+        const target = container.querySelector('astro-slot')?.firstElementChild ?? container.firstElementChild;
+        if (!(target instanceof HTMLElement)) return;
 
-        if (current) observer.observe(current);
+        const observer = new IntersectionObserver(([entry]) => {
+            setIsVisible(entry.isIntersecting || (!repeat && isVisible));
+        }, { threshold });
 
-        return () => {
-            if (current) observer.unobserve(current);
-        };
-    }, [repeat, threshold]);
+        observer.observe(target);
+        return () => observer.disconnect();
+    }, [threshold, repeat, isVisible]);
 
     return (
-        <div ref={ref} className={`${rendered ? 'rendered' : ''} ${className || 'animated'}`}>
+        <div
+        ref={containerRef}
+        style={{ display: "contents" }}
+        className={`${className} ${isVisible ? 'visible' : 'hidden'} ${rendered ? "rendered" : undefined}`}>
             {children}
         </div>
     );
