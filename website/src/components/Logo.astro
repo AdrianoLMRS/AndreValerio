@@ -1,19 +1,19 @@
 ---
-import { Image, inferRemoteSize } from 'astro:assets';
+import { Image } from 'astro:assets';
 import Imgs from '@data/imgs';
 
-const {width, height} = await inferRemoteSize(Imgs.cdn.logo);
+const { logo } = Imgs.cdn
 ---
 
 <div class="logo hide-title" itemscope itemtype="https://schema.org/Organization">
     <Image 
-        src={Imgs.cdn.logo}
+        src={logo}
         alt="Logo André Valério"
         title="Website Logo" 
         aria-label="Website Logo" 
         itemtype="https://schema.org/image" 
         itemprop="logo"
-        height={height}
-        width={width}
+        loading="eager"
+        inferSize
     />
 </div>

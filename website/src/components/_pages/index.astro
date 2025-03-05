@@ -8,7 +8,6 @@ import "@styles/_components/indexGlobal.scss"; // * Need this because Astro scop
 import Imgs from '@data/imgs';
 const { background } = Imgs.cdn;
 
-const {width, height} = await inferRemoteSize(background);
 
 // import test from "@assets/test.png"
 ---
@@ -23,12 +22,11 @@ const {width, height} = await inferRemoteSize(background);
             <div class="overlay"></div>
             <Image
                 src={background}
-                alt="André Valério photo"
-                width={width}
-                height={height}
+                alt="André Valério"
                 fit="cover"
                 layout="full-width"
-                priority={true}
+                priority
+                inferSize
                 {/* TODO: Make SEO  atributes*/}
             />
             <ScrollAnimation client:load repeat={true} >
@@ -36,7 +34,7 @@ const {width, height} = await inferRemoteSize(background);
             </ScrollAnimation>
 
             <div class="scroll-container">
-                <ScrollDown style="opacity: 0.4;" />
+                <ScrollDown style="opacity: 0.3;" />
             </div>
 
             {/*	

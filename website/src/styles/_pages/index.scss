@@ -18,6 +18,7 @@ main {
             }
 
             .author {
+                // TODO: box-shadow/text-shadow text CSS
                 opacity: 0; // Only appears after animation
                 width: fit-content;
                 position: absolute;
@@ -27,9 +28,10 @@ main {
                 left: clamp(30px, 10%, 500px);
             }
 
+            // For scrollDown.astro component
             .scroll-container {
                 @include m.center-hr();
-                bottom: -20px;
+                bottom: 0;
             }
         }
     }
