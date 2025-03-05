@@ -2,19 +2,27 @@
 @use "@styles/mixins" as m;
 
 main {
+    // * Apresentation section
     .apresentation {
-        $height: 100dvh;
         width: 100%;
-
-        .overlay { height: $height !important; }
+        $height: v.$apresentation-height;
 
         .content {
             height: $height;
 
-            img {
+            .bg-container {
                 height: 100%;
-                z-index: -2;
-                user-select: none;
+                .overlay {
+                    height: v.$apresentation-height;
+                }
+                img {
+                    position: fixed;
+                    filter: blur(0.5px);
+                    z-index: -2;
+                    height: 100dvh;
+                    top: 0;
+                    user-select: none;
+                }
             }
 
             .author {
@@ -30,8 +38,17 @@ main {
 
             // For scrollDown.astro component
             .scroll-container {
-                @include m.center-hr();
+                @include m.center-hr(fixed);
                 bottom: 0;
+            }
+        }
+        // * Parallax effect
+        .parallax {
+            // perspective: 1px;
+            // transform-style: preserve-3d;
+
+            .parallax__fixed {
+                z-index: -2;
             }
         }
     }

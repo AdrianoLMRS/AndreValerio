@@ -12,7 +12,7 @@ const { background } = Imgs.cdn;
 // import test from "@assets/test.png"
 ---
 
-<main style="height: 2000vh;">
+<main style="min-height: 100vh;">
 
     {/* Apresentation secion - User enters and see this */}
     <section
@@ -21,28 +21,32 @@ const { background } = Imgs.cdn;
         id="apresentation"
         {/* TODO: Make SEO atributes */}
     >
-        <div class="content">
-            <div class="overlay"></div>
-            <Image
-                src={background}
-                alt="André Valério"
-                fit="cover"
-                layout="full-width"
-                priority
-                inferSize
-                {/* TODO: Make SEO  atributes*/}
-            />
-            <ScrollAnimation client:load repeat={true} >
-                <AuthorHeader headingLevel={2} hideJob={false} data-style="presentation-header" />
-            </ScrollAnimation>
-
-            <div class="scroll-container">
-                <ScrollDown style="opacity: 0.3;" />
+        <div class="content parallax">
+            <div class="bg-container paralax__bg">
+                <div class="overlay"></div>
+                <Image
+                    class="parallax__fixed"
+                    src={background}
+                    alt="André Valério"
+                    fit="cover"
+                    layout="full-width"
+                    priority
+                    inferSize
+                    {/* TODO: Make SEO  atributes*/}
+                />
+                <div class="scroll-container parallax__fixed">
+                    <ScrollDown style="opacity: 0.3;" />
+                </div>
             </div>
 
-            {/*	
-                TODO: Scroll gif
-                <img src="" alt="" >
+            <div class="paralax__hero">
+                <ScrollAnimation client:load repeat={true} >
+                    <AuthorHeader headingLevel={2} hideJob={false} data-style="presentation-header" />
+                </ScrollAnimation>
+            </div>
+
+            {/*
+                <style lang="scss" is:global> @forward "@styles/_components/Paralax.scss"; </style>
             */}
         </div>
 
@@ -50,7 +54,9 @@ const { background } = Imgs.cdn;
 
     {/* About section - Tells user who is André Valério */}
     <section class="about" id="about">
-
+        <div class="content" style="background-color: var(--white-color); height: 500vh">
+            Test
+        </div>
     </section>
 </main>
 

@@ -1,8 +1,16 @@
-@mixin slide-in($duration: 300ms, $transition: ease-in-out) {
+@mixin slide-in($duration: 300ms, $transition: ease-in) {
     animation: slideIn $duration $transition;
 }
   
 @keyframes slideIn {
-    0% { transform: translateX(-100%); opacity: 0; filter: blur(10px);}
-    100% { transform: translateX(0); opacity: 1; filter: initial;}
+    0% {
+        transform: translateX(-100%); 
+        opacity: 0; 
+        filter: blur(10px); 
+    }
+    100% {
+        transform: translateX(0); 
+        opacity: initial; 
+        filter: initial; 
+    }
 }

@@ -1,0 +1,24 @@
+@use "@styles/variables" as v;
+
+@keyframes parallax {
+    to {
+        transform: translateY(5000px);
+    }
+}
+
+@mixin parallax() {
+    animation: parallax linear;
+    animation-timeline: scroll();
+}
+
+// * Paralax effect
+.paralax {
+    min-height: v.$apresentation-height;
+    display: grid;
+    grid-template-areas: "stack";
+
+    & > * {
+        grid-area: stack;
+        @include parallax();
+    }
+}
