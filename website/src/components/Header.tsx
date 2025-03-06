@@ -7,6 +7,8 @@ import UrlLink from '@components/nav/urlLink';
 import NavBtn from '@components/nav/navBtn';
 import '@styles/_components/Navbar.scss';
 
+const scrollPosition : number = 950;
+
 interface HeaderProps {
     anime?: boolean; // Default: false]
     children: ReactNode;
@@ -18,7 +20,7 @@ const Header: React.FC<HeaderProps> = ({ anime = false, children }) => {
     
     useEffect(() => {
         if (anime) {
-            const cleanup = handleScroll(800, () => setIsScrolled(true), () => setIsScrolled(false));
+            const cleanup = handleScroll(scrollPosition, () => setIsScrolled(true), () => setIsScrolled(false));
             return cleanup;
         }
     }, [anime]);

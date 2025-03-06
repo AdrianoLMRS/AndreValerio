@@ -152,7 +152,7 @@ $z-index-high: 2;
         // * Navbar - mobile
         nav {
             position: fixed;
-            background-color: var(--black-color);
+            background-color: var(--primary-color);
             right: 100%;
             bottom: 0;
             height: calc(100% - $header-height);

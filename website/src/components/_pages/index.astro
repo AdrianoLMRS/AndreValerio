@@ -1,5 +1,5 @@
 ---
-import { Image, inferRemoteSize } from 'astro:assets';
+import { Image } from 'astro:assets';
 import AuthorHeader from '@components/authorHeader';
 import ScrollAnimation from "@components/scrollAnimation"
 import ScrollDown from '@components/scrollDown.astro';
@@ -12,33 +12,42 @@ const { background } = Imgs.cdn;
 // import test from "@assets/test.png"
 ---
 
-<main style="min-height: 100vh;">
+<main>
 
-    {/* Apresentation secion - User enters and see this */}
+    {/* Apresentation section - User enters and see this */}
     <section
-
         class="apresentation"
         id="apresentation"
-        {/* TODO: Make SEO atributes */}
+        itemscope
+        itemtype="https://schema.org/CreativeWork"
+        aria-labelledby="apresentation-heading"
     >
         <div class="content parallax">
             <div class="bg-container paralax__bg">
-                <div class="overlay"></div>
+                <div aria-hidden="true" class="overlay"></div>
                 <Image
                     class="parallax__fixed"
                     src={background}
-                    alt="André Valério"
+                    alt="André Valério - Musician and Composer"
+                    title="André Valério - Musician and Composer"
                     fit="cover"
                     layout="full-width"
                     priority
                     inferSize
-                    {/* TODO: Make SEO  atributes*/}
+                    {/* Item atributes for SEO */}
+                    itemtype="https://schema.org/ImageObject"
+                    itemprop="contentUrl"
+                    contentUrl={background}
+                    itemprop="author"
+                    content="André Valério"
+                    itemprop="description"
+                    content="André Valério, musician and composer, captured in his natural environment."
                 />
-                <div class="scroll-container parallax__fixed">
+                <div aria-hidden="true" class="scroll-container parallax__fixed">
                     <ScrollDown style="opacity: 0.3;" />
                 </div>
             </div>
-
+            
             <div class="paralax__hero">
                 <ScrollAnimation client:load repeat={true} >
                     <AuthorHeader headingLevel={2} hideJob={false} data-style="presentation-header" />
@@ -52,12 +61,25 @@ const { background } = Imgs.cdn;
 
     </section>
 
-    {/* About section - Tells user who is André Valério */}
-    <section class="about" id="about">
-        <div class="content" style="background-color: var(--white-color); height: 500vh">
-            Test
-        </div>
-    </section>
+    <div class="main-content">
+        {/* About section - Tells user who is André Valério */}
+        <section
+            class="about"
+            id="about"
+            {/* TODO: Make SEO better */}
+        >
+            <div class="content">
+                <h2
+        
+                >
+                    Who is André Valério?
+                </h2>
+                <p class="about-paragraph">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos animi libero totam adipisci illum repellendus expedita quia blanditiis, odit voluptates? Id delectus animi a nemo, voluptas labore laboriosam facere sit.
+                </p>
+            </div>
+        </section>
+    </div>
 </main>
 
 {/* Need for scoped styles... */}

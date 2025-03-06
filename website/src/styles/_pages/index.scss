@@ -1,9 +1,23 @@
 @use "@styles/variables" as v;
 @use "@styles/mixins" as m;
 
+
 main {
+    $children-gap: 100px;
+    display: contents;
+
+    & > *:not(.apresentation) {
+        background-color: var(--primary-color);
+    }
+
+    .main-content {
+        padding: $children-gap 0 $children-gap 0;
+    }
+
     // * Apresentation section
     .apresentation {
+        background: none !important;
+        padding: 0;
         width: 100%;
         $height: v.$apresentation-height;
 
@@ -49,6 +63,20 @@ main {
 
             .parallax__fixed {
                 z-index: -2;
+            }
+        }
+    }
+
+    // * About section
+    .about {
+        max-width: clamp(100px, 50vw, 750px);
+        margin-inline: auto;
+        background: none;
+
+        .content {
+            p {
+                font-size: 1.5rem;
+                line-height: 1.7;
             }
         }
     }
