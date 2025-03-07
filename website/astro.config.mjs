@@ -24,8 +24,8 @@ export default defineConfig({
         },
     },
     image: {
-        domains: ["https://placehold.jp"],
-        remotePatterns: [{ protocol: "https" }],
+        domains: ['https://placehold.jp'],
+        remotePatterns: [{ protocol: 'https' }],
         service: passthroughImageService(),
         // experimentalLayout: 'responsive',
     },

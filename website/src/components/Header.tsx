@@ -1,6 +1,6 @@
 import React, { useEffect, useState, type ReactNode } from 'react';
 import { useToggleMenu } from '@hooks/useToggleMenu';
-import { handleScroll } from "@utils/handleScroll"
+import { handleScroll } from '@utils/handleScroll';
 import Pages from '@data/pages';
 import AuthorHeader from '@components/authorHeader';
 import UrlLink from '@components/nav/urlLink';
@@ -16,7 +16,7 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ anime = false, children }) => {
     const { menuOpen, toggleMenu } = useToggleMenu();
-    const [ isScrolled, setIsScrolled ] = useState(false)
+    const [ isScrolled, setIsScrolled ] = useState(false);
     
     useEffect(() => {
         if (anime) {
@@ -27,7 +27,7 @@ const Header: React.FC<HeaderProps> = ({ anime = false, children }) => {
 
     return (
         <header id='navbar-header' data-style="Header" className={isScrolled ? 'scrolled' : ''}
-        itemScope itemType="https://schema.org/WPHeader">
+            itemScope itemType="https://schema.org/WPHeader">
             <div>
                 <a title="Home Page - André Valério" href={Pages.home} 
                     rel="noopener noreferrer" itemProp="url">

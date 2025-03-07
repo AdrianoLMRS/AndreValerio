@@ -36,7 +36,7 @@ const AuthorHeader: React.FC<Props> = ({ style, headingLevel = 1, hideJob = true
             </strong>
             <br />
             <span
-                className={`author-job ${hideJob ? "sr-only" : ""}`}
+                className={`author-job ${hideJob ? 'sr-only' : ''}`}
                 itemProp="jobTitle"
                 itemType="https://schema.org/jobTitle"
                 title={job}

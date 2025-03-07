@@ -33,14 +33,15 @@ export default [
 
         rules: {
             ...pluginJs.configs.recommended.rules,
-            ...tsPlugin.configs.recommended.rules, // Agora pega as regras corretamente
+            ...tsPlugin.configs.recommended.rules,
 
             'indent': ['warn', 4],
             'quotes': ['warn', 'single'],
             'semi': ['warn', 'always'],
             'no-unused-vars': 'warn',
             'no-console': 'warn',
-            'import/no-extraneous-dependencies': 'off'
+            'import/no-extraneous-dependencies': 'off',
+            '@typescript-eslint/no-unused-expressions': ['error', { allowTernary: true }]
         }
     }
 ];

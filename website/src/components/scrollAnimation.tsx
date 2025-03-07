@@ -31,9 +31,9 @@ const ScrollAnimation: React.FC<ScrollAnimationProps> = ({ children, className =
 
     return (
         <div
-        ref={containerRef}
-        style={{ display: "contents" }}
-        className={`${className} ${isVisible ? 'visible' : 'hidden'} ${rendered ? "rendered" : undefined}`}>
+            ref={containerRef}
+            style={{ display: 'contents' }}
+            className={`${className} ${isVisible ? 'visible' : 'hidden'} ${rendered ? 'rendered' : undefined}`}>
             {children}
         </div>
     );
