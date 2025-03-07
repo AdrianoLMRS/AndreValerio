@@ -9,7 +9,7 @@ import '@styles/_components/indexGlobal.scss'; // * Need this because Astro scop
 import Imgs from '@data/imgs';
 import { author } from '@data/author';
 
-const { background } = Imgs.cdn;
+const { background, backgroundMobile } = Imgs.cdn;
 const { about } = author;
 
 // import test from "@assets/test.png"
@@ -28,8 +28,26 @@ const { about } = author;
         <div class="content parallax">
             <div class="bg-container paralax__bg">
                 <div aria-hidden="true" class="overlay"></div>
-                <Image
-                    class="parallax__fixed"
+                <Image {/* Mobile img */}
+                    class="parallax__fixed mobile"
+                    src={backgroundMobile}
+                    alt="André Valério - Musician and Composer"
+                    title="André Valério - Musician and Composer"
+                    fit="cover"
+                    layout="full-width"
+                    priority
+                    inferSize
+                    {/* Item atributes for SEO */}
+                    itemtype="https://schema.org/ImageObject"
+                    itemprop="contentUrl"
+                    contentUrl={backgroundMobile}
+                    itemprop="author"
+                    content="André Valério"
+                    itemprop="description"
+                    content="André Valério, musician and composer, captured in his natural environment."
+                />
+                <Image {/* Dektop img */}
+                    class="parallax__fixed desktop"
                     src={background}
                     alt="André Valério - Musician and Composer"
                     title="André Valério - Musician and Composer"
@@ -80,7 +98,7 @@ const { about } = author;
                     >
                     André Valério?</span>
                 </h2>
-                <p  class="about-paragraph">{about}</p>
+                <p class="about-paragraph">{ about }</p>
             </div>
         </section>
     </div>

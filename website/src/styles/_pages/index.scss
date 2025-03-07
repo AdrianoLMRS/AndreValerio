@@ -36,6 +36,12 @@ main {
                     height: 100dvh;
                     top: 0;
                     user-select: none;
+
+                    &.desktop { display: none; }
+                    @media only screen and (min-width: v.$breakpoint-xl) {
+                      &.mobile { display: none; }
+                      &.desktop { display: initial; }
+                    }
                 }
             }
 
@@ -74,7 +80,12 @@ main {
         background: none;
 
         .content {
-            p {
+            h2 {
+                font-size: 2.5rem;
+                margin-bottom: 1rem;
+                // text-align: center;
+            }
+            .about-paragraph {
                 font-size: 1.5rem;
                 line-height: 1.7;
             }
