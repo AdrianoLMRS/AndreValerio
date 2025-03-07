@@ -1,12 +1,16 @@
 ---
 import { Image } from 'astro:assets';
 import AuthorHeader from '@components/authorHeader';
-import ScrollAnimation from "@components/scrollAnimation"
+import ScrollAnimation from '@components/scrollAnimation';
 import ScrollDown from '@components/scrollDown.astro';
 // import "@styles/_pages/index.scss"; // * Import like this if global styles
-import "@styles/_components/indexGlobal.scss"; // * Need this because Astro scoped styles bug
+import '@styles/_components/indexGlobal.scss'; // * Need this because Astro scoped styles bug
+
 import Imgs from '@data/imgs';
+import { author } from '@data/author';
+
 const { background } = Imgs.cdn;
+const { about } = author;
 
 // import test from "@assets/test.png"
 ---
@@ -71,11 +75,12 @@ const { background } = Imgs.cdn;
                 <h2
         
                 >
-                    Who is André Valério?
+                    Who is <span
+                        {/* TODO: Make SEO better */}
+                    >
+                    André Valério?</span>
                 </h2>
-                <p class="about-paragraph">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos animi libero totam adipisci illum repellendus expedita quia blanditiis, odit voluptates? Id delectus animi a nemo, voluptas labore laboriosam facere sit.
-                </p>
+                <p  class="about-paragraph">{about}</p>
             </div>
         </section>
     </div>
