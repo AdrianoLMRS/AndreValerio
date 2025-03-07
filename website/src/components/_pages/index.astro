@@ -1,5 +1,7 @@
 ---
-import { Image } from 'astro:assets';
+import { inferRemoteSize } from 'astro:assets';
+
+import { Picture } from 'astro:assets';
 import AuthorHeader from '@components/authorHeader';
 import ScrollAnimation from '@components/scrollAnimation';
 import ScrollDown from '@components/scrollDown.astro';
@@ -7,10 +9,11 @@ import ScrollDown from '@components/scrollDown.astro';
 import '@styles/_components/indexGlobal.scss'; // * Need this because Astro scoped styles bug
 
 import Imgs from '@data/imgs';
-import { author } from '@data/author';
+const { background } = Imgs.cdn;
 
-const { background, backgroundMobile } = Imgs.cdn;
+import { author } from '@data/author';
 const { about } = author;
+
 
 // import test from "@assets/test.png"
 ---
@@ -28,26 +31,8 @@ const { about } = author;
         <div class="content parallax">
             <div class="bg-container paralax__bg">
                 <div aria-hidden="true" class="overlay"></div>
-                <Image {/* Mobile img */}
-                    class="parallax__fixed mobile"
-                    src={backgroundMobile}
-                    alt="André Valério - Musician and Composer"
-                    title="André Valério - Musician and Composer"
-                    fit="cover"
-                    layout="full-width"
-                    priority
-                    inferSize
-                    {/* Item atributes for SEO */}
-                    itemtype="https://schema.org/ImageObject"
-                    itemprop="contentUrl"
-                    contentUrl={backgroundMobile}
-                    itemprop="author"
-                    content="André Valério"
-                    itemprop="description"
-                    content="André Valério, musician and composer, captured in his natural environment."
-                />
-                <Image {/* Dektop img */}
-                    class="parallax__fixed desktop"
+                <Picture
+                    class="parallax__fixed"
                     src={background}
                     alt="André Valério - Musician and Composer"
                     title="André Valério - Musician and Composer"

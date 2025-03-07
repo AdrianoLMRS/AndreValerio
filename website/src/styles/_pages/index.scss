@@ -36,12 +36,6 @@ main {
                     height: 100dvh;
                     top: 0;
                     user-select: none;
-
-                    &.desktop { display: none; }
-                    @media only screen and (min-width: v.$breakpoint-xl) {
-                      &.mobile { display: none; }
-                      &.desktop { display: initial; }
-                    }
                 }
             }
 
