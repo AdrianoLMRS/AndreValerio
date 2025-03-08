@@ -3,8 +3,18 @@
 import { author } from "@data/author"
 const { spotifyId } = author // André Valério artist ID
 
+const TOKEN_URL = "/api/spotify"
+
+const getSpotifyToken = async (): Promise<string> => {
+    const baseURL = import.meta.env.PUBLIC_SITE_URL || "http://localhost:4321"; 
+    const response = await fetch(`${baseURL}/api/spotify`);
+    const data = await response.json();
+    return data.access_token;
+};
+
+
 // Spotify Access token for API calls
-const Token : string = import.meta.env.SPOTIFY_ACCESS
+const accessToken = await getSpotifyToken();
 
 const market = "BR" // Example: BR+ES
 const limit = "10"
@@ -27,7 +37,7 @@ const fetchAlbums = async (): Promise<AlbumResponse> => {
     const response = await fetch(ALBUM_URL, {
         method: "GET",
         headers: {
-        'Authorization': `Bearer ${Token}`,
+        'Authorization': `Bearer ${accessToken}`,
         'Content-Type': 'application/json',
         },
     });
