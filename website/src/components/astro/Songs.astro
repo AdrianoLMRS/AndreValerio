@@ -3,35 +3,19 @@
 import { author } from "@data/author"
 const { spotifyId } = author // André Valério artist ID
 
-const TOKEN_URL = "/api/spotify"
+import { getSpotifyToken } from "@utils/Spotify"
+import { AlbumResponse } from "@types/albumTypes"
 
-const getSpotifyToken = async (): Promise<string> => {
-    const baseURL = import.meta.env.PUBLIC_SITE_URL || "http://localhost:4321"; 
-    const response = await fetch(`${baseURL}/api/spotify`);
-    const data = await response.json();
-    return data.access_token;
-};
 
+const BASE_URL = import.meta.env.PUBLIC_BASE_URL || "http://localhost:4321"
 
 // Spotify Access token for API calls
-const accessToken = await getSpotifyToken();
+const accessToken = await getSpotifyToken(BASE_URL);
 
 const market = "BR" // Example: BR+ES
 const limit = "10"
 
 const ALBUM_URL = `https://api.spotify.com/v1/artists/${spotifyId}/albums?market=${market}&limit=${limit}`
-
-// Album types
-interface Album {
-  id: string
-  name: string
-  release_date: string
-  images: { url: string }[]
-}
-
-interface AlbumResponse {
-  items: Album[]
-}
 
 const fetchAlbums = async (): Promise<AlbumResponse> => {
     const response = await fetch(ALBUM_URL, {

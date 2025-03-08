@@ -17,6 +17,7 @@ export default defineConfig({
                 '@assets': new URL('./src/assets', ALIAS_URL),
                 '@hooks': new URL('./src/hooks', ALIAS_URL),
                 '@utils': new URL('./src/utils', ALIAS_URL),
+                '@types': new URL('./src/types', ALIAS_URL),
             },
         },
         css: {

@@ -1,5 +1,5 @@
 /* 
-    * API Route for getting sportify access token
+    * API Route for getting sportify new access token
     Maybe in future store that token in local.storage on client could be an option
 */
 
