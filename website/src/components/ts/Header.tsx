@@ -38,7 +38,7 @@ const Header: React.FC<HeaderProps> = ({ anime = false, children }) => {
                     itemScope itemType="https://schema.org/SiteNavigationElement"
                     className={menuOpen ? 'visible' : ''}
                 >
-                    <ul aria-label="Navigation list" title="Navigation list" className="nav-list hide-title">
+                    <menu aria-label="Navigation list" title="Navigation list" className="nav-list hide-title">
                         <hr />
                         <div className="part-1">
                             <UrlLink
@@ -107,7 +107,7 @@ const Header: React.FC<HeaderProps> = ({ anime = false, children }) => {
                             </UrlLink>
                         </div>
                         <hr />
-                    </ul>
+                    </menu>
                 </nav>
 
                 {/* toggleMenu hook to button */}
