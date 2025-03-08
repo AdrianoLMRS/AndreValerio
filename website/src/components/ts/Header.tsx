@@ -2,7 +2,7 @@ import React, { useEffect, useState, type ReactNode } from 'react';
 import { useToggleMenu } from '@hooks/useToggleMenu';
 import { handleScroll } from '@utils/handleScroll';
 import Pages from '@data/pages';
-import AuthorHeader from '@components/authorHeader';
+import AuthorHeader from '@components/ts/authorHeader';
 import UrlLink from '@components/nav/urlLink';
 import NavBtn from '@components/nav/navBtn';
 import '@styles/_components/Navbar.scss';
