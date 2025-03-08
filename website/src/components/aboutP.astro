@@ -4,6 +4,7 @@
 
 <style lang="scss" is:global >
 $mark_quantity: 15;
+$color: var(--secondary-color, black);
 
 @keyframes highlight {
     0% {
@@ -18,7 +19,7 @@ $mark_quantity: 15;
     strong {
         background: linear-gradient(
             to right,
-            #6E8894 50%,
+            $color 50%,
             oklch(0.86 0.19 84.89 / 0) 50%
         );
         background-position: 100%;

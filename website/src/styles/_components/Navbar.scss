@@ -182,9 +182,11 @@ $z-index-high: 2;
         
                         &.last-clicked {
                             text-decoration: underline;
+                            &::before {
+                                display: none;
+                            }
                         }
                     }
-        
                 }
             }
         }

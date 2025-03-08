@@ -1,5 +1,6 @@
 @use "@styles/variables" as v;
 @use "@styles/mixins" as m;
+@use "@styles/animations" as a;
 
 
 main {
@@ -50,6 +51,25 @@ main {
                 left: clamp(30px, 10%, 500px);
             }
 
+            & :global(span.author-job) {
+                font-size: .50em !important;
+                display: inline-block;
+                width: 100%;
+                text-align: center;
+            }
+
+            & :global(div.animated.visible) {
+                .author {
+                    @include a.slide-in($duration: 700ms);
+                }
+            }
+
+            & :global(div.animated.rendered.visible) {
+                .author {
+                    @include a.slide-in($duration: 700ms);  opacity: 1 !important;
+                }
+            }
+
             // For scrollDown.astro component
             .scroll-container {
                 @include m.center-hr(fixed);
@@ -79,7 +99,7 @@ main {
                 margin-bottom: 1rem;
                 // text-align: center;
             }
-            p {
+            & :global(p) {
                 font-size: 1.5rem;
                 line-height: 1.7;
             }
