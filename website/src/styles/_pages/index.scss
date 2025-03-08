@@ -96,12 +96,23 @@ main {
         .content {
             h2 {
                 font-size: 2.5rem;
-                margin-bottom: 1rem;
-                // text-align: center;
+                padding-bottom: 1rem;
+                hyphens: none;
             }
-            & :global(p) {
+            :global(p) {
                 font-size: 1.5rem;
                 line-height: 1.7;
+            }
+            @media only screen and (max-width: v.$breakpoint-sm) {
+                text-align: center;
+            }
+        }
+        @media only screen and (max-width: 200px) {
+            margin-inline: unset;
+            max-width: initial;
+
+            .content {
+                h2, :global(p) { hyphens: auto; }
             }
         }
     }
