@@ -32,7 +32,7 @@ const ScrollAnimation: React.FC<ScrollAnimationProps> = ({ children, className =
     return (
         <div
             ref={containerRef}
-            style={{ display: 'contents' }}
+            style={{ display: 'contents', clipPath: 'inset(100%)' }}
             className={`${className} ${isVisible ? 'visible' : 'hidden'} ${rendered ? 'rendered' : undefined}`}>
             {children}
         </div>

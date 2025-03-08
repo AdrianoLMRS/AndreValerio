@@ -17,7 +17,8 @@ const AuthorHeader: React.FC<Props> = ({ style, headingLevel = 1, hideJob = true
         <Tag
             className="page-title author"
             style={style}
-            aria-label="Page Header"
+            aria-labelledby="Page Header"
+            aria-hidden="false"
             itemProp="Author"
             itemScope
             itemType="https://schema.org/Person"

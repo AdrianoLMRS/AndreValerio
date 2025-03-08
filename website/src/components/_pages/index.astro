@@ -13,7 +13,9 @@ const { background } = Imgs.cdn;
 // import test from "@assets/test.png"
 ---
 
-<main>
+<main
+    itemprop="mainEntity" itemscope itemtype="https://schema.org/MusicArtist"
+>
 
     {/* Apresentation section - User enters and see this */}
     <section
@@ -22,6 +24,7 @@ const { background } = Imgs.cdn;
         itemscope
         itemtype="https://schema.org/CreativeWork"
         aria-labelledby="apresentation-heading"
+        aria-label="apresentation-heading"
     >
         <div class="content parallax">
             <div class="bg-container paralax__bg">
@@ -67,14 +70,14 @@ const { background } = Imgs.cdn;
         <section
             class="about"
             id="about"
-            {/* TODO: Make SEO better */}
+            itemscope
+            itemtype="https://schema.org/Person"
+            aria-labelledby="About"
         >
             <div class="content">
-                <h2
-        
-                >
+                <h2>
                     Who is <span
-                        {/* TODO: Make SEO better */}
+                        itemprop="name" itemtype="https://schema.org/name"
                     >
                     An&shy;dré Valé&shy;rio?</span>
                 </h2>
@@ -82,6 +85,8 @@ const { background } = Imgs.cdn;
                     <AboutParagraph />
                 </ScrollAnimation>
             </div>
+
+            {/* Maybe more content in future */}
         </section>
     </div>
 </main>
