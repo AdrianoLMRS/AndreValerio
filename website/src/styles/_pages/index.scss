@@ -4,7 +4,7 @@
 
 
 main {
-    $children-gap: 100px;
+    $children-gap: 50px;
     display: contents;
 
     & > *:not(.apresentation) {
@@ -12,7 +12,10 @@ main {
     }
 
     .main-content {
-        padding: $children-gap 0 $children-gap 0;
+        padding: 100px 0 100px 0;
+        & > * {
+            padding: $children-gap 0 $children-gap 0;
+        }
     }
 
     // * Apresentation section
