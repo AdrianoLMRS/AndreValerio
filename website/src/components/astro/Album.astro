@@ -1,0 +1,39 @@
+---
+
+const { name, release_date, image, imageAlt, id  } = Astro.props
+
+import { Image } from 'astro:assets';
+import Imgs from '@data/imgs';
+
+const albumURL = `https://open.spotify.com/album/${id}`;
+
+---
+
+<div class="album card">
+    <h2 class="name">{ name }</h2>
+    <div class="content">
+        <div class="img-container">
+            <Image
+                src={image}
+                alt={imageAlt}
+                fit="cover"
+                layout="full-width"
+                inferSize
+                {/* SEO */}
+                itemtype="https://schema.org/image"
+            />
+        </div>
+        <div class="bottom">
+            {/* TODO: Make a button that can play the album */}
+            <a href={albumURL} target="_blank" rel="noopener noreferrer">
+                <Image 
+                    src={Imgs.cdn.spotify}
+                    alt="Spotify icon"
+                    inferSize
+                    itemtype="https://schema.org/image"
+                />
+            </a>
+        </div>
+        <span class="release">{release_date}</span>
+    </div>
+</div>

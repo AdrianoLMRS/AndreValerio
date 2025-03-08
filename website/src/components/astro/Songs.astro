@@ -1,10 +1,12 @@
 ---
 
+import Album from "@components/astro/Album.astro"
+
 import { author } from "@data/author"
 const { spotifyId } = author // André Valério artist ID
 
 import { getSpotifyToken } from "@utils/Spotify"
-import { AlbumResponse } from "@types/albumTypes"
+import type { Album as albumType, AlbumResponse } from "@types/albumTypes"
 
 
 const BASE_URL = import.meta.env.PUBLIC_BASE_URL || "http://localhost:4321"
@@ -13,7 +15,7 @@ const BASE_URL = import.meta.env.PUBLIC_BASE_URL || "http://localhost:4321"
 const accessToken = await getSpotifyToken(BASE_URL);
 
 const market = "BR" // Example: BR+ES
-const limit = "10"
+const limit = "6"
 
 const ALBUM_URL = `https://api.spotify.com/v1/artists/${spotifyId}/albums?market=${market}&limit=${limit}`
 
@@ -29,30 +31,34 @@ const fetchAlbums = async (): Promise<AlbumResponse> => {
     if (!response.ok) {
         if (response.status === 401) {
             throw new Error('Unauthorized - Token may be expired or invalid. Please check your authentication.')
-        } else {
-            throw new Error('Error searching albums')
-        }
+        } else throw new Error('Error searching albums')
     };
 
+    // console.log(response.json());
     return await response.json(); // Response
-};
+  };
 
 const albums = await fetchAlbums();
+console.log(albums);
 
 ---
 
 <div>
     {albums.items && albums.items.length > 0 ? (
-      <ul>
-        {albums.items.map((album: Album) => (
-          <li>
-            <h2>{album.name}</h2>
-            <p>{album.release_date}</p>
-            <img src={album.images[0]?.url} alt={album.name} width="200" />
-          </li>
+    <ul>
+        {albums.items.map((album: albumType) => (
+        <li>
+            <Album 
+                name={album.name}
+                release_date={album.release_date}
+                image={album.images[0]?.url}
+                imageAlt={album.name}
+                id={album.id}
+            />
+        </li>
         ))}
-      </ul>
+    </ul>
     ) : (
-      <p>Sem álbuns disponíveis</p>
+    <p>No albums available...</p>
     )}
 </div>
