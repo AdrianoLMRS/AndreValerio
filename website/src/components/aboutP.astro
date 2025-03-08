@@ -1,0 +1,43 @@
+<p class="about-paragraph" id="about-p">
+    <strong>Andre Valerio</strong> is a <strong>Brazilian</strong> <strong>multi-instrumentalist</strong>, <strong>guitarist</strong>, <strong>composer</strong>, and <strong>arranger</strong>. He has performed at renowned <strong>festivals</strong> and <strong>venues</strong> worldwide, blending <strong>jazz</strong>, <strong>Brazilian</strong>, and <strong>classical music</strong>. His debut album, <strong>Chrysalis (2017)</strong>, showcases his talent and collaborations with esteemed <strong>musicians</strong>. With <strong>versatility</strong> and <strong>passion</strong>, Andre continues to captivate audiences globally.
+</p>
+
+<style lang="scss" is:global >
+$mark_quantity: 15;
+
+@keyframes highlight {
+    0% {
+        background-position: 100%;
+    }
+    100% {
+        background-position: 0%;
+    }
+}
+
+.about-paragraph#about-p {
+    strong {
+        background: linear-gradient(
+            to right,
+            #6E8894 50%,
+            oklch(0.86 0.19 84.89 / 0) 50%
+        );
+        background-position: 100%;
+        background-size: 200% 100%;
+        border-radius: 0.125rem;
+        padding-inline: 0.125rem;
+        animation: none;
+    
+        .visible & {
+            animation: highlight .5s linear forwards;
+        }
+    }
+}
+
+@for $i from 1 through $mark_quantity {
+    .about-paragraph#about-p strong:nth-child(#{$i}) {
+        animation-delay: #{200ms * $i};
+    }
+}
+  
+
+</style>

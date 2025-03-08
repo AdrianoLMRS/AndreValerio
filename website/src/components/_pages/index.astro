@@ -1,10 +1,10 @@
 ---
-import { inferRemoteSize } from 'astro:assets';
 
 import { Picture } from 'astro:assets';
 import AuthorHeader from '@components/authorHeader';
 import ScrollAnimation from '@components/scrollAnimation';
 import ScrollDown from '@components/scrollDown.astro';
+import AboutParagraph from '@components/aboutP.astro';
 // import "@styles/_pages/index.scss"; // * Import like this if global styles
 import '@styles/_components/indexGlobal.scss'; // * Need this because Astro scoped styles bug
 
@@ -12,7 +12,6 @@ import Imgs from '@data/imgs';
 const { background } = Imgs.cdn;
 
 import { author } from '@data/author';
-const { about } = author;
 
 
 // import test from "@assets/test.png"
@@ -83,7 +82,9 @@ const { about } = author;
                     >
                     André Valério?</span>
                 </h2>
-                <p class="about-paragraph">{ about }</p>
+                <ScrollAnimation className="highlight-animation" threshold={0.2} client:load  >
+                    <AboutParagraph />
+                </ScrollAnimation>
             </div>
         </section>
     </div>
