@@ -5,6 +5,7 @@ const ALIAS_URL = import.meta.url;
 
 export default defineConfig({
     vite: {
+        /// <reference types="vite/types/importMeta.d.ts" />
         resolve: {
             alias: {
                 '@': new URL('./src', ALIAS_URL),

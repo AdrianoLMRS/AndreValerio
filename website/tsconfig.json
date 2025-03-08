@@ -20,6 +20,7 @@
       "@hooks/*": ["src/hooks/*"],
       "@utils/*": ["src/utils/*"],
     },
+    "types": ["vite/client"],
     "plugins": [
       {
         "name": "@astrojs/ts-plugin"

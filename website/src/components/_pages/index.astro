@@ -5,6 +5,7 @@ import AuthorHeader from '@components/ts/authorHeader';
 import ScrollAnimation from '@components/ts/scrollAnimation';
 import ScrollDown from '@components/astro/scrollDown.astro';
 import AboutParagraph from '@components/astro/aboutP.astro';
+import Songs from '@components/astro/Songs.astro';
 // import "@styles/_pages/index.scss"; // * Import like this if global styles
 
 import Imgs from '@data/imgs';
@@ -102,6 +103,7 @@ const { background } = Imgs.cdn;
 
         <div class="content">
             {/* Songs and Albums using Spotify API */}
+            <Songs />
         </div>
         </section>
 

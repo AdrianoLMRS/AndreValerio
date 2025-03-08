@@ -1,0 +1,64 @@
+---
+
+import { author } from "@data/author"
+const { spotifyId } = author // André Valério artist ID
+
+// Spotify Access token for API calls
+const Token : string = import.meta.env.SPOTIFY_ACCESS
+
+const market = "BR" // Example: BR+ES
+const limit = "10"
+
+const ALBUM_URL = `https://api.spotify.com/v1/artists/${spotifyId}/albums?market=${market}&limit=${limit}`
+
+// Album types
+interface Album {
+  id: string
+  name: string
+  release_date: string
+  images: { url: string }[]
+}
+
+interface AlbumResponse {
+  items: Album[]
+}
+
+const fetchAlbums = async (): Promise<AlbumResponse> => {
+    const response = await fetch(ALBUM_URL, {
+        method: "GET",
+        headers: {
+        'Authorization': `Bearer ${Token}`,
+        'Content-Type': 'application/json',
+        },
+    });
+
+    if (!response.ok) {
+        if (response.status === 401) {
+            throw new Error('Unauthorized - Token may be expired or invalid. Please check your authentication.')
+        } else {
+            throw new Error('Error searching albums')
+        }
+    };
+
+    return await response.json(); // Response
+};
+
+const albums = await fetchAlbums();
+
+---
+
+<div>
+    {albums.items && albums.items.length > 0 ? (
+      <ul>
+        {albums.items.map((album: Album) => (
+          <li>
+            <h2>{album.name}</h2>
+            <p>{album.release_date}</p>
+            <img src={album.images[0]?.url} alt={album.name} width="200" />
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <p>Sem álbuns disponíveis</p>
+    )}
+</div>
