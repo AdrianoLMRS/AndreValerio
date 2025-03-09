@@ -11,7 +11,7 @@ import type { Album as albumType, AlbumResponse } from "@types/albumTypes"
 
 const isDev = import.meta.env.DEV;
 
-const ENV_URL = import.meta.env.PUBLIC_BASE_URL;
+const ENV_URL = "https://" + import.meta.env.VERCEL_URL;
 
 const BASE_URL: string = isDev
   ? "http://localhost:4321" 
