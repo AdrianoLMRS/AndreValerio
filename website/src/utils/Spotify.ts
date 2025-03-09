@@ -1,16 +1,25 @@
-import { api } from "@data/api"
-const endpoint = api.spotify.accessToken; // My API endpoint
+export const getSpotifyToken = async (): Promise<string> => {
+    const CLIENT_ID = import.meta.env.SPOTIFY_CLIENT_ID;
+    const CLIENT_SECRET = import.meta.env.SPOTIFY_CLIENT_SECRET;
+    const REFRESH_TOKEN = import.meta.env.SPOTIFY_REFRESH_TOKEN;
 
-// Gets spotify access token using endpoint
-export const getSpotifyToken = async (baseURL: string): Promise<string> => {
-    if (!baseURL) throw new Error("BaseURL is undefined!");
+    const spotifyURL = 'https://accounts.spotify.com/api/token';
 
-    const fullURL = new URL(endpoint, baseURL).href;
-    console.log("Fetching token from:", fullURL);
+    const response = await fetch(spotifyURL, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            Authorization: `Basic ${btoa(`${CLIENT_ID}:${CLIENT_SECRET}`)}`,
+        },
+        body: new URLSearchParams({
+            grant_type: 'refresh_token',
+            refresh_token: REFRESH_TOKEN,
+        }),
+    });
 
-    const response = await fetch(fullURL);
-
-    if (!response.ok) throw new Error(`Error searching token: ${response.statusText}`);
+    if (!response.ok) {
+        throw new Error('Error refreshing token');
+    }
 
     const data = await response.json();
     return data.access_token;

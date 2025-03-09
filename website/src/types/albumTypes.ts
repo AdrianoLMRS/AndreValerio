@@ -10,4 +10,4 @@ interface AlbumResponse {
     items: Album[]  
 }
 
-export type { Album, AlbumResponse }
+export type { Album, AlbumResponse };

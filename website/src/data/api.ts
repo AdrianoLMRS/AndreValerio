@@ -1,5 +1,5 @@
 export const api = {
     spotify: {
-        accessToken: "api/spotify",
+        accessToken: 'api/spotify',
     }
 };

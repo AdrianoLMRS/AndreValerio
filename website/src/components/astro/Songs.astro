@@ -8,19 +8,8 @@ const { spotifyId } = author // André Valério artist ID
 import { getSpotifyToken } from "@utils/Spotify"
 import type { Album as albumType, AlbumResponse } from "@types/albumTypes"
 
-
-const isDev = import.meta.env.DEV;
-
-const ENV_URL = import.meta.env.PUBLIC_BASE_URL;
-
-const BASE_URL: string = isDev
-  ? "http://localhost:4321" 
-  : ENV_URL;
-
-console.log("Base URL: " + BASE_URL);
-
 // Spotify Access token for API calls
-const accessToken = await getSpotifyToken(BASE_URL);
+const accessToken = await getSpotifyToken();
 
 const market = "BR" // Example: BR+ES
 const limit = "6"
@@ -42,7 +31,6 @@ const fetchAlbums = async (): Promise<AlbumResponse> => {
         } else throw new Error('Error searching albums')
     };
 
-    // console.log(response.json());
     return await response.json(); // Response
   };
 
