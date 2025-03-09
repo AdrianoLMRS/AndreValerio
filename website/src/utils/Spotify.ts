@@ -3,6 +3,8 @@ export const getSpotifyToken = async (): Promise<string> => {
     const CLIENT_SECRET = import.meta.env.SPOTIFY_CLIENT_SECRET;
     const REFRESH_TOKEN = import.meta.env.SPOTIFY_REFRESH_TOKEN;
 
+    console.log({ CLIENT_ID, CLIENT_SECRET, REFRESH_TOKEN })
+
     const spotifyURL = 'https://accounts.spotify.com/api/token';
 
     const response = await fetch(spotifyURL, {
