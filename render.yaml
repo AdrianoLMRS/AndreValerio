@@ -1,0 +1,23 @@
+# Exported from Render on 2025-03-09T15:38:05Z
+services:
+- type: web
+  name: AndreValerio-Docker
+  runtime: docker
+  repo: https://github.com/AdrianoLMRS/AndreValerio
+  plan: free
+  envVars:
+  - key: SPOTIFY_ACCESS
+    sync: false
+  - key: SPOTIFY_CLIENT_SECRET
+    sync: false
+  - key: SPOTIFY_CLIENT_ID
+    sync: false
+  - key: SPOTIFY_REFRESH_TOKEN
+    sync: false
+  - key: PUBLIC_BASE_URL
+    sync: false
+  region: ohio
+  dockerContext: .
+  dockerfilePath: ./Dockerfile
+  rootDir: website
+version: "1"

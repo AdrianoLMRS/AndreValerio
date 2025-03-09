@@ -21,7 +21,7 @@
       "@utils/*": ["src/utils/*"],
       "@types/*": ["src/types/*"],
     },
-    "types": ["vite/client"],
+    "types": ["vite/client", "node"],
     "plugins": [
       {
         "name": "@astrojs/ts-plugin"

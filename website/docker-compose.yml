@@ -1,0 +1,15 @@
+services:
+  astro-app:
+    build: .
+    container_name: astro-app
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+    restart: always
+    networks:
+      - astro_network
+
+networks:
+  astro_network:
+    driver: bridge

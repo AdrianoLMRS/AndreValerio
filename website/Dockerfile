@@ -1,8 +1,11 @@
-FROM node:lts AS build
+FROM node:lts-bookworm-slim AS build
 WORKDIR /app
 COPY package*.json ./
-RUN npm install
+RUN npm ci
+
+# Copy files to the container
 COPY . .
+
 RUN npm run build
 
 FROM nginx:alpine AS runtime

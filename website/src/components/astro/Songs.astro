@@ -9,7 +9,15 @@ import { getSpotifyToken } from "@utils/Spotify"
 import type { Album as albumType, AlbumResponse } from "@types/albumTypes"
 
 
-const BASE_URL = import.meta.env.PUBLIC_BASE_URL || "http://localhost:4321"
+const isDev = import.meta.env.DEV;
+
+const ENV_URL = import.meta.env.PUBLIC_BASE_URL;
+
+const BASE_URL: string = isDev
+  ? "http://localhost:4321" 
+  : ENV_URL;
+
+console.log("Base URL: " + BASE_URL);
 
 // Spotify Access token for API calls
 const accessToken = await getSpotifyToken(BASE_URL);

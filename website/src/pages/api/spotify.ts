@@ -13,6 +13,8 @@ export const GET: APIRoute = async () => {
         const CLIENT_SECRET = import.meta.env.SPOTIFY_CLIENT_SECRET;
         const REFRESH_TOKEN = import.meta.env.SPOTIFY_REFRESH_TOKEN;
 
+        console.log({ CLIENT_ID, CLIENT_SECRET, REFRESH_TOKEN });
+
         const response = await fetch(spotifyURL, {
             method: 'POST',
             headers: {
@@ -25,11 +27,10 @@ export const GET: APIRoute = async () => {
             }),
         });
 
-        if (!response.ok) {
-            throw new Error('Error refreshing token');
-        }
+        if (!response.ok) throw new Error('Error refreshing token');
 
         const data = await response.json();
+        console.log("\n\nSpotify API Response:", data);
         return new Response(JSON.stringify({ access_token: data.access_token }), {
             headers: { 'Content-Type': 'application/json' },
         });
