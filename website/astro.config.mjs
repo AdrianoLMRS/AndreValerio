@@ -2,12 +2,12 @@ import { defineConfig, passthroughImageService } from 'astro/config';
 import react from '@astrojs/react';
 // import vercel from '@astrojs/vercel';
 import { loadEnv } from 'vite';
-// const BASE_URL = import.meta.env.BASE_URL
 const ALIAS_URL = import.meta.url;
 
 export default defineConfig({
     // output: 'server',
     // adapter: vercel(),
+    site: 'https://adrianolmrs.github.io/AndreValerio/',
     vite: {
         /// <reference types="vite/types/importMeta.d.ts" />
         resolve: {
