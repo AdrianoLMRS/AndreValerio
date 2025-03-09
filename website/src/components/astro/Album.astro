@@ -10,7 +10,7 @@ const albumURL = `https://open.spotify.com/album/${id}`;
 ---
 
 <div class="album card">
-    <h2 class="name">{ name }</h2>
+    <h3 class="name">{ name }</h3>
     <div class="content">
         <div class="img-container">
             <Image
@@ -24,6 +24,10 @@ const albumURL = `https://open.spotify.com/album/${id}`;
             />
         </div>
         <div class="bottom">
+            <button onclick="window.alert('WIP - In development')" type="button">
+                ▶︎
+            </button>              
+
             {/* TODO: Make a button that can play the album */}
             <a href={albumURL} target="_blank" rel="noopener noreferrer">
                 <Image 
@@ -37,3 +41,43 @@ const albumURL = `https://open.spotify.com/album/${id}`;
         <span class="release">{release_date}</span>
     </div>
 </div>
+
+
+<style lang="scss" >
+    .album {
+        width: clamp(200px, 33%, 500px);
+
+        h3 {
+            text-align: center;
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+        }
+        .content {
+            background-color: var(--black-color);
+            padding: 20px;
+
+            .bottom {
+                $scale: 48px;
+
+                padding: 5px 10px 0 10px;
+                display: inline-flex;
+                width: 100%;
+                justify-content: space-between;
+                line-height: 0;
+
+                button {
+                    all: unset;
+                    font-size: $scale;
+                }
+
+                a {
+                    img {
+                        filter: invert(1);
+                        max-height: $scale;
+                        max-width: $scale;
+                    }
+                }
+            }
+
+        }
+    }
+</style>
