@@ -1,0 +1,21 @@
+version: "1"
+
+services:
+  - type: web
+    name: AndreValerio
+    runtime: static
+    repo: https://github.com/AdrianoLMRS/AndreValerio
+    buildCommand: npm run build
+    staticPublishPath: dist
+    rootDir: website
+    envVars:
+      - key: SPOTIFY_ACCESS
+        sync: false
+      - key: SPOTIFY_CLIENT_SECRET
+        sync: false
+      - key: SPOTIFY_CLIENT_ID
+        sync: false
+      - key: SPOTIFY_REFRESH_TOKEN
+        sync: false
+      - key: PUBLIC_BASE_URL
+        sync: false
