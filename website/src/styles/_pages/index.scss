@@ -126,6 +126,9 @@ main {
 
         :global(ul) {
             padding-top: 50px;
+            display: flex;
+            flex-wrap: wrap;
+
             :global(li) {
                 padding: 35px 0 35px 0;
                 display: flex;

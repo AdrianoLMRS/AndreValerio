@@ -59,14 +59,14 @@ const albumURL = `https://open.spotify.com/album/${id}`;
     $playing-color: #1f1f1f;
     $playing-color-2: #282828;
     $border-color: var(--secondary-color);
+    $button-size: 36px;
 
     $shadow-color: $playing-color-2;
     $shadow-color-light: color.adjust($color: $shadow-color, $whiteness: 25%);
     $shadow-color-lighter: color.adjust($color: $shadow-color, $whiteness: 22%, $alpha: -0.3);
 
     .album {
-        width: clamp(300px, 100%, 500px);
-
+        max-width: 600px;
         h3 {
             text-align: center;
             font-size: clamp(1.5rem, 3vw, 2.5rem);
@@ -90,17 +90,16 @@ const albumURL = `https://open.spotify.com/album/${id}`;
             }
 
             .middle {
-                $font-size: 48px;
                 $padding: 20px;
 
                 border: 2px solid $border-color;
                 padding: $padding 20px $padding 20px;
                 display: inline-flex;
                 width: 100%;
-                height: $font-size + $padding;
                 justify-content: space-between;
                 align-items: center;
                 line-height: 0;
+                transition: background-color 100ms;
 
                 &:hover {
                     background-color: $playing-color-2;
@@ -108,7 +107,17 @@ const albumURL = `https://open.spotify.com/album/${id}`;
 
                 button {
                     all: unset;
-                    font-size: $font-size;
+                    // display: inline-flex;
+                    // justify-content: center;
+                    // align-items: center;
+                    text-align: center;
+                    padding: 10px;
+                    border-radius: 50%;
+                    font-size: $button-size;
+                    height: $button-size;
+                    width: $button-size;
+                    color: var(--black-color);
+                    background-color: var(--white-color);
                     cursor: pointer;
                 }
 
@@ -166,6 +175,20 @@ const albumURL = `https://open.spotify.com/album/${id}`;
                         filter: invert(0.5);
                         max-height: $scale;
                         max-width: $scale;
+                    }
+                }
+            }
+        }
+
+        @media only screen and (max-width: 260px) {
+            .content {
+                .middle {
+                    // display: flex;
+                    // flex-direction: column;
+                    // height: auto;
+                    flex-wrap: wrap;
+                    button {
+                        padding: $button-size;
                     }
                 }
             }
