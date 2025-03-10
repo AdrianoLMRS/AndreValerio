@@ -1,0 +1,30 @@
+---
+
+import { fetchOEmbedData } from "@utils/Spotify";
+
+const { release_date, id, render = true } = Astro.props as { 
+    release_date: string; 
+    id: string; 
+    render: boolean; 
+};
+
+const oEmbedUrl = `https://open.spotify.com/oembed?url=https://open.spotify.com/album/${id}`;
+
+const spotifyData = await fetchOEmbedData(oEmbedUrl);
+console.debug(spotifyData)
+
+---
+
+<div class="album">
+    {render ?         
+        <div>
+            <h3>{spotifyData.title}</h3>
+            <p>{release_date}</p>
+        </div>
+    : undefined}
+    <div set:html={spotifyData.html} class="spotify-wrapper"></div>
+</div>
+
+<style lang="scss">
+    .spotify-wrapper {}
+</style>

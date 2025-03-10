@@ -26,3 +26,9 @@ export const getSpotifyToken = async (): Promise<string> => {
     const data = await response.json();
     return data.access_token;
 };
+
+export const fetchOEmbedData = async (URL: string) => {
+    const response = await fetch(URL);
+    if (!response.ok) throw new Error("Failed to fetch oEmbed data from Spotify");
+    return await response.json();
+};

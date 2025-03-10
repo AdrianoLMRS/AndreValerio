@@ -1,6 +1,6 @@
 ---
 
-import Album from "@components/astro/Album.astro"
+import SpotifyEmbed from "@components/astro/spotifyAlbum.astro"
 
 import { author } from "@data/author"
 const { spotifyId } = author // André Valério artist ID
@@ -44,11 +44,9 @@ console.log(albums);
     <ul>
         {albums.items.map((album: albumType) => (
         <li>
-            <Album 
+            <SpotifyEmbed 
                 name={album.name}
                 release_date={album.release_date}
-                image={album.images[0]?.url}
-                imageAlt={album.name}
                 id={album.id}
             />
         </li>
