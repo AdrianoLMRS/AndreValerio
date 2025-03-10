@@ -119,6 +119,22 @@ main {
             }
         }
     }
+
+    // * Songs section
+    .songs {
+        text-align: center;
+
+        :global(ul) {
+            padding-top: 50px;
+            :global(li) {
+                padding: 35px 0 35px 0;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+    }
 }
 
 @media only screen and (max-width: v.$breakpoint-sx) {

@@ -23,61 +23,152 @@ const albumURL = `https://open.spotify.com/album/${id}`;
                 itemtype="https://schema.org/image"
             />
         </div>
-        <div class="bottom">
+        <div class="middle">
             <button onclick="window.alert('WIP - In development')" type="button">
                 ▶︎
+                {/* TODO: Make a button that can play the album */}
             </button>              
 
-            {/* TODO: Make a button that can play the album */}
-            <a href={albumURL} target="_blank" rel="noopener noreferrer">
-                <Image 
-                    src={Imgs.cdn.spotify}
-                    alt="Spotify icon"
-                    inferSize
-                    itemtype="https://schema.org/image"
-                />
+            <a class="see-more"  href={albumURL} target="_blank" rel="noopener noreferrer">
+                <span>See more</span>
             </a>
         </div>
-        <span class="release">{release_date}</span>
+        <div class="bottom">
+            <div class="social">
+                <div class="social-item">
+                    <a href={albumURL} target="_blank" rel="noopener noreferrer">
+                        <Image
+                            src={Imgs.cdn.spotify}
+                            alt="Spotify icon"
+                            inferSize
+                            itemtype="https://schema.org/image"
+                        />
+                    </a>
+                </div>
+            </div>
+            <span>{release_date}</span>
+        </div>
     </div>
 </div>
 
 
 <style lang="scss" >
+    @use "@styles/variables" as v;
+    @use 'sass:color';
+
+    $playing-color: #1f1f1f;
+    $playing-color-2: #282828;
+    $border-color: var(--secondary-color);
+
+    $shadow-color: $playing-color-2;
+    $shadow-color-light: color.adjust($color: $shadow-color, $whiteness: 25%);
+    $shadow-color-lighter: color.adjust($color: $shadow-color, $whiteness: 22%, $alpha: -0.3);
+
     .album {
-        width: clamp(200px, 33%, 500px);
+        width: clamp(300px, 100%, 500px);
 
         h3 {
             text-align: center;
             font-size: clamp(1.5rem, 3vw, 2.5rem);
         }
         .content {
+            border-radius: v.$normal-border-radius * 2;
+            box-shadow: $shadow-color-light 0px 5px 15px;
             background-color: var(--black-color);
             padding: 20px;
 
-            .bottom {
-                $scale: 48px;
+            transition: box-shadow 300ms ease-in, background-color 300ms;
 
-                padding: 5px 10px 0 10px;
+            &:hover {
+                box-shadow: $shadow-color-lighter 0px 3px 8px;
+                background-color: color.adjust($playing-color-2, $blackness: 20%);
+            }
+
+            .img-container {
+                border: 3px solid $border-color;
+                margin-bottom: 20px;
+            }
+
+            .middle {
+                $font-size: 48px;
+                $padding: 20px;
+
+                border: 2px solid $border-color;
+                padding: $padding 20px $padding 20px;
                 display: inline-flex;
                 width: 100%;
+                height: $font-size + $padding;
                 justify-content: space-between;
+                align-items: center;
                 line-height: 0;
+
+                &:hover {
+                    background-color: $playing-color-2;
+                }
 
                 button {
                     all: unset;
-                    font-size: $scale;
+                    font-size: $font-size;
+                    cursor: pointer;
                 }
 
-                a {
+                .see-more {
+                    padding: 20px;
+                    text-decoration: none;
+                    color: var(--white-color);
+                    border: 1px solid var(--white-color);
+                    cursor: pointer;
+                    border-radius: v.$normal-border-radius;
+                    transition: background-color 300ms ease;
+                    &:hover {
+                        border: none;
+                        background-color: var(--white-color);
+                        font-weight: 600;
+                        color: var(--black-color);
+                    }
+                }
+            }
+            .bottom {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;     
+                padding-top: 20px;
+
+                > span {
+                    order: -1;
+                    opacity: 0.3;
+                }
+
+                .social {
+                    column-gap: 20px;
+                    display: flex;
+                    justify-content: end;
+                    $scale: 24px;
+    
+    
+                    .social-item {
+                        position: relative; // Required to anchor ::before
+    
+                        &::before {
+                            content: "";
+                            position: absolute; // Correct for overlay/offset
+                            left: -10px;
+                            top: 50%; // Center vertically
+                            transform: translateY(-50%); // Perfect centering
+                            display: block;
+                            width: 2px;
+                            height: 100%; // Add height
+                            z-index: 1;
+                            background-color: $border-color;
+                        }
+                    }
                     img {
-                        filter: invert(1);
+                        filter: invert(0.5);
                         max-height: $scale;
                         max-width: $scale;
                     }
                 }
             }
-
         }
     }
 </style>

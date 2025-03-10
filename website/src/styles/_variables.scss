@@ -4,10 +4,10 @@
 */
 $primary-color: #333333; // Jet - rgb(51, 51, 51)
 $secondary-color: #474747; // Outer Space - rgb(71, 71, 71)
-$third-color: #242124; // Raisin Black - rgb(36, 33, 36)
+$third-color: #151415; // Raisin Black - rgb(36, 33, 36)
 $fourth-color: #999999; // Battleship Gray - rgb(153, 153, 153)
 $white-color: #FFFAFA; // Snow - rgb(255, 250, 250)
-$black-color: #1F1F1F; // Eerie Black - rgb(31, 31, 31)
+$black-color: #1f1f1f; // Eerie Black - rgb(31, 31, 31)
 $highlight-color: #FA8334; // Pumpkin - rgb(250, 131, 52)
 
 // * Common breakpoints for responsiveness
@@ -27,6 +27,8 @@ $apresentation-height: 110dvh; // Parallax effec included
 // Default values in :root
 $font-family: "Poppins", sans-serif;
 $font-style: normal;
+
+$normal-border-radius: 10px;
 
 :root {
     --primary-color: #{$primary-color};
