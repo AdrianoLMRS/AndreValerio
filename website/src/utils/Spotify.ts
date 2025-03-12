@@ -1,9 +1,10 @@
-export const getSpotifyToken = async (): Promise<string> => {
-    const CLIENT_ID = import.meta.env.SPOTIFY_CLIENT_ID;
-    const CLIENT_SECRET = import.meta.env.SPOTIFY_CLIENT_SECRET;
-    const REFRESH_TOKEN = import.meta.env.SPOTIFY_REFRESH_TOKEN;
+const CLIENT_ID = import.meta.env.SPOTIFY_CLIENT_ID;
+const CLIENT_SECRET = import.meta.env.SPOTIFY_CLIENT_SECRET;
+const REFRESH_TOKEN = import.meta.env.SPOTIFY_REFRESH_TOKEN;
 
-    console.log({ CLIENT_ID, CLIENT_SECRET, REFRESH_TOKEN })
+export const getSpotifyToken = async (): Promise<string> => {
+
+    console.debug({ CLIENT_ID, CLIENT_SECRET, REFRESH_TOKEN });
 
     const spotifyURL = 'https://accounts.spotify.com/api/token';
 
@@ -19,9 +20,7 @@ export const getSpotifyToken = async (): Promise<string> => {
         }),
     });
 
-    if (!response.ok) {
-        throw new Error('Error refreshing token');
-    }
+    if (!response.ok) throw new Error('Error refreshing token');
 
     const data = await response.json();
     return data.access_token;
@@ -29,6 +28,6 @@ export const getSpotifyToken = async (): Promise<string> => {
 
 export const fetchOEmbedData = async (URL: string) => {
     const response = await fetch(URL);
-    if (!response.ok) throw new Error("Failed to fetch oEmbed data from Spotify");
+    if (!response.ok) throw new Error('Failed to fetch oEmbed data from Spotify');
     return await response.json();
 };
