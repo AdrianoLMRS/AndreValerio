@@ -1,4 +1,7 @@
 ---
+/*
+    Get artist albums + and display using oEmbed
+*/
 
 import SpotifyEmbed from "@components/astro/spotifyAlbum.astro"
 
@@ -37,7 +40,7 @@ const fetchAlbums = async (): Promise<AlbumResponse> => {
   };
 
 const albums = await fetchAlbums();
-console.log(albums);
+// console.debug(albums);
 
 ---
 

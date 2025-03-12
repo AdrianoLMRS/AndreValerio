@@ -1,17 +1,21 @@
 ---
 
+/* 
+    Displays oEmbed Albums with Spotify API
+*/
+
 import { fetchOEmbedData } from "@utils/Spotify";
 
 const { release_date, id, render = true } = Astro.props as { 
     release_date: string; 
     id: string; 
-    render: boolean; 
+    render?: boolean; 
 };
 
 const oEmbedUrl = `https://open.spotify.com/oembed?url=https://open.spotify.com/album/${id}`;
 
 const spotifyData = await fetchOEmbedData(oEmbedUrl);
-console.debug(spotifyData)
+// console.debug(spotifyData)
 
 ---
 

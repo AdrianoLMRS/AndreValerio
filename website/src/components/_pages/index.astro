@@ -6,10 +6,12 @@ import ScrollAnimation from '@components/ts/scrollAnimation';
 import ScrollDown from '@components/astro/scrollDown.astro';
 import AboutParagraph from '@components/astro/aboutP.astro';
 import Songs from '@components/astro/Songs.astro';
+import Artist from "@components/astro/Artist.astro"
 // import "@styles/_pages/index.scss"; // * Import like this if global styles
 
 import Imgs from '@data/imgs';
 const { background } = Imgs.cdn;
+
 
 // import test from "@assets/test.png"
 ---
@@ -89,6 +91,8 @@ const { background } = Imgs.cdn;
                     <AboutParagraph />
                 </ScrollAnimation>
             </div>
+
+            <Artist />
 
             {/* Maybe more content in future */}
         </section>

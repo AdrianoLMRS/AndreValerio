@@ -1,0 +1,59 @@
+---
+
+import { author } from "@data/author"
+import imgs from "@data/imgs"
+import { getSpotifyToken } from "@utils/Spotify"
+
+// Spotify Access token for API calls
+const accessToken = await getSpotifyToken();
+
+const id = author.spotifyId
+
+const artistURL = `https://api.spotify.com/v1/artists/${id}`
+
+// Fetch artist data from Spotify API
+const response = await fetch(artistURL, {
+    headers: {
+        Authorization: `Bearer ${accessToken}`,
+    },
+});
+const artist = await response.json();
+
+console.debug(artist)
+
+---
+
+<div class="author-card">
+    <div class="author-header">
+        <img
+            src={artist.images[0]?.url || imgs.cdn.backgroundMobile} 
+            alt={artist.name} 
+            class="author-image"
+        />
+        <div class="author-info">
+            <h2>{artist.name}</h2>
+            <p class="genres">
+                {artist.genres.join(", ")}
+            </p>
+            <p class="popularity">
+                Popularity: {artist.popularity}
+            </p>
+        </div>
+    </div>
+
+    <div class="spotify-wrapper">
+        <iframe
+            style="border-radius:12px"
+            src={`https://open.spotify.com/embed/artist/${id}?utm_source=generator`}
+            width="100%"
+            height="300"
+            frameborder="0"
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"
+        />
+    </div>
+</div>
+
+<style lang="scss" >
+
+</style>
