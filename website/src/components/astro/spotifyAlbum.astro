@@ -16,15 +16,18 @@ console.debug(spotifyData)
 ---
 
 <div class="album">
-    {render ?         
+    {render ?
         <div>
             <h3>{spotifyData.title}</h3>
             <p>{release_date}</p>
         </div>
-    : undefined}
+    : null}
     <div set:html={spotifyData.html} class="spotify-wrapper"></div>
+    {/* TODO: make albuns playable with URL params */}
 </div>
 
 <style lang="scss">
-    .spotify-wrapper {}
+    .spotify-wrapper :global(iframe) {
+        height: 600px !important;
+    }
 </style>
