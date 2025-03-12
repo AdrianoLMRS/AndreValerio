@@ -11,8 +11,10 @@ import type { Album as albumType, AlbumResponse } from "@types/albumTypes"
 // Spotify Access token for API calls
 const accessToken = await getSpotifyToken();
 
-const market = "BR" // Example: BR+ES
-const limit = "6"
+const market = "BR"; // Example: BR+ES
+const limit = "6";
+
+const disallowed : string[] = ["6gVncgomPUoXXQHvWzpRT0"];
 
 const ALBUM_URL = `https://api.spotify.com/v1/artists/${spotifyId}/albums?market=${market}&limit=${limit}`
 
@@ -41,18 +43,20 @@ console.log(albums);
 
 <div>
     {albums.items && albums.items.length > 0 ? (
-    <ul>
-        {albums.items.map((album: albumType) => (
-        <li>
-            <SpotifyEmbed 
-                name={album.name}
-                release_date={album.release_date}
-                id={album.id}
-            />
-        </li>
-        ))}
-    </ul>
-    ) : (
-    <p>No albums available...</p>
+        <ul>
+            {albums.items
+            .filter((album) => !disallowed.includes(album.id))
+            .map((album: albumType) => (
+                <li>
+                <SpotifyEmbed
+                    name={album.name}
+                    release_date={album.release_date}
+                    id={album.id}
+                />
+                </li>
+            ))}
+        </ul>
+        ) : (
+        <p>No albums available...</p>
     )}
 </div>
