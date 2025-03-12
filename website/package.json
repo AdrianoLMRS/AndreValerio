@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "astro dev",
+    "dev": "astro dev --watch",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
@@ -16,7 +16,7 @@
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
     "@vitejs/plugin-react": "^4.3.4",
-    "astro": "^5.4.2",
+    "astro": "^5.4.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },

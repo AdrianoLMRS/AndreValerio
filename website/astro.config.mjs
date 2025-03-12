@@ -28,6 +28,11 @@ export default defineConfig({
             // * Need css minify for css to run
             minify: true,
         },
+        server: {
+            watch: {
+              usePolling: true,
+            }
+        },
     },
     image: {
         domains: ['https://placehold.jp'],
