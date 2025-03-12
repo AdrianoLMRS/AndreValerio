@@ -35,23 +35,10 @@ console.debug(artist)
             <p class="genres">
                 {artist.genres.join(", ")}
             </p>
-            <p class="popularity">
-                Popularity: {artist.popularity}
-            </p>
         </div>
     </div>
 
-    <div class="spotify-wrapper">
-        <iframe
-            style="border-radius:12px"
-            src={`https://open.spotify.com/embed/artist/${id}?utm_source=generator`}
-            width="100%"
-            height="300"
-            frameborder="0"
-            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-            loading="lazy"
-        />
-    </div>
+
 </div>
 
 <style lang="scss" >
