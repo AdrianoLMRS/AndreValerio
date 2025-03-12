@@ -44,6 +44,18 @@ const albums = await fetchAlbums();
 
 ---
 
+<div style="padding-top: 100px;" class="spotify-wrapper">
+    <iframe
+        style="border-radius:12px"
+        src={`https://open.spotify.com/embed/artist/${spotifyId}?utm_source=generator`}
+        width="90%"
+        height="500"
+        frameborder="0"
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+        loading="lazy"
+    />
+</div>
+
 <div>
     {albums.items && albums.items.length > 0 ? (
         <ul>
