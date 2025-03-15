@@ -29,9 +29,10 @@ export default defineConfig({
             minify: true,
         },
         server: {
-            watch: {
-              usePolling: true,
-            }
+            // watch: {
+            //   usePolling: true,
+            // }
+            hmr: true, // Disable HMR
         },
     },
     image: {

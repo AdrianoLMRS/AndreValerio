@@ -3,7 +3,8 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "astro dev --watch",
+    "dev": "astro dev",
+    "dev:watch": "nodemon --watch src --watch components --ext astro,js,ts,jsx,tsx,json,md --exec astro dev",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
@@ -30,6 +31,7 @@
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-react-hooks": "^5.1.0",
     "globals": "^16.0.0",
+    "nodemon": "^3.1.9",
     "sass": "^1.85.1",
     "typescript-eslint": "^8.25.0"
   }
