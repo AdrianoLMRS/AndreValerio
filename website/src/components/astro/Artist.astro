@@ -1,9 +1,8 @@
 ---
 
-import { Image } from 'astro:assets';
+import { Picture } from 'astro:assets';
 
 import { author } from "@data/author"
-import imgs from "@data/imgs"
 import { getSpotifyToken } from "@utils/Spotify"
 
 // Spotify Access token for API calls
@@ -27,13 +26,14 @@ console.debug(artist)
 
 ---
 
-
-<img
-    src={artist.images[0]?.url || imgs.cdn.backgroundMobile} 
+<Picture
+    src={artist.images[0]?.url}
     alt={artist.name}
-    height={artist.images[0]?.height}
-    width={artist.images[0]?.width}
+    inferSize
+    layout={"responsive"}
 />
+
+  
 
 <style lang="scss">
     @use "@styles/variables" as v;
