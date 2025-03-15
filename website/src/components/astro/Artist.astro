@@ -1,5 +1,7 @@
 ---
 
+import { Image } from 'astro:assets';
+
 import { author } from "@data/author"
 import imgs from "@data/imgs"
 import { getSpotifyToken } from "@utils/Spotify"
@@ -19,28 +21,29 @@ const response = await fetch(artistURL, {
 });
 const artist = await response.json();
 
+// const artistImage = artist.images[0] || { url: imgs.cdn.backgroundMobile, width: 300, height: 300 };
+
 console.debug(artist)
 
 ---
 
-<div class="author-card">
-    <div class="author-header">
-        <img
-            src={artist.images[0]?.url || imgs.cdn.backgroundMobile} 
-            alt={artist.name} 
-            class="author-image"
-        />
-        <div class="author-info">
-            <h2>{artist.name}</h2>
-            <p class="genres">
-                {artist.genres.join(", ")}
-            </p>
-        </div>
-    </div>
 
+<img
+    src={artist.images[0]?.url || imgs.cdn.backgroundMobile} 
+    alt={artist.name}
+    height={artist.images[0]?.height}
+    width={artist.images[0]?.width}
+/>
 
-</div>
+<style lang="scss">
+    @use "@styles/variables" as v;
+    @use "sass:color";
 
-<style lang="scss" >
+    $box-shadow: color.adjust(v.$secondary-color, $alpha: -0.35);
 
+    img {
+        // object-fit: contain;
+        box-shadow: $box-shadow 0px 50px 100px -20px, color.adjust($box-shadow, $alpha: 0.5) 0px 30px 60px -30px, color.adjust($box-shadow, $alpha: 0.6) 0px -2px 6px 0px inset;
+        border-radius: v.$normal-border-radius;
+    }
 </style>
