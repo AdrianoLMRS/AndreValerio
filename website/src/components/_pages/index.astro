@@ -102,12 +102,34 @@ const { background } = Imgs.cdn;
             class="songs"
             {/* TODO: Make SEO better */}
         >
-        <h2>Songs/Albums</h2>
+            <h2>Songs/Albums</h2>
 
-        <div class="content">
-            {/* Songs and Albums using Spotify API */}
-            <Songs />
-        </div>
+            <div class="content">
+                {/* Songs and Albums using Spotify API */}
+                <Songs />
+            </div>
+        </section>
+
+        <section
+            class="teach" id="teach"
+            {/* TODO: make SEO better */}
+        >
+            <div class="top">
+                <div class="img-container">
+                
+                </div>
+                <div class="content">
+                    <h2>Let's play some guitar!</h2>
+                    <p>
+                        Hey there! Are you looking to learn <strong>guitar</strong> online? Look no further! I offer <strong>personalized lessons</strong> tailored to your specific interests and skill level.
+                        With my extensive experience in <strong>rock</strong>, <strong>pop</strong>, <strong>jazz</strong>, and <strong>blues</strong>, I can help you learn the <strong>songs</strong> and <strong>techniques</strong> you've always wanted to play. And with real <strong>audio</strong> embedded in my <strong>tabs</strong>, you'll be able to hear and see exactly how to master each song.
+                        But don't just take my word for it - book your <strong>online guitar lessons</strong> with me today and let's play together! Whether you're a <strong>beginner</strong> or an <strong>experienced player</strong> looking to take your skills to the next level, I'm here to help you reach your <strong>goals</strong>. So what are you waiting for? Let's make some <strong>music</strong>!
+                    </p>                    
+                </div>
+            </div>
+            <div class="bottom">
+                {/* TODO: make testimonials slider */}
+            </div>
         </section>
 
     </div>
@@ -116,8 +138,8 @@ const { background } = Imgs.cdn;
 {/* Need for scoped styles... */}
 <style lang="scss" > @forward "@styles/_pages/index"; </style>
 
-<style lang="scss" is:global >
+<!-- <style lang="scss" is:global >
     h2 {
         font-size: 2.5rem;
     }
-</style>
+</style> -->
