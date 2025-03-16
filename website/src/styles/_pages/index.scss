@@ -160,6 +160,22 @@ main {
             }
         }
     }
+
+    // * Teach section
+    .teach {        
+        .content {
+            text-align: center;
+            h2 {
+                padding-bottom: 40px;
+            }
+            p {
+                margin-inline: auto;
+                max-width: 80%;
+                font-size: 1.5rem;
+                line-height: 1.7;
+            }
+        }
+    }
 }
 
 @media only screen and (max-width: v.$breakpoint-sx) {
