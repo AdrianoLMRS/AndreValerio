@@ -4,7 +4,8 @@ const Pages = {
     songs: '/songs',
     videos: '/videos',
     contact: '/contact',
-    shop: '/shop'
+    shop: '/shop',
+    teach: '/teach',
 };
 
 export default Pages;

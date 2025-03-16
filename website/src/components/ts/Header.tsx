@@ -97,13 +97,13 @@ const Header: React.FC<HeaderProps> = ({ anime = false, children }) => {
                             </UrlLink>
                             <hr />
                             <UrlLink
-                                href={Pages.shop}
-                                title="Shop/Merchant Page - André Valério"
-                                ariaLabel="Shop"
+                                href={Pages.teach}
+                                title="Teach Page - André Valério"
+                                ariaLabel="Teach"
                                 target="_blank"
                                 toggleMenu={toggleMenu} // For Open/Closing Navbar
                             >
-                                Shop
+                                Teach
                             </UrlLink>
                         </div>
                         <hr />
