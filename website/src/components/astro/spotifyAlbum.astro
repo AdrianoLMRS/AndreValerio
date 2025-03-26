@@ -31,7 +31,13 @@ const spotifyData = await fetchOEmbedData(oEmbedUrl);
 </div>
 
 <style lang="scss">
+    @use '@styles/variables' as v;
+
     .spotify-wrapper :global(iframe) {
         height: 600px !important;
+        &:hover {
+            box-shadow: v.$github-box-shadow;
+        }
+        transition: box-shadow 200ms;
     }
 </style>
