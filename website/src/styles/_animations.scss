@@ -14,3 +14,14 @@
         filter: initial; 
     }
 }
+
+@property --hue {
+    syntax: "<number>";
+    initial-value: 0;
+    inherits: true;
+}
+
+@keyframes rainbow {
+    from { --hue: 0; }
+    to { --hue: 360; }
+  }

@@ -173,6 +173,96 @@ main {
                 max-width: 80%;
                 font-size: 1.5rem;
                 line-height: 1.7;
+                span {
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 35px;
+                    font-size: 1.2em;
+                    padding-top: 60px;
+                    line-height: initial;
+
+                    a {
+                        $scale: 48;
+                        $scale-px: $scale * 1px;
+                        $url1: "https://img.icons8.com/ios-filled/#{$scale}/FFFFFF/musical-notes.png";
+                        $url2: "https://img.icons8.com/android/#{$scale}/FFFFFF/musical-notes.png";
+                        $hue: 10%;
+                        $extra-margin: 20px;
+
+                        display: block;
+                        width: fit-content;
+                        max-width: 380px;
+                        text-decoration: none;
+                        background-color: var(--highlight-color);
+                        color: var(--contrast-color);
+                        padding: 15px;
+                        border-radius: v.$normal-border-radius;
+                        position: relative;
+                        transition: box-shadow 200ms ease;
+
+                        &::before, &::after {
+                            content: "";
+                            // z-index: -1;
+                            position: absolute;
+                            display: block;
+                            width: $scale-px;
+                            height: $scale-px;
+                            background-color: hsl(var(--hue) $hue 50%);   
+                            mask-size: cover;
+                            -webkit-mask-size: cover;                    
+                            animation: rainbow 5s linear infinite;
+
+                            // Before :hover
+                            opacity: 0;
+                            visibility: hidden;
+                            transition: all 400ms;
+
+                        }
+                        // Before :hover
+                        &::before {
+                            transform: translate(-100%, 100%);
+                        }
+                        &::after {
+                            transform: translate(100%, -100%);
+                        }
+
+                        // :hover
+                        &:hover, &:focus {
+                            &::before, &::after {
+                                opacity: 1;
+                                visibility: visible;
+                                transform: translate(0);
+                            }
+                            &::before { rotate: 15deg; }
+                            &::after { rotate: -15deg; }
+                            box-shadow: var(--contrast-color) 0px 1px 3px, var(--contrast-color) 0px 1px 2px;
+                        }
+
+                        &::before {
+                            @include m.icon-pseudo(
+                                $url: $url1,
+                                $hue: $hue,
+                                $extra-margin: $extra-margin,
+                                $scale: $scale-px,
+                                $negative: true
+                            );
+                            right: -55px;
+                        }
+                    
+                        &::after {
+                            @include m.icon-pseudo(
+                                $url: $url2,
+                                $hue: $hue,
+                                $extra-margin: $extra-margin - $scale-px,
+                                $scale: $scale-px,
+                                $negative: false
+                            );
+                            left: -55px;
+                        }
+                    }
+                }
             }
         }
     }

@@ -29,3 +29,15 @@
     justify-content: center #{if($important, '!important', '')};
     align-items: center #{if($important, '!important', '')};
 }
+
+@mixin icon-pseudo($url, $hue, $extra-margin: 20, $scale: 48px, $negative: false) {  
+    @if $negative {
+        margin-top: ($scale + $extra-margin) * -1;
+    } @else {
+        margin-top: $scale + $extra-margin;
+    }
+    background-color: hsl(var(--hue), #{$hue}, 50%);
+    mask-image: url(#{$url});
+    -webkit-mask-image: url(#{$url});
+}
+  
