@@ -1,17 +1,17 @@
 ---
 
-import { Picture, Image } from 'astro:assets';
+import { Picture } from 'astro:assets';
 import AuthorHeader from '@components/ts/authorHeader';
 import ScrollAnimation from '@components/ts/scrollAnimation';
 import ScrollDown from '@components/astro/scrollDown.astro';
 import AboutParagraph from '@components/astro/aboutP.astro';
 import Songs from '@components/astro/Songs.astro';
 import Artist from "@components/astro/Artist.astro"
-import Guitar from '@components/astro/Guitar.astro';
 // import "@styles/_pages/index.scss"; // * Import like this if global styles
 
 import Imgs from '@data/imgs';
-const { background, guitar } = Imgs.cdn;
+import Pages from "@data/pages"
+const { background } = Imgs.cdn;
 
 
 // import test from "@assets/test.png"
@@ -123,7 +123,7 @@ const { background, guitar } = Imgs.cdn;
                     But don't just take my word for it - book your <strong>online guitar lessons</strong> with me today and let's play together! Whether you're a <strong>beginner</strong> or an <strong>experienced player</strong> looking to take your skills to the next level, I'm here to help you reach your <strong>goals</strong>.
                     <span>
                         So what are you waiting for?
-                        <a href="http://" target="_blank" rel="noopener noreferrer">Let's make some <strong>music</strong>!</a>
+                        <a href={Pages.teach} target="_blank" rel="noopener noreferrer">Let's make some <strong>music</strong>!</a>
                     </span>
                 </p>
             </div>
