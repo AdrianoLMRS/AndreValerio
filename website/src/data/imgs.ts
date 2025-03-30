@@ -15,6 +15,9 @@ const Imgs = {
         spotify: 'https://img.icons8.com/ios-glyphs/24/spotify.png',
         guitar: "https://iili.io/3nKNq8u.webp",
     },
+    videos: {
+        intro: "A2ncO4LhF9A",
+    },
 };
 
 export default Imgs;

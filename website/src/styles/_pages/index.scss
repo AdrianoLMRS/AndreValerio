@@ -165,9 +165,12 @@ main {
     .teach {        
         .content {
             text-align: center;
-            h2 {
-                padding-bottom: 40px;
-            }
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            row-gap: 100px;
+
             p {
                 margin-inline: auto;
                 max-width: 80%;
@@ -262,6 +265,20 @@ main {
                             left: -55px;
                         }
                     }
+                }
+            }
+            .video-container {
+                position: relative;
+                width: clamp(200px, 95%, 1200px);
+                aspect-ratio: 16 / 9; /* Maintains 16:9 ratio */
+                margin: 0 auto; /* Centers the video */
+                
+                iframe {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
                 }
             }
         }
