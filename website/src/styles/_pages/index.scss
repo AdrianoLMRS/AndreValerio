@@ -53,6 +53,14 @@ main {
                 font-size: clamp(2.5rem, 5vw, 4.5rem);
                 bottom: 20%;
                 left: clamp(30px, 10%, 500px);
+                
+                @media only screen and (max-width: v.$breakpoint-sx) {
+                    opacity: 0.8;
+                    margin-top: clamp(100px, 17.5%, 400px);
+                    text-align: center;
+                    bottom: initial !important;
+                    @include m.center(absolute);
+                }
             }
 
             & :global(span.author-job) {
@@ -282,15 +290,5 @@ main {
                 }
             }
         }
-    }
-}
-
-@media only screen and (max-width: v.$breakpoint-sx) {
-    main .apresentation .content .author {
-        opacity: 0.8;
-        margin-top: clamp(100px, 17.5%, 400px);
-        text-align: center;
-        bottom: initial !important;
-        @include m.center(absolute);
     }
 }
