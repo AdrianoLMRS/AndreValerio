@@ -10,7 +10,7 @@ import '@styles/_components/Navbar.scss';
 const scrollPosition : number = 950;
 
 interface HeaderProps {
-    anime?: boolean; // Default: false]
+    anime?: boolean; // Default: false
     children: ReactNode;
 }
 

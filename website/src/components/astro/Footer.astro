@@ -1,3 +1,74 @@
-<footer style="background-color: var(--primary-color, black);" >
-    Future footer    
+---
+import { author } from "@data/author"
+import Pages from '@data/pages';
+import UrlLink from '@components/nav/urlLink';
+---
+
+<footer
+    id="footer"
+    {/* TODO: make SEO atributes */}
+>
+    <div class="links">
+        <ul>
+            <li>
+                <UrlLink href={Pages.home} title="Home Page - André Valério" ariaLabel="Home">
+                    Home
+                </UrlLink>
+            </li>
+            <hr>
+            <li>
+                <UrlLink href={Pages.about} title="About section - André Valério" ariaLabel="About">
+                    About
+                </UrlLink>
+            </li>
+            <hr>
+            <li>
+                <UrlLink href={Pages.songs} title="Songs/Albums Page - André Valério" ariaLabel="Songs/Albums" target="_blank">
+                    Songs/Albums
+                </UrlLink>
+            </li>
+            <hr>
+            <li>
+                <UrlLink href={Pages.videos} title="Videos Page - André Valério" ariaLabel="Videos" target="_blank">
+                    Videos
+                </UrlLink>
+            </li>
+            <hr>
+            <li>
+                <UrlLink href={Pages.contact} title="Contact Page - André Valério" ariaLabel="Contact" target="_blank">
+                    Contact
+                </UrlLink>
+            </li>
+            <hr>
+            <li>
+                <UrlLink href={Pages.teach} title="Teach Page - André Valério" ariaLabel="Teach" target="_blank">
+                    Teach
+                </UrlLink>
+            </li>
+        </ul>
+    </div>
+    <div class="social">
+        {/* TODO: make social icons + links */}
+    </div>
+    <div class="copyright">
+        <p>
+            &copy; {new Date().getFullYear()} André Valério.  All rights reserved.
+        </p>
+    </div>
+    <div class="dev">
+        <aside>
+            <small>
+                <p>Made by <a href={author.dev.site} target="_blank" rel="noopener noreferrer">{author.dev.name}</a></p>
+            </small>
+        </aside>
+    </div>
 <footer/>
+
+<style lang="scss" >
+    footer {
+        background-color: var(--primary-color, black);
+        color: var(--white-color);
+        padding: 1rem;
+        text-align: center;
+    }
+</style>
