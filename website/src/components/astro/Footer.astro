@@ -9,6 +9,24 @@ import UrlLink from '@components/nav/urlLink';
     {/* TODO: make SEO atributes */}
 >
     <div class="content">
+        <div class="social">
+            {/* TODO: make social icons + links */}
+            <UrlLink href={Pages.social.linktree} title="Linktree - André Valério" ariaLabel="Linktree" className="aria-link" target="_blank">
+                Linktree
+            </UrlLink>
+            <UrlLink href={Pages.social.youtube} title="Youtube - André Valério" ariaLabel="Youtube" className="aria-link" target="_blank">
+                Youtube
+            </UrlLink>
+            <UrlLink href={Pages.social.instagram} title="Instagram - André Valério" ariaLabel="Instagram" className="aria-link" target="_blank">
+                Instagram
+            </UrlLink>
+            <UrlLink href={Pages.social.soundslice} title="Soundslice - André Valério" ariaLabel="Soundslice" className="aria-link" target="_blank">
+                Soundslice
+            </UrlLink>
+            <UrlLink href={Pages.social.facebook} title="Facebook - André Valério" ariaLabel="Facebook" className="aria-link" target="_blank">
+                Facebook
+            </UrlLink>
+        </div>
         <div class="links">
             <ul>
                 <UrlLink href={Pages.home} title="Home Page - André Valério" ariaLabel="Home" className="pseudo-link aria-link">
@@ -35,9 +53,6 @@ import UrlLink from '@components/nav/urlLink';
                     Teach
                 </UrlLink>
             </ul>
-        </div>
-        <div class="social">
-            {/* TODO: make social icons + links */}
         </div>
         <div>
             <div class="copyright">
@@ -95,11 +110,12 @@ import UrlLink from '@components/nav/urlLink';
                 }
             }
             .dev {
-                opacity: 0.8;
+                opacity: 0.7;
                 a {
                     text-decoration: none;
                     &:hover, &:focus {
                         text-decoration: underline;
+                        opacity: 1;
                     }
                 }
             }

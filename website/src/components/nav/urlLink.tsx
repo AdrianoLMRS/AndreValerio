@@ -13,7 +13,7 @@ interface UrlLinkProps {
   className?: string;
   target?: string;
   rel?: string;
-  toggleMenu: () => void;
+  toggleMenu?: () => void;
 }
 
 const UrlLink: React.FC<UrlLinkProps> = ({ href, title, ariaLabel, children, target, rel, className, toggleMenu = () => {}, ...rest }) => {
