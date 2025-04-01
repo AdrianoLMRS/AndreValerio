@@ -11,6 +11,7 @@ const Pages = {
         instagram: 'https://www.instagram.com/valeriosom/',
         facebook: 'https://www.facebook.com/andre.valerio.1848',
         youtube: 'https://www.youtube.com/c/AndreValerio/featured',
+        spotify: 'https://open.spotify.com/artist/7bInuih8A0WSEqVwkbqXHN',
         soundslice: 'https://www.soundslice.com/users/andrevaleriosom/',
     },
 };

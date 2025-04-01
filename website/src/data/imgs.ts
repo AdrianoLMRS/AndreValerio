@@ -20,6 +20,7 @@ const Imgs = {
         instagram: `https://img.icons8.com/fluency/${socialSize}/instagram-new.png`,
         facebook: `https://img.icons8.com/office/${socialSize}/facebook.png`,
         youtube: `https://img.icons8.com/color/${socialSize}/youtube-play.png`,
+        spotify96: `https://img.icons8.com/fluency/${socialSize}/spotify.png`,
         soundslice: 'https://iili.io/3R0u0Bt.webp',
     },
     videos: {
