@@ -28,7 +28,7 @@ $height: 2px;
 	}
 }
 
-.pseudo-link:hover, header[data-style="Header"] .last-clicked {
+.pseudo-link:hover, .pseudo-link:focus, header[data-style="Header"] .last-clicked {
     @include hover-animation()
 }
 

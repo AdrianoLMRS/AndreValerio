@@ -8,55 +8,101 @@ import UrlLink from '@components/nav/urlLink';
     id="footer"
     {/* TODO: make SEO atributes */}
 >
-    <div class="links">
-        <ul>
-            <UrlLink href={Pages.home} title="Home Page - André Valério" ariaLabel="Home">
-                Home
-            </UrlLink>
-            <hr>
-            <UrlLink href={Pages.about} title="About section - André Valério" ariaLabel="About">
-                About
-            </UrlLink>
-            <hr>
-            <UrlLink href={Pages.songs} title="Songs/Albums Page - André Valério" ariaLabel="Songs/Albums" target="_blank">
-                Songs/Albums
-            </UrlLink>
-            <hr>
-            <UrlLink href={Pages.videos} title="Videos Page - André Valério" ariaLabel="Videos" target="_blank">
-                Videos
-            </UrlLink>
-            <hr>
-            <UrlLink href={Pages.contact} title="Contact Page - André Valério" ariaLabel="Contact" target="_blank">
-                Contact
-            </UrlLink>
-            <hr>
-            <UrlLink href={Pages.teach} title="Teach Page - André Valério" ariaLabel="Teach" target="_blank">
-                Teach
-            </UrlLink>
-        </ul>
-    </div>
-    <div class="social">
-        {/* TODO: make social icons + links */}
-    </div>
-    <div class="copyright">
-        <p>
-            &copy; {new Date().getFullYear()} André Valério.  All rights reserved.
-        </p>
-    </div>
-    <div class="dev">
-        <aside>
-            <small>
-                <p>Made by <a href={author.dev.site} target="_blank" rel="noopener noreferrer">{author.dev.name}</a></p>
-            </small>
-        </aside>
+    <div class="content">
+        <div class="links">
+            <ul>
+                <UrlLink href={Pages.home} title="Home Page - André Valério" ariaLabel="Home" className="pseudo-link aria-link">
+                    Home
+                </UrlLink>
+                <hr>
+                <UrlLink href={Pages.about} title="About section - André Valério" ariaLabel="About" className="pseudo-link aria-link">
+                    About
+                </UrlLink>
+                <hr>
+                <UrlLink href={Pages.songs} title="Songs/Albums Page - André Valério" ariaLabel="Songs/Albums" target="_blank" className="pseudo-link aria-link">
+                    Songs/Albums
+                </UrlLink>
+                <hr>
+                <UrlLink href={Pages.videos} title="Videos Page - André Valério" ariaLabel="Videos" target="_blank" className="pseudo-link aria-link">
+                    Videos
+                </UrlLink>
+                <hr>
+                <UrlLink href={Pages.contact} title="Contact Page - André Valério" ariaLabel="Contact" target="_blank" className="pseudo-link aria-link">
+                    Contact
+                </UrlLink>
+                <hr>
+                <UrlLink href={Pages.teach} title="Teach Page - André Valério" ariaLabel="Teach" target="_blank" className="pseudo-link aria-link">
+                    Teach
+                </UrlLink>
+            </ul>
+        </div>
+        <div class="social">
+            {/* TODO: make social icons + links */}
+        </div>
+        <div>
+            <div class="copyright">
+                <p>
+                    &copy; {new Date().getFullYear()} André Valério.  All rights reserved.
+                </p>
+            </div>
+            <div class="dev">
+                <aside>
+                    <small>
+                        <p>Made by <a
+                            href={author.dev.site} target="_blank" rel="noopener noreferrer">{author.dev.name}
+                            {/* TODO: Make SEO shit */}
+                        </a></p>
+                    </small>
+                </aside>
+            </div>
+        </div>
     </div>
 <footer/>
 
 <style lang="scss" >
     footer {
-        background-color: var(--primary-color, black);
-        color: var(--white-color);
+        background-color: var(--black-color);
         padding: 1rem;
         text-align: center;
+        min-width: 100%;
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            row-gap: 20px;
+
+            .links {
+                ul {
+                    list-style-type: none;
+                    width: fit-content;
+                    margin-inline: auto;
+
+                    :global(li) {
+                        $gap: 10px;
+                        text-align: center;
+                        padding: $gap 0;
+                        
+                        :global(a) {
+                            text-decoration: none;
+                            color: var(--white-color);
+                            cursor: pointer;
+                            text-decoration: none;
+                            font-size: 1.2rem;
+                        }
+                    }
+                hr { opacity: 0.3; }
+                }
+            }
+            .dev {
+                opacity: 0.8;
+                a {
+                    text-decoration: none;
+                    &:hover, &:focus {
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
     }
 </style>
