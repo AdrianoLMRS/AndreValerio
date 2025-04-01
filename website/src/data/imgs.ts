@@ -1,6 +1,6 @@
 const n : number = 48;
 const size : string = String(n);
-const socialSize : string = String(n * 2);
+const socialSize : string = String(92);
 const logoSize : string = size + 'x' + size;
 // const backgroundSize : string = '1920x1080';
 
