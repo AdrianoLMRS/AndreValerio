@@ -1,7 +1,11 @@
 ---
+import { Image } from 'astro:assets';
 import { author } from "@data/author"
 import Pages from '@data/pages';
+import Imgs from '@data/imgs';
 import UrlLink from '@components/nav/urlLink';
+
+const socialSize = 92;
 ---
 
 <footer
@@ -10,22 +14,43 @@ import UrlLink from '@components/nav/urlLink';
 >
     <div class="content">
         <div class="social">
-            {/* TODO: make social icons + links */}
-            <UrlLink href={Pages.social.linktree} title="Linktree - André Valério" ariaLabel="Linktree" className="aria-link" target="_blank">
-                Linktree
-            </UrlLink>
-            <UrlLink href={Pages.social.youtube} title="Youtube - André Valério" ariaLabel="Youtube" className="aria-link" target="_blank">
-                Youtube
-            </UrlLink>
-            <UrlLink href={Pages.social.instagram} title="Instagram - André Valério" ariaLabel="Instagram" className="aria-link" target="_blank">
-                Instagram
-            </UrlLink>
-            <UrlLink href={Pages.social.soundslice} title="Soundslice - André Valério" ariaLabel="Soundslice" className="aria-link" target="_blank">
-                Soundslice
-            </UrlLink>
-            <UrlLink href={Pages.social.facebook} title="Facebook - André Valério" ariaLabel="Facebook" className="aria-link" target="_blank">
-                Facebook
-            </UrlLink>
+            <ul>
+                <UrlLink href={Pages.social.linktree} title="Linktree - André Valério" ariaLabel="Linktree" className="aria-link" target="_blank">
+                    <Image
+                        src={Imgs.cdn.linktree}
+                        alt="Linktree - André Valério"
+                        height={socialSize} width={socialSize}
+                    />
+                </UrlLink>
+                <UrlLink href={Pages.social.youtube} title="Youtube - André Valério" ariaLabel="Youtube" className="aria-link" target="_blank">
+                    <Image
+                        src={Imgs.cdn.youtube}
+                        alt="Youtube - André Valério"
+                        height={socialSize} width={socialSize}
+                    />
+                </UrlLink>
+                <UrlLink href={Pages.social.instagram} title="Instagram - André Valério" ariaLabel="Instagram" className="aria-link" target="_blank">
+                    <Image
+                        src={Imgs.cdn.instagram}
+                        alt="Instagram - André Valério"
+                        height={socialSize} width={socialSize}
+                    />
+                </UrlLink>
+                <UrlLink href={Pages.social.soundslice} title="Soundslice - André Valério" ariaLabel="Soundslice" className="aria-link" target="_blank">
+                    <Image
+                        src={Imgs.cdn.soundslice}
+                        alt="Soundslice - André Valério"
+                        height={socialSize} width={socialSize}
+                    />
+                </UrlLink>
+                <UrlLink href={Pages.social.facebook} title="Facebook - André Valério" ariaLabel="Facebook" className="aria-link" target="_blank">
+                    <Image
+                        src={Imgs.cdn.facebook}
+                        alt="Facebook - André Valério"
+                        height={socialSize} width={socialSize}
+                    />
+                </UrlLink>
+            </ul>
         </div>
         <div class="links">
             <ul>
