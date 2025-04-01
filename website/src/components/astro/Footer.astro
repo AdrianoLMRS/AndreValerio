@@ -63,10 +63,19 @@ import UrlLink from '@components/nav/urlLink';
             <div class="dev">
                 <aside>
                     <small>
-                        <p>Made by <a
+                        <p>Made by 
+                        <a
                             href={author.dev.site} target="_blank" rel="noopener noreferrer">{author.dev.name}
                             {/* TODO: Make SEO shit */}
-                        </a></p>
+                        </a>
+                        <br>
+                        <span class="credits">
+                            Icons by
+                            <a
+                            href={author.dev.icons8} target="_blank" rel="noopener noreferrer">Icons8
+                            </a>
+                        </span>
+                        </p>
                     </small>
                 </aside>
             </div>
