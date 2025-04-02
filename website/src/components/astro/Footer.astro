@@ -1,8 +1,7 @@
 ---
-import { Image } from 'astro:assets';
 import { author } from "@data/author"
+import Social from '@components/astro/Social.astro';
 import Pages from '@data/pages';
-import Imgs from '@data/imgs';
 import UrlLink from '@components/nav/urlLink';
 
 const socialSize = 92;
@@ -14,52 +13,7 @@ const socialPx : string = `${socialSize}px`;
     {/* TODO: make SEO atributes */}
 >
     <div class="content">
-        <div class="social">
-            <ul>
-                <UrlLink href={Pages.social.linktree} title="Linktree - André Valério" ariaLabel="Linktree" className="aria-link" target="_blank">
-                    <Image
-                        src={Imgs.cdn.linktree}
-                        alt="Linktree - André Valério"
-                        height={socialSize} width={socialSize}
-                    />
-                </UrlLink>
-                <UrlLink href={Pages.social.youtube} title="Youtube - André Valério" ariaLabel="Youtube" className="aria-link" target="_blank">
-                    <Image
-                        src={Imgs.cdn.youtube}
-                        alt="Youtube - André Valério"
-                        height={socialSize} width={socialSize}
-                    />
-                </UrlLink>
-                <UrlLink href={Pages.social.instagram} title="Instagram - André Valério" ariaLabel="Instagram" className="aria-link" target="_blank">
-                    <Image
-                        src={Imgs.cdn.instagram}
-                        alt="Instagram - André Valério"
-                        height={socialSize} width={socialSize}
-                    />
-                </UrlLink>
-                <UrlLink href={Pages.social.soundslice} title="Soundslice - André Valério" ariaLabel="Soundslice" className="aria-link" target="_blank">
-                    <Image
-                        src={Imgs.cdn.soundslice}
-                        alt="Soundslice - André Valério"
-                        height={socialSize} width={socialSize}
-                    />
-                </UrlLink>
-                <UrlLink href={Pages.social.facebook} title="Facebook - André Valério" ariaLabel="Facebook" className="aria-link" target="_blank">
-                    <Image
-                        src={Imgs.cdn.facebook}
-                        alt="Facebook - André Valério"
-                        height={socialSize} width={socialSize}
-                    />
-                </UrlLink>
-                <UrlLink href={Pages.social.spotify} title="Spotify - André Valério" ariaLabel="Spotify" className="aria-link" target="_blank">
-                    <Image
-                        src={Imgs.cdn.spotify96}
-                        alt="Spotify - André Valério"
-                        height={socialSize} width={socialSize}
-                    />
-                </UrlLink>
-            </ul>
-        </div>
+        <Social />
         <div class="links">
             <ul>
                 <UrlLink href={Pages.home} title="Home Page - André Valério" ariaLabel="Home" className="pseudo-link aria-link">
@@ -131,8 +85,8 @@ const socialPx : string = `${socialSize}px`;
             justify-content: center;
             row-gap: 20px;
 
-            .social {
-                ul {
+            :global(.social) {
+                :global(ul) {
                     min-width: 100%;
                     list-style-type: none;
                     display: flex;

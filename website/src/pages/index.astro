@@ -1,16 +1,16 @@
 ---
-
 import Header from '@components/ts/Header';
+import Social from '@components/astro/Social.astro';
 import Layout from '@layouts/Layout.astro';
 import Footer from '@components/astro/Footer.astro';
 import Logo from '@components/astro/Logo.astro';
 import MainContent from '@components/_pages/index.astro';
-
 ---
 
 <Layout title="André Valério - Composer & Guitarist">
     <Header anime={true} client:load >
-        <Logo />
+        <Logo slot='logo' />
+        <Social slot='social' />
     </Header>
     <MainContent />
     <Footer />

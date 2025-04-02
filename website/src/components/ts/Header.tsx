@@ -11,10 +11,11 @@ const scrollPosition : number = 950;
 
 interface HeaderProps {
     anime?: boolean; // Default: false
-    children: ReactNode;
+    logo: ReactNode;
+    social: ReactNode;
 }
 
-const Header: React.FC<HeaderProps> = ({ anime = false, children }) => {
+export default function Header({ anime = false, logo, social }: HeaderProps) {
     const { menuOpen, toggleMenu } = useToggleMenu();
     const [ isScrolled, setIsScrolled ] = useState(false);
     
@@ -24,6 +25,8 @@ const Header: React.FC<HeaderProps> = ({ anime = false, children }) => {
             return cleanup;
         }
     }, [anime]);
+    console.debug("logo received:", logo);
+    console.debug("Social received:", social);
 
     return (
         <header id='navbar-header' data-style="Header" className={isScrolled ? 'scrolled' : ''}
@@ -31,7 +34,7 @@ const Header: React.FC<HeaderProps> = ({ anime = false, children }) => {
             <div>
                 <a title="Home Page - André Valério" href={Pages.home} 
                     rel="noopener noreferrer" itemProp="url">
-                    {children} {/* Logo .astro component */}
+                    {logo} {/* Logo .astro component */}
                 </a>
                 <AuthorHeader style={menuOpen ? { left: '20px' } : { left: '-150%' } } id="author" />
                 <nav id="navbar" aria-label="Main navigation" 
@@ -107,6 +110,9 @@ const Header: React.FC<HeaderProps> = ({ anime = false, children }) => {
                             </UrlLink>
                         </div>
                         <hr />
+                        <div className="social-section">
+                            {social} {/* Social .astro component */}
+                        </div>
                     </menu>
                 </nav>
 
@@ -116,5 +122,3 @@ const Header: React.FC<HeaderProps> = ({ anime = false, children }) => {
         </header>
     );
 };
-
-export default Header;
