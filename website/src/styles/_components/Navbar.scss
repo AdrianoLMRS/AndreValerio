@@ -119,6 +119,24 @@ $z-index-high: 2;
                     display: none;
                 }
             }
+            .social {
+                position: fixed;
+                left: 0;
+                top: 0;
+                z-index: 1;
+                transform: translateY(v.$desktop-social-top);
+
+                ul {
+                    display: flex;
+                    flex-direction: column;
+                    transform: scale(0.35) translateX(-100%);
+                    padding: 0 !important;
+                    margin: 0 !important;
+                    > * {
+                        padding: 20px 0 !important;
+                    }
+                }
+            }
         }
         .menu-btn {
             display: none; // Hide Menu button
