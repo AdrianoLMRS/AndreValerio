@@ -120,7 +120,6 @@ $z-index-high: 2;
                 }
             }
         }
-
         .menu-btn {
             display: none; // Hide Menu button
         }
@@ -169,6 +168,7 @@ $z-index-high: 2;
             .nav-list {
                 position: relative;
                 width: 100%;
+                height: 100%;
                 left: 0;
                 padding: 0;
         
@@ -186,6 +186,24 @@ $z-index-high: 2;
                                 display: none;
                             }
                         }
+                    }
+                }
+            }
+            .social {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                @media only screen and (max-width: v.$h1-breakpoint) {
+                    bottom: initial;
+                }
+                ul {
+                    overflow: hidden;
+                    display: inline-flex;
+                    flex-wrap: wrap-reverse;
+                    > * {
+                        padding: 0 !important;
+                        margin: 0 !important;
+                        transform: scale(0.6);
                     }
                 }
             }

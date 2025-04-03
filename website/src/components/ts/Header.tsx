@@ -25,8 +25,6 @@ export default function Header({ anime = false, logo, social }: HeaderProps) {
             return cleanup;
         }
     }, [anime]);
-    console.debug("logo received:", logo);
-    console.debug("Social received:", social);
 
     return (
         <header id='navbar-header' data-style="Header" className={isScrolled ? 'scrolled' : ''}
@@ -110,7 +108,7 @@ export default function Header({ anime = false, logo, social }: HeaderProps) {
                             </UrlLink>
                         </div>
                         <hr />
-                        <div className="social-section">
+                        <div>
                             {social} {/* Social .astro component */}
                         </div>
                     </menu>
