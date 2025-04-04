@@ -1,4 +1,4 @@
-import { useEffect, useState, type ReactNode } from 'react';
+import React, { useEffect, useState, type ReactNode } from 'react';
 import { useToggleMenu } from '@hooks/useToggleMenu';
 import { handleScroll } from '@utils/handleScroll';
 import lockScroll from '@utils/lockScroll';
@@ -16,6 +16,12 @@ interface HeaderProps {
     social: ReactNode;
 }
 
+const handleAnchorClick = (
+    e: React.MouseEvent<HTMLAnchorElement> | React.TouchEvent<HTMLAnchorElement>
+) => {
+    lockScroll(false);
+};
+
 export default function Header({ anime = false, logo, social }: HeaderProps) {
     const { menuOpen, toggleMenu } = useToggleMenu();
     const [ isScrolled, setIsScrolled ] = useState(false);
@@ -32,6 +38,12 @@ export default function Header({ anime = false, logo, social }: HeaderProps) {
     }, [menuOpen]);
     
     
+    const handleMenuClick = (
+        e: React.MouseEvent<HTMLAnchorElement> | React.TouchEvent<HTMLAnchorElement>
+    ) => {
+        handleAnchorClick(e);
+        toggleMenu();
+    };    
     
 
     return (
@@ -54,7 +66,7 @@ export default function Header({ anime = false, logo, social }: HeaderProps) {
                                 href={Pages.home}
                                 title="Home Page - André Valério"
                                 ariaLabel="Home"
-                                toggleMenu={toggleMenu} // For Open/Closing Navbar
+                                toggleMenu={() => handleMenuClick} // For Open/Closing Navbar
                             >
                                 Home
                             </UrlLink>
@@ -63,7 +75,7 @@ export default function Header({ anime = false, logo, social }: HeaderProps) {
                                 href={Pages.about}
                                 title="About section - André Valério"
                                 ariaLabel="About"
-                                toggleMenu={toggleMenu} // For Open/Closing Navbar
+                                toggleMenu={() => handleMenuClick} // For Open/Closing Navbar
                             >
                                 About
                             </UrlLink>
@@ -73,7 +85,7 @@ export default function Header({ anime = false, logo, social }: HeaderProps) {
                                 title="Songs/Albums Page - André Valério"
                                 ariaLabel="Songs/Albums"
                                 target="_blank"
-                                toggleMenu={toggleMenu} // For Open/Closing Navbar
+                                toggleMenu={() => handleMenuClick} // For Open/Closing Navbar
                             >
                                 Songs/Albums
                             </UrlLink>
@@ -90,7 +102,7 @@ export default function Header({ anime = false, logo, social }: HeaderProps) {
                                 title="Videos Page - André Valério"
                                 ariaLabel="Videos"
                                 target="_blank"
-                                toggleMenu={toggleMenu} // For Open/Closing Navbar
+                                toggleMenu={() => handleMenuClick} // For Open/Closing Navbar
                             >
                                 Videos
                             </UrlLink>
@@ -100,7 +112,7 @@ export default function Header({ anime = false, logo, social }: HeaderProps) {
                                 title="Contact Page - André Valério"
                                 ariaLabel="Contact"
                                 target="_blank"
-                                toggleMenu={toggleMenu} // For Open/Closing Navbar
+                                toggleMenu={() => handleMenuClick} // For Open/Closing Navbar
                             >
                                 Contact
                             </UrlLink>
@@ -110,7 +122,7 @@ export default function Header({ anime = false, logo, social }: HeaderProps) {
                                 title="Teach Page - André Valério"
                                 ariaLabel="Teach"
                                 target="_blank"
-                                toggleMenu={toggleMenu} // For Open/Closing Navbar
+                                toggleMenu={() => handleMenuClick} // For Open/Closing Navbar
                             >
                                 Teach
                             </UrlLink>
