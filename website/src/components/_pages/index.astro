@@ -138,10 +138,11 @@ const { intro } = Imgs.videos;
                     But don't just take my word for it - book your <strong>online guitar lessons</strong> with me today and let's play together! Whether you're a <strong>beginner</strong> or an <strong>experienced player</strong> looking to take your skills to the next level, I'm here to help you reach your <strong>goals</strong>.
                 </p>
 
-                <div class="testimonials">
-                    <Carousel client:load totalSlides={3} >
+                <div class="testimonials" id="testimonials">
+                    <h3>What my students say</h3>
+                    <div class="wrapper">
                         <Testimonials />
-                    </Carousel>
+                    </div>
                 </div>
 
                 <p> 
@@ -170,6 +171,9 @@ const { intro } = Imgs.videos;
         font-size: 2.5rem;
     }
 
+    h3 {
+        font-size: 2rem;
+    }
     .box-sh {
         &:hover {
             box-shadow: v.$github-box-shadow;

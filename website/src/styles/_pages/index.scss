@@ -293,8 +293,12 @@ main {
                 }
             }
             .testimonials {
-                :global(.testimonial) {
-                    padding: 20px;
+                h3 { padding-bottom: 30px }
+                .wrapper {
+                    @include m.center-flex();
+                    align-items: stretch;
+                    flex-wrap: wrap;
+                    gap: 20px;
                 }
             }
         }
