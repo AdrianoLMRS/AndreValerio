@@ -1,0 +1,42 @@
+.carousel {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  
+    .items-container {
+      white-space: nowrap;
+      transition: transform 0.5s ease-in-out;
+      font-size: 0;
+    }
+  
+    .item {
+      display: inline-block;
+      width: 100%;
+      vertical-align: top;
+      box-sizing: border-box;
+      font-size: 1rem;
+  
+
+      padding: 2rem;
+    }
+  
+    .controls {
+      position: absolute;
+      bottom: 1rem;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+  
+      button {
+        background-color: black;
+        color: white;
+        padding: 0.5rem 1rem;
+        border: none;
+        cursor: pointer;
+        font-weight: bold;
+      }
+    }
+  }
+  

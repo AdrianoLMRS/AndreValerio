@@ -26,12 +26,15 @@ console.debug(artist)
 
 ---
 
-<Picture
-    src={artist.images[0]?.url}
-    alt={artist.name}
-    inferSize
-    layout={"responsive"}
-/>
+<div class="artist">
+    <Picture
+        src={artist.images[0]?.url}
+        alt={artist.name}
+        inferSize
+        layout={"responsive"}
+        {/* TODO: SEO things... */}
+    />
+</div>
 
   
 
@@ -40,10 +43,13 @@ console.debug(artist)
     @use "sass:color";
 
     $box-shadow: color.adjust(v.$secondary-color, $alpha: -0.35);
-
-    img {
-        // object-fit: contain;
-        box-shadow: $box-shadow 0px 50px 100px -20px, color.adjust($box-shadow, $alpha: 0.5) 0px 30px 60px -30px, color.adjust($box-shadow, $alpha: 0.6) 0px -2px 6px 0px inset;
-        border-radius: v.$normal-border-radius;
+    .artist {
+        padding: 10px;
+        img {
+            // object-fit: contain;
+            background-color: rgba(0, 0, 0, 0);
+            box-shadow: $box-shadow 0px 50px 100px -20px, color.adjust($box-shadow, $alpha: 0.5) 0px 30px 60px -30px, color.adjust($box-shadow, $alpha: 0.6) 0px -2px 6px 0px inset;
+            border-radius: v.$normal-border-radius;
+        }
     }
 </style>
