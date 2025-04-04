@@ -1,12 +1,10 @@
 .carousel {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-  
+ 
     .items-container {
-      white-space: nowrap;
       transition: transform 0.5s ease-in-out;
       font-size: 0;
+      justify-content: center;
+      align-items: center;
     }
   
     .item {

@@ -1,0 +1,113 @@
+---
+// Inpired by https://codepen.io/littlesnippets/pen/EypPVx
+
+import { Testimonials as TestimonialsData } from "@data/testimonials";
+
+// * The each div has to have the class "item" because of the Carousel.tsx
+---
+
+<div class="item testimonial">
+    <figure class="testimonial-fig">
+        <figcaption>
+            <blockquote>
+            <p>{TestimonialsData.t1}</p>
+            </blockquote>
+        </figcaption>
+    </figure>
+</div>
+<div class="item testimonial">
+    <figure class="testimonial-fig">
+        <figcaption>
+            <blockquote>
+            <p>{TestimonialsData.t2}</p>
+            </blockquote>
+        </figcaption>
+    </figure>
+</div>
+<div class="item testimonial">
+    <figure class="testimonial-fig">
+        <figcaption>
+            <blockquote>
+            <p>{TestimonialsData.t3}</p>
+            </blockquote>
+        </figcaption>
+    </figure>
+</div>
+
+<style lang="scss" >
+
+$quotes: '@assets/quotes.svg';
+$breakpoint: 375px;
+$white: var(--white-color, #fff);
+$highlight: var(--highlight-color, #d2652d);
+
+
+.testimonial-fig {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+    color: var(--fourth-color, #9e9e9e);
+    display: inline-block;
+    font-family: 'Roboto', Arial, sans-serif;
+    font-size: 1rem;
+    max-width: 500px;
+    min-width: 250px;
+    position: relative;
+    text-align: center;
+    width: 100%;
+    white-space: normal;
+    background-color: $white;
+    border-radius: 5px;
+    border-top: 5px solid $highlight;
+
+    @media only screen and (max-width: $breakpoint) {
+        width: 200px !important;
+    }
+
+    *, *:before, *:after {
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        -webkit-transition: all 0.1s ease-out;
+        transition: all 0.1s ease-out;
+    }
+
+    figcaption {
+        padding: 13% 10% 12%;
+
+        &:before,
+        &:after {
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 60px;
+            display: block;
+        }
+
+        &:before {
+            content: '';
+            background-color: $white;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+            line-height: 60px;
+        }
+
+        &:after {
+            content: '';
+            mask-image: url($quotes);
+            mask-repeat: no-repeat;
+            mask-position: center;
+            mask-size: 50%;
+            background-color: $highlight;
+            pointer-events: none;
+        }
+
+    }
+
+    blockquote {
+        font-style: italic;
+        font-weight: 300;
+        margin: 0 0 20px;
+    }
+}
+
+</style>

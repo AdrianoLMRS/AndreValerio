@@ -8,6 +8,7 @@ import AboutParagraph from '@components/astro/aboutP.astro';
 import Songs from '@components/astro/Songs.astro';
 import Artist from "@components/astro/Artist.astro";
 import Carousel from "@components/ts/Carousel"
+import Testimonials from '@components/astro/Testimonials.astro';
 // import "@styles/_pages/index.scss"; // * Import like this if global styles
 
 import Imgs from '@data/imgs';
@@ -139,18 +140,7 @@ const { intro } = Imgs.videos;
 
                 <div class="testimonials">
                     <Carousel client:load totalSlides={3} >
-                        <div class="item testimonial">
-                            <h3>Alice</h3>
-                            <p>"Esse serviço mudou minha vida!"</p>
-                        </div>
-                        <div class="item testimonial">
-                            <h3>Bob</h3>
-                            <p>"Atendimento excelente e muito rápido!"</p>
-                        </div>
-                        <div class="item testimonial">
-                            <h3>Charlie</h3>
-                            <p>"Super recomendo para todos!"</p>
-                        </div>
+                        <Testimonials />
                     </Carousel>
                 </div>
 
