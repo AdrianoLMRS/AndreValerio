@@ -33,6 +33,7 @@ const spotifyData = await fetchOEmbedData(oEmbedUrl);
 <style lang="scss">
     @use '@styles/variables' as v;
 
+    .spotify-wrapper { overflow: hidden; }
     .spotify-wrapper :global(iframe) {
         height: 600px !important;
         &:hover {

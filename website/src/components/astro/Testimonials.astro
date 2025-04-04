@@ -4,6 +4,7 @@
 import { Testimonials as TestimonialsData } from "@data/testimonials";
 
 // * The each div has to have the class "item" because of the Carousel.tsx
+// TODO: Make testimonials data dynamic, so we can add more testimonials without changing the code
 ---
 
 <div class="item testimonial">
@@ -74,13 +75,6 @@ $max-width: 500px;
     // @media only screen and (max-width: $breakpoint) {
     //     width: 200px !important;
     // }
-
-    *, *:before, *:after {
-        -webkit-box-sizing: border-box;
-        box-sizing: border-box;
-        -webkit-transition: all 0.1s ease-out;
-        transition: all 0.1s ease-out;
-    }
 
     transition: transform $transition, box-shadow $transition, border-top $transition-delay;
     @media (hover: hover) {
