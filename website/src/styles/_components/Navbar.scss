@@ -176,21 +176,36 @@ $z-index-high: 2;
                 padding: 0;
         
                 .nav-item {
-                    padding: 10px 0 10px 0;
+                    $padding: 10px;
+                    $margin: 20px;
+                    position: relative;
+                    padding: $padding 0;
                     font-size: 2rem;
-                    margin-left: 20px;
-                    
+                    margin-left: $margin;
+                  
                     a.nav-link {
-                        text-align: center;
-        
+                        z-index: 1;
+                  
+                        &::after {
+                            content: '';
+                            position: absolute;
+                            top: -$padding;
+                            left: -$margin;
+                            width: 100vw;
+                            height: calc(100% + $padding * 2);
+                            z-index: -1;
+                            background-color: rgba(0, 0, 0, 0.05);
+                        }
+                  
                         &.last-clicked {
                             text-decoration: underline;
+                    
                             &::before {
                                 display: none;
                             }
                         }
                     }
-                }
+                  }
             }
             .social {
                 position: absolute;

@@ -49,8 +49,6 @@ $gray: var(--gray-color, #9e9e9e);
 
 $transition: 200ms ease-in-out;
 $transition-delay: 300ms ease-in;
-$max-width: 500px;
-
 
 .testimonial-fig {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
@@ -58,7 +56,7 @@ $max-width: 500px;
     display: inline-block;
     font-family: 'Roboto', Arial, sans-serif;
     font-size: 1.2rem;
-    max-width: $max-width;
+    max-width: 500px;
     min-width: 200px;
     position: relative;
     text-align: center;
@@ -68,9 +66,7 @@ $max-width: 500px;
     border-radius: 5px;
     border-top: 5px solid $highlight;
     @include m.center-flex();
-    @media only screen and (min-width: $max-width * 3) {
-      height: 100%;
-    }
+    height: 100%;
 
     // @media only screen and (max-width: $breakpoint) {
     //     width: 200px !important;
