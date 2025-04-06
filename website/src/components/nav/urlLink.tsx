@@ -29,7 +29,7 @@ const UrlLink: React.FC<UrlLinkProps> = ({ href, title, ariaLabel, children, tar
         linkRef.current?.setAttribute('aria-current', 'page'); // Add aria to the link clicked
 
         toggleMenu(); // Closes/Open sidebar
-    }, []);
+    }, [toggleMenu]);
 
   
     return (
