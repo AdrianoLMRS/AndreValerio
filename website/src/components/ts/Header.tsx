@@ -2,6 +2,7 @@ import { useEffect, useState, type ReactNode } from 'react';
 import { useToggleMenu } from '@hooks/useToggleMenu';
 import { useMediaQuery } from '@hooks/useMediaQuery';
 import { handleScroll } from '@utils/handleScroll';
+import { getCssVariable } from "@utils/getCssVariable";
 import lockScroll from '@utils/lockScroll';
 import Pages from '@data/pages';
 import AuthorHeader from '@components/ts/authorHeader';
@@ -20,8 +21,20 @@ interface HeaderProps {
 export default function Header({ anime = false, logo, social }: HeaderProps) {
     const { menuOpen, toggleMenu } = useToggleMenu();
     const [ isScrolled, setIsScrolled ] = useState(false);
-    const isMobile = useMediaQuery('(max-width: 992px)');
+    const [navBreakpoint, setNavBreakpoint] = useState<string | null>(null);
 
+    // Getting the --navbar-breakpoint CSS variable
+    useEffect(() => {
+        if (typeof window === 'undefined') return;
+        const value = getCssVariable('--navbar-breakpoint');
+        setNavBreakpoint(value);
+    }, []);
+
+    const isMobile = useMediaQuery(
+        navBreakpoint ? `(max-width: ${navBreakpoint})` : null
+    );
+
+    // Scroll animation - background Header
     useEffect(() => {
         if (anime) {
             const cleanup = handleScroll(scrollPosition, () => setIsScrolled(true), () => setIsScrolled(false));
@@ -29,9 +42,11 @@ export default function Header({ anime = false, logo, social }: HeaderProps) {
         }
     }, [anime]);
 
+    // Locks scroll when mobile menu is open (true)
     useEffect(() => {
         lockScroll(menuOpen);
-    }, [menuOpen]);
+        if (menuOpen && !isMobile) toggleMenu(); 
+    }, [menuOpen, isMobile]);
 
     const handleLink = () => {
         if (isMobile) toggleMenu();

@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 
 // Define the hook with 'query' parameter typed as a string
-const useMediaQuery = (query: string): boolean => {
+const useMediaQuery = (query: string | null): boolean => {
     const [matches, setMatches] = useState<boolean>(false);
 
     useEffect(() => {
+        if (!query) return;
+        
         const media = window.matchMedia(query);
         if (media.matches !== matches) {
             setMatches(media.matches);
