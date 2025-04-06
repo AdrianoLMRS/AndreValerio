@@ -12,39 +12,19 @@ const mediaWidth = `${maxWidth * 2}px`;
 const media = `only screen and (max-width: ${mediaWidth}) and (hover: none)`;
 ---
 
-<ScrollAnimation className="" threshold={0.9} repeat={true} client:media={media} >
-    <div class="item testimonial">
-        <figure class="testimonial-fig">
-            <figcaption>
-                <blockquote>
-                <p>{TestimonialsData.t1}</p>
-                </blockquote>
-            </figcaption>
-        </figure>
-    </div>
-</ScrollAnimation>
-<ScrollAnimation className="" threshold={0.9} repeat={true} client:media={media} >
-    <div class="item testimonial">
-        <figure class="testimonial-fig">
-            <figcaption>
-                <blockquote>
-                <p>{TestimonialsData.t2}</p>
-                </blockquote>
-            </figcaption>
-        </figure>
-    </div>
-</ScrollAnimation>
-<ScrollAnimation className="" threshold={0.9} repeat={true} client:media={media} >
-    <div class="item testimonial">
-        <figure class="testimonial-fig">
-            <figcaption>
-                <blockquote>
-                <p>{TestimonialsData.t3}</p>
-                </blockquote>
-            </figcaption>
-        </figure>
-    </div>
-</ScrollAnimation>
+{TestimonialsData.map((testimonial, index) => (
+    <ScrollAnimation className="" threshold={0.9} repeat={true} client:media={media}>
+        <div class="item testimonial">
+            <figure class="testimonial-fig">
+                <figcaption>
+                    <blockquote>
+                        <p>{testimonial}</p>
+                    </blockquote>
+                </figcaption>
+            </figure>
+        </div>
+    </ScrollAnimation>
+))}
 
 <style lang="scss" >
 
@@ -61,14 +41,18 @@ $max-width: 500px;
 $transition: 200ms ease-in-out;
 $transition-delay: 300ms ease-in;
 
+@mixin highlight() {
+    box-shadow: $gray 0px 3px 8px;
+    transform: scale(1.05);
+    border-top: 5px solid $contrast;
+    color: var(--black-color, black);
+    figcaption:after { background-color: $contrast; }
+}
+
 @media only screen and (max-width: $max-width * 2) and (hover: none) {
         :global(.visible) {
             .testimonial-fig {
-                box-shadow: $gray 0px 3px 8px;
-                transform: scale(1.05);
-                border-top: 5px solid $contrast;
-                color: var(--black-color, black);
-                figcaption:after { background-color: $contrast; }
+                @include highlight();
             }
         }
     }
@@ -98,11 +82,7 @@ $transition-delay: 300ms ease-in;
     transition: transform $transition, box-shadow $transition, border-top $transition-delay;
     @media only screen and (hover: hover) {
         &:hover {
-            box-shadow: $gray 0px 3px 8px;
-            transform: scale(1.05);
-            border-top: 5px solid $contrast;
-            color: var(--black-color, black);
-            figcaption:after { background-color: $contrast; }
+            @include highlight();
         }
     }
 
