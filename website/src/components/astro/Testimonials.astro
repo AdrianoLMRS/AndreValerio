@@ -2,53 +2,76 @@
 // Inpired by https://codepen.io/littlesnippets/pen/EypPVx
 
 import { Testimonials as TestimonialsData } from "@data/testimonials";
+import ScrollAnimation from "@components/ts/scrollAnimation";
 
 // * The each div has to have the class "item" because of the Carousel.tsx
 // TODO: Make testimonials data dynamic, so we can add more testimonials without changing the code
+
+const maxWidth = 500;
+const mediaWidth = `${maxWidth * 2}px`;
+const media = `only screen and (max-width: ${mediaWidth}) and (hover: none)`;
 ---
 
-<div class="item testimonial">
-    <figure class="testimonial-fig">
-        <figcaption>
-            <blockquote>
-            <p>{TestimonialsData.t1}</p>
-            </blockquote>
-        </figcaption>
-    </figure>
-</div>
-<div class="item testimonial">
-    <figure class="testimonial-fig">
-        <figcaption>
-            <blockquote>
-            <p>{TestimonialsData.t2}</p>
-            </blockquote>
-        </figcaption>
-    </figure>
-</div>
-<div class="item testimonial">
-    <figure class="testimonial-fig">
-        <figcaption>
-            <blockquote>
-            <p>{TestimonialsData.t3}</p>
-            </blockquote>
-        </figcaption>
-    </figure>
-</div>
+<ScrollAnimation className="" threshold={0.9} repeat={true} client:media={media} >
+    <div class="item testimonial">
+        <figure class="testimonial-fig">
+            <figcaption>
+                <blockquote>
+                <p>{TestimonialsData.t1}</p>
+                </blockquote>
+            </figcaption>
+        </figure>
+    </div>
+</ScrollAnimation>
+<ScrollAnimation className="" threshold={0.9} repeat={true} client:media={media} >
+    <div class="item testimonial">
+        <figure class="testimonial-fig">
+            <figcaption>
+                <blockquote>
+                <p>{TestimonialsData.t2}</p>
+                </blockquote>
+            </figcaption>
+        </figure>
+    </div>
+</ScrollAnimation>
+<ScrollAnimation className="" threshold={0.9} repeat={true} client:media={media} >
+    <div class="item testimonial">
+        <figure class="testimonial-fig">
+            <figcaption>
+                <blockquote>
+                <p>{TestimonialsData.t3}</p>
+                </blockquote>
+            </figcaption>
+        </figure>
+    </div>
+</ScrollAnimation>
 
 <style lang="scss" >
 
 @use "@styles/mixins" as m;
 
 $quotes: '@assets/quotes.svg';
-$breakpoint: 375px;
 
 $white: var(--white-color, white);
 $highlight: var(--highlight-color, #d2652d);
 $contrast: var(--contrast-color, blue);
 $gray: var(--gray-color, #9e9e9e);
+$max-width: 500px;
 
 $transition: 200ms ease-in-out;
 $transition-delay: 300ms ease-in;
+
+@media only screen and (max-width: $max-width * 2) and (hover: none) {
+        :global(.visible) {
+            .testimonial-fig {
+                box-shadow: $gray 0px 3px 8px;
+                transform: scale(1.05);
+                border-top: 5px solid $contrast;
+                color: var(--black-color, black);
+                figcaption:after { background-color: $contrast; }
+            }
+        }
+    }
 
 .testimonial-fig {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
@@ -56,7 +79,7 @@ $transition-delay: 300ms ease-in;
     display: inline-block;
     font-family: 'Roboto', Arial, sans-serif;
     font-size: 1.2rem;
-    max-width: 500px;
+    max-width: $max-width;
     min-width: 200px;
     position: relative;
     text-align: center;
@@ -73,7 +96,7 @@ $transition-delay: 300ms ease-in;
     // }
 
     transition: transform $transition, box-shadow $transition, border-top $transition-delay;
-    @media (hover: hover) {
+    @media only screen and (hover: hover) {
         &:hover {
             box-shadow: $gray 0px 3px 8px;
             transform: scale(1.05);
@@ -82,7 +105,6 @@ $transition-delay: 300ms ease-in;
             figcaption:after { background-color: $contrast; }
         }
     }
-
 
     figcaption {
         padding: 13% 10% 12%;
