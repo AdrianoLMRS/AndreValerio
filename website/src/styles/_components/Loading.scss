@@ -1,0 +1,33 @@
+$color: var(--fourth-color, lightgray);
+$color-after: var(--_after-color, rgba(255, 255, 255, 0.6));
+$transition: var(--_transition-duration, 2s);
+
+.loading-skeleton {
+    height: var(--_height);
+    width: 100%;
+    position: relative;
+    background: $color;
+    overflow: hidden;
+
+        &::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background: linear-gradient(
+                90deg,
+                rgba(224, 224, 224, 0) 0%,
+                $color-after 50%,
+                rgba(224, 224, 224, 0) 100%
+            );
+            animation: shimmer $transition infinite;
+            background-size: 200% 100%;
+        }
+}
+
+@keyframes shimmer {
+    0% {  background-position: -200% 0;  }
+    100% {  background-position: 200% 0;  }
+}

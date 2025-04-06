@@ -4,6 +4,7 @@
     Displays oEmbed Albums with Spotify API
 */
 
+import SpotifyEmbed from "@components/ts/spotifyEmbed";
 import { fetchOEmbedData } from "@utils/Spotify";
 
 const { release_date, id, render = true } = Astro.props as { 
@@ -17,28 +18,38 @@ const oEmbedUrl = `https://open.spotify.com/oembed?url=https://open.spotify.com/
 const spotifyData = await fetchOEmbedData(oEmbedUrl);
 // console.debug(spotifyData)
 
+const margin : number = 300;
+const marginPx = `${margin}px`;
+
 ---
 
 <div class="album">
-    {render ?
-        <div>
-            <h3>{spotifyData.title}</h3>
-            <p>{release_date}</p>
-        </div>
-    : null}
-    <div set:html={spotifyData.html} class="spotify-wrapper"></div>
-    {/* TODO: make albuns playable with URL params */}
+    {render ? (
+      <div>
+        <h3>{spotifyData.title}</h3>
+        <p>{release_date}</p>
+      </div>
+    ) : null}
+    <div class="spotify-wrapper box-sh">
+        <SpotifyEmbed html={spotifyData.html} client:visible={{ rootMargin: marginPx }} >
+            <div slot='loading' class="loading-skeleton"></div>
+        </SpotifyEmbed>
+    </div>
 </div>
 
 <style lang="scss">
     @use '@styles/variables' as v;
 
-    .spotify-wrapper { overflow: hidden; }
-    .spotify-wrapper :global(iframe) {
-        height: 600px !important;
-        &:hover {
-            box-shadow: v.$github-box-shadow;
+    .spotify-wrapper {
+        overflow: hidden;
+        border-radius: 12px;
+        --_height: 600px;
+        :global(iframe) {
+            height: 600px !important;
+            border-radius: inherit !important;
         }
-        transition: box-shadow 200ms;
     }
 </style>
+
+{/* Style for loading animation  */}
+<style lang="scss" is:global > @forward "@styles/_components/Loading"; </style>
