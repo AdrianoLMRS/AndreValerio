@@ -4,6 +4,7 @@
 */
 
 import SpotifyEmbed from "@components/astro/spotifyAlbum.astro"
+import SpotifyEmbedArtist from "@components/ts/spotifyEmbed";
 
 import { author } from "@data/author"
 const { spotifyId } = author // André Valério artist ID
@@ -42,19 +43,34 @@ const fetchAlbums = async (): Promise<AlbumResponse> => {
 const albums = await fetchAlbums();
 // console.debug(albums);
 
----
+const artistIframe = {
+    borderRadius: "12px",
+    width: "100%",
+    height: "500px",
+    html: "",
+};
 
-<div style="padding-top: 100px;" class="spotify-wrapper">
+artistIframe.html = `
     <iframe
-        style="border-radius:12px"
+        style="border-radius:${artistIframe.borderRadius};"
         class="box-sh"
-        src={`https://open.spotify.com/embed/artist/${spotifyId}?utm_source=generator`}
-        width="90%"
-        height="500"
+        src="https://open.spotify.com/embed/artist/${spotifyId}?utm_source=generator"
+        width="${artistIframe.width}"
+        height="${artistIframe.height}"
         frameborder="0"
         allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-        loading="lazy"
-    />
+        loading="lazy">
+    </iframe>
+    `;
+
+const margin : number = 400;
+const marginPx = `${margin}px`;
+---
+
+<div class="spotify-wrapper">
+    <SpotifyEmbedArtist html={artistIframe.html} client:visible={{ rootMargin: marginPx }} >
+        <div slot='loading' class="loading-skeleton" />
+    </SpotifyEmbedArtist>
 </div>
 
 <div>
@@ -76,3 +92,19 @@ const albums = await fetchAlbums();
         <p>No albums available...</p>
     )}
 </div>
+
+<style lang="scss" define:vars={{ borderRadius: artistIframe.borderRadius, height: artistIframe.height, width: artistIframe.width }} >
+
+    @use '@styles/mixins' as m;
+
+    $gap: 10px;
+
+    .spotify-wrapper {
+        --_border-radius: var(--borderRadius);
+        --_height: var(--height);
+        padding: 80px $gap 0 $gap;
+        @include m.center-flex();
+
+        :global(.spotify-embed) { width: var(--width); }
+    }
+</style>

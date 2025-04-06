@@ -17,7 +17,7 @@ const oEmbedUrl = `https://open.spotify.com/oembed?url=https://open.spotify.com/
 
 const spotifyData = await fetchOEmbedData(oEmbedUrl);
 // console.debug(spotifyData)
-
+// Upstream request timeout
 const margin : number = 300;
 const marginPx = `${margin}px`;
 
@@ -32,7 +32,7 @@ const marginPx = `${margin}px`;
     ) : null}
     <div class="spotify-wrapper box-sh">
         <SpotifyEmbed html={spotifyData.html} client:visible={{ rootMargin: marginPx }} >
-            <div slot='loading' class="loading-skeleton"></div>
+            <div slot='loading' class="loading-skeleton" />
         </SpotifyEmbed>
     </div>
 </div>

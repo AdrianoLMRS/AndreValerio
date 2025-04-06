@@ -1,13 +1,14 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 
 type Props = {
-  html: string;
-  loading: ReactNode;
+    html: string;
+    wrapperClass?: string;
+    loading: ReactNode;
 };
 
 const defaultLoading = <div className="fallback">Loading...</div>;
 
-export default function SpotifyEmbed({ html, loading= defaultLoading }: Props) {
+export default function SpotifyEmbed({ html, wrapperClass='spotify-embed', loading = defaultLoading }: Props) {
     const wrapperRef = useRef<HTMLDivElement>(null);
     const [loaded, setLoaded] = useState(false);
 
@@ -46,8 +47,9 @@ export default function SpotifyEmbed({ html, loading= defaultLoading }: Props) {
         }
     }, [html]);
 
+    // TODO: Make these <div>'s only display: contents
     return (
-        <div className="spotify-embed">
+        <div className={`${wrapperClass}`}>
             {!loaded && loading}
             <div
                 ref={wrapperRef}

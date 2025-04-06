@@ -4,6 +4,7 @@ $transition: var(--_transition-duration, 2s);
 
 .loading-skeleton {
     height: var(--_height);
+    border-radius: var(--_border-radius, initial);
     width: 100%;
     position: relative;
     background: $color;
