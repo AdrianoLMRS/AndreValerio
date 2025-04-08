@@ -5,7 +5,7 @@ const Pages = {
     videos: '/videos',
     contact: '/contact',
     shop: '/shop',
-    teach: '/teach',
+    teach: '/lessons',
     social: {
         linktree: 'https://linktr.ee/andrevalerioguitar',
         instagram: 'https://www.instagram.com/valeriosom/',

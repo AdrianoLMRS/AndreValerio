@@ -130,7 +130,7 @@ export default function Header({ anime = false, logo, social }: HeaderProps) {
                                 target="_blank"
                                 toggleMenu={handleLink} // For Open/Closing Navbar
                             >
-                                Teach
+                                Lessons
                             </UrlLink>
                         </div>
                         <hr />
