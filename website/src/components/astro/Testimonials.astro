@@ -18,8 +18,9 @@ const media = `only screen and (max-width: ${mediaWidth}) and (hover: none)`;
             <figure class="testimonial-fig">
                 <figcaption>
                     <blockquote>
-                        <p>{testimonial}</p>
+                        <p>{testimonial.testimonial}</p>
                     </blockquote>
+                    <h3>{testimonial.name}</h3>
                 </figcaption>
             </figure>
         </div>
@@ -118,13 +119,24 @@ $transition-delay: 300ms ease-in;
             pointer-events: none;
             transition: background-color $transition-delay;
         }
+        blockquote {
+            font-style: italic;
+            font-weight: 300;
+            margin: 0 0 20px;
+        }
 
-    }
+        h3 {
+            margin-top: clamp(25px, 10%, 50px);
+            font-size: .7em;
+            color: $gray !important;
+            text-align: end;
 
-    blockquote {
-        font-style: italic;
-        font-weight: 300;
-        margin: 0 0 20px;
+            &::before {
+                content: '—';
+                font-size: 1.5em;
+                margin-right: 5px;
+            }
+        }
     }
 }
 

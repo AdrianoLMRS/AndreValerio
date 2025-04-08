@@ -1,5 +1,14 @@
 export const Testimonials = [
-    'Dear Andre, Thanks for being an awesome guitar teacher. Can’t wait to learn more chords, melodies, techniques, and things I don’t even know yet!',
-    'André, your infectious enthusiasm for all things related to music is a gift that you share freely with all your students.\nYour openness to feedback, both positive and negative, allows you to constantly improve and create classes that motivate and ensure no one is left behind. You take the time to customize each lesson plan to the needs of the student, always finding that spark that will interest them in pushing themselves to develop and grow.',
-    'In case you are interested in the feedback, we found your comfortable use of technology to be far superior than any of the others.  Also, you clearly enjoy teaching and appear to take it very seriously, as opposed to others who seem to be doing it on the side simply as a way of making extra money.  I really liked your focus on taking a structured approach to the fundamentals in a way that is engaging and is personally tailored to the specific nature of Hana as a student.  I could tell that you were very in tune with her status at each stage of the lesson.  Aside from these technical points, you seem like a very kind and sensitive person with whom Hana would enjoy working.  And finally, I liked what I heard on your album "Chrysalis"!',
-];
+    {
+        testimonial: 'We found your use of technology far superior to others. You clearly love teaching and take it seriously. Your approach was structured, engaging, and personally tailored. And we could tell you’re a kind and sensitive person — Hana would love working with you.',
+        name: 'Parent of young student',
+    },
+    {
+        testimonial: 'Your infectious enthusiasm for music is a gift you share freely. You’re open to feedback, constantly improving, and always customizing lessons to fit each student. You help us find that spark to grow.',
+        name: 'Adult student',
+    },
+    {
+        testimonial: 'Dear André, thanks fer being an awesane guitar teacher. Can’t wail to leam mare chards, melodies, techniques and things I don’t even know yet!',
+        name: 'Young student',
+    },
+] as const;
