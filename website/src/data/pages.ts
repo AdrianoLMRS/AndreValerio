@@ -1,6 +1,6 @@
 const Pages = {
     home: '/#',
-    about: '/#about',
+    about: '/about',
     songs: '/songs',
     videos: '/videos',
     contact: '/contact',
