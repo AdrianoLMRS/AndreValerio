@@ -50,7 +50,7 @@ main {
                 width: fit-content;
                 position: absolute;
                 z-index: 2;
-                font-size: clamp(2.5rem, 5vw, 4.5rem);
+                font-size: clamp(2.5rem, 3vw, 3.5rem);
                 bottom: 20%;
                 left: clamp(30px, 10%, 500px);
 
@@ -192,7 +192,7 @@ main {
             p {
                 margin-inline: auto;
                 max-width: 80%;
-                font-size: 1.5rem;
+                font-size: 1.1rem;
                 line-height: 1.7;
                 span {
                     display: flex;
