@@ -116,10 +116,16 @@ main {
                 padding-bottom: 1rem;
                 hyphens: none;
             }
-            :global(p) {
-                font-size: 1.1rem;
+            :global(.about-paragraph) {
+                font-size: clamp(1.2rem, 3vw, 1.5rem);
                 line-height: 1.7;
+                :global(a) {
+                    color: var(--highlight-color);
+                    text-decoration: underline;
+                    text-underline-offset: 8px; // aumenta a distância do underline para baixo
+                }
             }
+
             @media only screen and (max-width: v.$breakpoint-lg) {
                 text-align: center; max-width: none !important;
                 padding: 0 20px;
