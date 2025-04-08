@@ -18,7 +18,7 @@ const accessToken = await getSpotifyToken();
 const market = "BR"; // Example: BR+ES
 const limit = "6";
 
-const disallowed : string[] = ["6gVncgomPUoXXQHvWzpRT0"];
+const disallowed : string[] = ["6gVncgomPUoXXQHvWzpRT0", "1rh9eVIKx8c5UFhpa0aCoo", "5pgYtorr2Xf7xRZqclhTT4", "4b4NdiFLO7q836YIPA59jl"];
 
 const ALBUM_URL = `https://api.spotify.com/v1/artists/${spotifyId}/albums?market=${market}&limit=${limit}`
 
@@ -41,7 +41,7 @@ const fetchAlbums = async (): Promise<AlbumResponse> => {
   };
 
 const albums = await fetchAlbums();
-// console.debug(albums);
+console.debug(albums);
 
 const artistIframe = {
     borderRadius: "12px",
