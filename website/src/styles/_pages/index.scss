@@ -120,9 +120,12 @@ main {
                 font-size: clamp(1.2rem, 3vw, 1.5rem);
                 line-height: 1.7;
                 :global(a) {
+                    padding-top: 20px;
+                    display: inline-block;
+                    font-size: smaller;
                     color: var(--highlight-color);
                     text-decoration: underline;
-                    text-underline-offset: 8px; // aumenta a distância do underline para baixo
+                    text-underline-offset: 8px;
                 }
             }
 
