@@ -50,29 +50,9 @@ const artistIframe = {
     html: "",
 };
 
-artistIframe.html = `
-    <iframe
-        style="border-radius:${artistIframe.borderRadius};"
-        class="box-sh"
-        src="https://open.spotify.com/embed/artist/${spotifyId}?utm_source=generator"
-        width="${artistIframe.width}"
-        height="${artistIframe.height}"
-        frameborder="0"
-        title="Spotify Artist - André Valério"
-        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-        loading="lazy">
-    </iframe>
-    `;
-
 const margin : number = 400;
 const marginPx = `${margin}px`;
 ---
-
-<div class="spotify-wrapper">
-    <SpotifyEmbedArtist html={artistIframe.html} client:visible={{ rootMargin: marginPx }} >
-        <div slot='loading' class="loading-skeleton" />
-    </SpotifyEmbedArtist>
-</div>
 
 <div>
     {albums.items && albums.items.length > 0 ? (
