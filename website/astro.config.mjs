@@ -7,7 +7,7 @@ const ALIAS_URL = import.meta.url;
 export default defineConfig({
     // output: 'server',
     // adapter: vercel(),
-    site: 'https://adrianolmrs.github.io/AndreValerio/',
+    site: 'https://andrevalerio.com',
     vite: {
         /// <reference types="vite/types/importMeta.d.ts" />
         resolve: {
