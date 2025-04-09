@@ -112,12 +112,12 @@ main {
         .content {
             max-width: clamp(100px, 50vw, 750px);
             h2 {
-                // font-size: 2.5rem;
+                font-size: 2rem;
                 padding-bottom: 1rem;
                 hyphens: none;
             }
             :global(.about-paragraph) {
-                font-size: clamp(1.2rem, 3vw, 1.5rem);
+                font-size: 1rem;
                 line-height: 1.7;
                 :global(a) {
                     padding-top: 20px;
