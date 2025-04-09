@@ -1,5 +1,6 @@
 import { defineConfig, passthroughImageService } from 'astro/config';
 import react from '@astrojs/react';
+import sitemap from '@astrojs/sitemap';
 // import vercel from '@astrojs/vercel';
 import { loadEnv } from 'vite';
 const ALIAS_URL = import.meta.url;
@@ -50,7 +51,7 @@ export default defineConfig({
     // site: BASE_URL.toString(),
     // base: 'website',
 
-    integrations: [react()],
+    integrations: [react(), sitemap()],
 });
 
 // css: {
