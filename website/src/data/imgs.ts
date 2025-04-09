@@ -1,3 +1,5 @@
+import Banner from '@/../public/banner.jpg';
+
 const n : number = 48;
 const size : string = String(n);
 const socialSize : string = String(92);
@@ -7,6 +9,13 @@ const logoSize : string = size + 'x' + size;
 const Imgs = {
     local: {
         menu: '@assets/menu.svg',
+        banner: {
+            url: new URL('/banner.jpg', import.meta.env.SITE),
+            PB: '/banner.jpg',
+            format: Banner.format,
+            height: Banner.height,
+            width: Banner.width,
+        },
     },
     cdn: {
         background: 'https://iili.io/3KXmjWP.webp',
@@ -26,6 +35,6 @@ const Imgs = {
     videos: {
         intro: 'PwFLA4nb74I',
     },
-};
+} as const;
 
 export default Imgs;

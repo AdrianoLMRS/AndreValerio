@@ -13,6 +13,10 @@ const Pages = {
         youtube: 'https://www.youtube.com/c/AndreValerio/featured',
         spotify: 'https://open.spotify.com/artist/7bInuih8A0WSEqVwkbqXHN',
         soundslice: 'https://www.soundslice.com/users/andrevaleriosom/',
+        twitter: 'https://x.com/andrevaleriosom',
+        arroba: {
+            twitter: '@andrevaleriosom',
+        }
     },
 };
 

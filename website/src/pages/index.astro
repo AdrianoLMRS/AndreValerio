@@ -1,13 +1,64 @@
 ---
+// * Components
 import Header from '@components/ts/Header';
 import Social from '@components/astro/Social.astro';
 import Layout from '@layouts/Layout.astro';
 import Footer from '@components/astro/Footer.astro';
 import Logo from '@components/astro/Logo.astro';
 import MainContent from '@components/_pages/index.astro';
+
+// * Data & Types
+import Pages from '@data/pages';
+import Imgs from '@data/imgs';
+import { author } from '@data/author';
+import { type Props as seoProps } from "astro-seo";
+import { title } from 'process';
+
+const Banner = Imgs.local.banner;
+
+const Shared = {
+    title: `${author.name} - ${author.job}`,
+    description: `${author.name} Oficial website, ${author.job}. Discover my music, videos, and more.`,
+};
+
+const seo: seoProps = {
+    title: Shared.title,
+    description: Shared.description,
+    canonical: `${import.meta.env.SITE}`,
+    twitter: {
+        card: 'summary_large_image',
+        site: `${Pages.social.arroba.twitter}`,
+        creator: `${Pages.social.arroba.twitter}`,
+        title: Shared.title,
+        description: Shared.description,
+        image: Banner.url,
+        imageAlt: `${author.name} official banner`,
+    },
+    openGraph: {
+        basic: {
+            title: Shared.title,
+            url: `${import.meta.env.SITE}`,
+            image: Banner.url.toString(),
+            type: 'website',
+        },
+        image: {
+            url: Banner.url,
+            alt: `${author.name} official banner`,
+            type: `image/${Banner.format}`,
+            width: Number(Banner.width),
+            height: Number(Banner.height),
+        },
+        optional: {
+            siteName: Shared.title,
+            description: Shared.description,
+            locale: 'en_CA',
+            localeAlternate: ['pt_BR', 'en_US', 'en'],
+        },
+    }
+};
 ---
 
-<Layout title="André Valério - Composer & Guitarist">
+<Layout seo={seo} >
     <Header anime={true} client:load >
         <Logo slot='logo' />
         <Social slot='social' />
