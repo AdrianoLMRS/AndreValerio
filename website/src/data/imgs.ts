@@ -31,6 +31,7 @@ const Imgs = {
         youtube: `https://img.icons8.com/color/${socialSize}/youtube-play.png`,
         spotify96: `https://img.icons8.com/fluency/${socialSize}/spotify.png`,
         soundslice: 'https://iili.io/3R0u0Bt.webp',
+        twitter: `https://img.icons8.com/ios/${socialSize}/twitterx--v1.png`,
     },
     videos: {
         intro: 'PwFLA4nb74I',
