@@ -7,6 +7,9 @@ import Footer from '@components/astro/Footer.astro';
 import Logo from '@components/astro/Logo.astro';
 import MainContent from '@components/_pages/index.astro';
 
+// * Utils
+import { fetchAlbums } from '@utils/Spotify';
+
 // * Data & Types
 import Pages from '@data/pages';
 import Imgs from '@data/imgs';
@@ -15,6 +18,43 @@ import type { Props as seoProps } from "astro-seo";
 import type { Props as schemaProps } from "astro-seo-schema"
 
 const Banner = Imgs.local.banner;
+
+const limit = String(50); // Max: 50
+const ALBUM_URL = `https://api.spotify.com/v1/artists/${author.spotifyId}/albums?limit=${limit}`
+
+const albums = await fetchAlbums(ALBUM_URL); // Should return { items: [...] }
+// console.debug('Albums:', albums.items);
+
+const disallowed: string[] = ['6gVncgomPUoXXQHvWzpRT0'];
+
+const albumsSchema = albums.items
+    .filter(album => !disallowed.includes(album.id))
+    .map(album => {
+        // If theres no "André Valério" in the artists list, add it to the end of the list
+        const artistNames = album.artists?.map(artist => artist.name) ?? [];
+        const fullArtistName = artistNames.join(', ');
+        const byArtistName = artistNames.some(name => name.toLowerCase().includes(author.name.toLowerCase()))
+        ? fullArtistName
+        : fullArtistName
+            ? `${fullArtistName}, ${author.name}`
+            : author.name; // If theres no artist name, just use the author name
+        // console.debug(album);
+        return {
+        '@type': album.album_type === 'single' || album.album_type === 'album' ? 'MusicAlbum' : 'CreativeWork',
+        name: album.name,
+        url: album.external_urls.spotify,
+        datePublished: album.release_date,
+        image: album.images?.[0]?.url,
+        genre: author.musicGenre,
+        numTracks: album.total_tracks,
+        albumReleaseType: album.album_type,
+        byArtist: {
+            '@type': 'Person',
+            name: byArtistName,
+        },
+    };
+});
+// console.debug('Albums Schema:', albumsSchema);
 
 const Shared = {
     title: `${author.name} - ${author.job}`,
@@ -84,8 +124,10 @@ const schema: schemaProps = {
             '@type': 'Place',
             name: `${author.birthPlace}`,
         },
+        album: albumsSchema,
     },
 };
+console.debug('Schema:', schema.item);
 
 ---
 

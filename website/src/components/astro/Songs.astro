@@ -11,12 +11,11 @@ const { spotifyId } = author // André Valério artist ID
 import { fetchAlbums } from "@utils/Spotify"
 import type { Album as albumType } from "@types/albumTypes"
 
-const market = "BR"; // Example: BR+ES
-const limit = "6";
+const limit = String(6); // Max: 50
 
 const disallowed : string[] = ["6gVncgomPUoXXQHvWzpRT0", "1rh9eVIKx8c5UFhpa0aCoo", "5pgYtorr2Xf7xRZqclhTT4", "4b4NdiFLO7q836YIPA59jl"];
 
-const ALBUM_URL = `https://api.spotify.com/v1/artists/${spotifyId}/albums?market=${market}&limit=${limit}`
+const ALBUM_URL = `https://api.spotify.com/v1/artists/${spotifyId}/albums?limit=${limit}`
 
 const albums = await fetchAlbums(ALBUM_URL);
 // console.debug(albums);
