@@ -36,6 +36,9 @@ const Imgs = {
     videos: {
         intro: 'PwFLA4nb74I',
     },
+    audio: {
+        tempestuoso: '/Tempestuoso-Tio-Chorinho.mp3'
+    },
 } as const;
 
 export default Imgs;

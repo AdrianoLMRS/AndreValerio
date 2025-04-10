@@ -12,7 +12,6 @@ import Pages from '@data/pages';
 import Imgs from '@data/imgs';
 import { author } from '@data/author';
 import { type Props as seoProps } from "astro-seo";
-import { title } from 'process';
 
 const Banner = Imgs.local.banner;
 
@@ -43,6 +42,7 @@ const seo: seoProps = {
         },
         image: {
             url: Banner.url,
+            secureUrl: Banner.url,
             alt: `${author.name} official banner`,
             type: `image/${Banner.format}`,
             width: Number(Banner.width),
@@ -52,7 +52,9 @@ const seo: seoProps = {
             siteName: Shared.title,
             description: Shared.description,
             locale: 'en_CA',
-            localeAlternate: ['pt_BR', 'en_US', 'en'],
+            audio: Imgs.audio.tempestuoso,
+            video: 'https://youtu.be/PwFLA4nb74I', // Lessons video link in YT
+            // localeAlternate: ['en_US', 'en'],
         },
     }
 };
