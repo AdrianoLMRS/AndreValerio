@@ -1,9 +1,11 @@
 ---
 import { SEO, type Props as seoProps } from "astro-seo";
+import { Schema, type Props as schemaProps } from "astro-seo-schema"
 import '@styles/global.scss';
 
-const { seo } = Astro.props as {
+const { seo, schema } = Astro.props as {
   seo?: seoProps;
+  schema?: schemaProps;
 };
 ---
 
@@ -18,6 +20,7 @@ const { seo } = Astro.props as {
     <meta name="generator" content={Astro.generator} />
 
     {seo && <SEO {...seo} titleDefault="No title" />}
+    {schema && <Schema {...schema} />}
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

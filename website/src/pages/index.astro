@@ -11,7 +11,8 @@ import MainContent from '@components/_pages/index.astro';
 import Pages from '@data/pages';
 import Imgs from '@data/imgs';
 import { author } from '@data/author';
-import { type Props as seoProps } from "astro-seo";
+import type { Props as seoProps } from "astro-seo";
+import type { Props as schemaProps } from "astro-seo-schema"
 
 const Banner = Imgs.local.banner;
 
@@ -58,9 +59,37 @@ const seo: seoProps = {
         },
     }
 };
+
+const schema: schemaProps = {
+    item: {
+        '@context': 'https://schema.org',
+        '@type': 'Person',
+        name: `${author.name}`,
+        alternateName: `${author.altName}`,
+        url: import.meta.env.SITE,
+        image: `${import.meta.env.SITE}${Banner.url}`,
+        jobTitle: author.job,
+        genre: author.musicGenre,
+        sameAs: Object.entries(Pages.social)
+        .filter(([key, value]) => key !== 'arroba' && typeof value === 'string')
+        .map(([, value]) => value),
+        description: Shared.description,
+        address: {
+            '@type': 'PostalAddress',
+            addressLocality: 'Toronto',
+            addressCountry: 'CA',
+        },
+        birthDate: '1983-10-02',
+        birthPlace: {
+            '@type': 'Place',
+            name: 'São Paulo, SP, Brazil',
+        },
+    },
+};
+
 ---
 
-<Layout seo={seo} >
+<Layout seo={seo} schema={schema} >
     <Header anime={true} client:load >
         <Logo slot='logo' />
         <Social slot='social' />
