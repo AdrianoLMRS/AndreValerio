@@ -4,16 +4,12 @@
 */
 
 import SpotifyEmbed from "@components/astro/spotifyAlbum.astro"
-import SpotifyEmbedArtist from "@components/ts/spotifyEmbed";
 
 import { author } from "@data/author"
 const { spotifyId } = author // André Valério artist ID
 
-import { getSpotifyToken } from "@utils/Spotify"
-import type { Album as albumType, AlbumResponse } from "@types/albumTypes"
-
-// Spotify Access token for API calls
-const accessToken = await getSpotifyToken();
+import { fetchAlbums } from "@utils/Spotify"
+import type { Album as albumType } from "@types/albumTypes"
 
 const market = "BR"; // Example: BR+ES
 const limit = "6";
@@ -22,36 +18,8 @@ const disallowed : string[] = ["6gVncgomPUoXXQHvWzpRT0", "1rh9eVIKx8c5UFhpa0aCoo
 
 const ALBUM_URL = `https://api.spotify.com/v1/artists/${spotifyId}/albums?market=${market}&limit=${limit}`
 
-const fetchAlbums = async (): Promise<AlbumResponse> => {
-    const response = await fetch(ALBUM_URL, {
-        method: "GET",
-        headers: {
-        'Authorization': `Bearer ${accessToken}`,
-        'Content-Type': 'application/json',
-        },
-    });
-
-    if (!response.ok) {
-        if (response.status === 401) {
-            throw new Error('Unauthorized - Token may be expired or invalid. Please check your authentication.')
-        } else throw new Error('Error searching albums')
-    };
-
-    return await response.json(); // Response
-  };
-
-const albums = await fetchAlbums();
+const albums = await fetchAlbums(ALBUM_URL);
 // console.debug(albums);
-
-const artistIframe = {
-    borderRadius: "12px",
-    width: "100%",
-    height: "500px",
-    html: "",
-};
-
-const margin : number = 400;
-const marginPx = `${margin}px`;
 ---
 
 <div>
@@ -61,11 +29,11 @@ const marginPx = `${margin}px`;
             .filter((album) => !disallowed.includes(album.id))
             .map((album: albumType) => (
                 <li>
-                <SpotifyEmbed
-                    name={album.name}
-                    release_date={album.release_date}
-                    id={album.id}
-                />
+                    <SpotifyEmbed
+                        name={album.name}
+                        release_date={album.release_date}
+                        id={album.id}
+                    />
                 </li>
             ))}
         </ul>
@@ -73,19 +41,3 @@ const marginPx = `${margin}px`;
         <p>No albums available...</p>
     )}
 </div>
-
-<style lang="scss" define:vars={{ borderRadius: artistIframe.borderRadius, height: artistIframe.height, width: artistIframe.width }} >
-
-    @use '@styles/mixins' as m;
-
-    $gap: 10px;
-
-    .spotify-wrapper {
-        --_border-radius: var(--borderRadius);
-        --_height: var(--height);
-        padding: 80px $gap 0 $gap;
-        @include m.center-flex();
-
-        :global(.spotify-embed) { width: var(--width); }
-    }
-</style>

@@ -3,6 +3,8 @@ export const author = {
     altName: 'Valério Som',
     email: 'andrevalerio@gmail.com',
     job: 'Guitarist | Composer | Educator',
+    birthDate: '1983-10-02',
+    birthPlace: 'São Paulo, SP, Brazil',
     about: 'Andre Valerio is a Brazilian multi-instrumentalist, guitarist, composer, and arranger. He has performed at renowned festivals and venues worldwide, blending jazz, Brazilian, and classical music. His debut album, Chrysalis (2017), showcases his talent and collaborations with esteemed musicians. With versatility and passion, Andre continues to captivate audiences globally.',
     spotifyId: '7bInuih8A0WSEqVwkbqXHN',
     site: 'https://andrevalerio.com/',
@@ -12,4 +14,4 @@ export const author = {
         site: 'https://portfolio-adriano-p4dj.onrender.com/',
         icons8: 'https://icons8.com.br/',
     }
-};
+} as const;

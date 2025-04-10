@@ -79,10 +79,10 @@ const schema: schemaProps = {
             addressLocality: 'Toronto',
             addressCountry: 'CA',
         },
-        birthDate: '1983-10-02',
+        birthDate: `${author.birthDate}`,
         birthPlace: {
             '@type': 'Place',
-            name: 'São Paulo, SP, Brazil',
+            name: `${author.birthPlace}`,
         },
     },
 };
