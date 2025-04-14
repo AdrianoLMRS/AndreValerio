@@ -10,8 +10,10 @@ const socialPx : string = `${socialSize}px`;
 
 <footer
     id="footer"
-    {/* TODO: make SEO atributes */}
+    itemscope
+    itemtype="https://schema.org/WPFooter"
 >
+    <meta itemprop="name" content="Footer" />
     <div class="content">
         <Social />
         <div class="links">
