@@ -32,6 +32,9 @@ const albums = await fetchAlbums(ALBUM_URL);
                         name={album.name}
                         release_date={album.release_date}
                         id={album.id}
+                        itemprop="description"
+                        content={`Album ${album.name} by ${author.name} (Spotify album).`}
+                        aria-label={`Album ${album.name} by ${author.name}`}
                     />
                 </li>
             ))}

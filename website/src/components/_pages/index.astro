@@ -12,6 +12,7 @@ import Testimonials from '@components/astro/Testimonials.astro';
 // import "@styles/_pages/index.scss"; // * Import like this if global styles
 
 import Imgs from '@data/imgs';
+import { author } from '@data/author';
 import Pages from "@data/pages"
 const { background } = Imgs.cdn;
 const { intro } = Imgs.videos;
@@ -38,8 +39,8 @@ const { intro } = Imgs.videos;
                 <Picture
                     class="parallax__fixed"
                     src={background}
-                    alt="André Valério - Musician and Composer"
-                    title="André Valério - Musician and Composer"
+                    alt={`${author.name} - ${author.job}`}
+                    title={`${author.name} - ${author.job}`}
                     fit="cover"
                     layout="full-width"
                     priority
@@ -100,6 +101,13 @@ const { intro } = Imgs.videos;
             id="songs"
             class="songs"
             {/* TODO: Make SEO better */}
+            itemscope
+            itemtype="https://schema.org/MusicPlaylist"
+            aria-labelledby="songs"
+            aria-label="songs"
+            aria-describedby="songs"
+            itemprop="description"
+            content={`Music playlist by ${author.name} (Spotify albums).`}
         >
             <h2>Songs/Albums</h2>
 

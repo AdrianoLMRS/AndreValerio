@@ -34,5 +34,5 @@ interface AlbumResponse {
     items: Album[]
 }
   
-export type { Album, AlbumResponse, SpotifyArtist, SpotifyImage }
+export type { Album, AlbumResponse, SpotifyArtist, SpotifyImage };
   

@@ -2,7 +2,7 @@ import { useEffect, useState, type ReactNode } from 'react';
 import { useToggleMenu } from '@hooks/useToggleMenu';
 import { useMediaQuery } from '@hooks/useMediaQuery';
 import { handleScroll } from '@utils/handleScroll';
-import { getCssVariable } from "@utils/getCssVariable";
+import { getCssVariable } from '@utils/getCssVariable';
 import lockScroll from '@utils/lockScroll';
 import Pages from '@data/pages';
 import AuthorHeader from '@components/ts/authorHeader';

@@ -9,6 +9,7 @@ import MainContent from '@components/_pages/index.astro';
 
 // * Utils
 import { fetchAlbums } from '@utils/Spotify';
+import { formatAlbums } from "@utils/Album";
 
 // * Data & Types
 import Pages from '@data/pages';
@@ -27,34 +28,7 @@ const albums = await fetchAlbums(ALBUM_URL); // Should return { items: [...] }
 
 const disallowed: string[] = ['6gVncgomPUoXXQHvWzpRT0'];
 
-const albumsSchema = albums.items
-    .filter(album => !disallowed.includes(album.id))
-    .map(album => {
-        // If theres no "André Valério" in the artists list, add it to the end of the list
-        const artistNames = album.artists?.map(artist => artist.name) ?? [];
-        const fullArtistName = artistNames.join(', ');
-        const byArtistName = artistNames.some(name => name.toLowerCase().includes(author.name.toLowerCase()))
-        ? fullArtistName
-        : fullArtistName
-            ? `${fullArtistName}, ${author.name}`
-            : author.name; // If theres no artist name, just use the author name
-        // console.debug(album);
-        return {
-        '@type': album.album_type === 'single' || album.album_type === 'album' ? 'MusicAlbum' : 'CreativeWork',
-        name: album.name,
-        url: album.external_urls.spotify,
-        datePublished: album.release_date,
-        image: album.images?.[0]?.url,
-        genre: author.musicGenre,
-        numTracks: album.total_tracks,
-        albumReleaseType: album.album_type,
-        byArtist: {
-            '@type': 'Person',
-            name: byArtistName,
-        },
-    };
-});
-// console.debug('Albums Schema:', albumsSchema);
+const albumsSchema = formatAlbums(albums, disallowed);// console.debug('Albums Schema:', albumsSchema);
 
 const Shared = {
     title: `${author.name} - ${author.job}`,
@@ -124,10 +98,10 @@ const schema: schemaProps = {
             '@type': 'Place',
             name: `${author.birthPlace}`,
         },
-        album: albumsSchema,
+        albums: albumsSchema,
     },
 };
-console.debug('Schema:', schema.item);
+// console.debug('Schema:', schema.item);
 
 ---
 
