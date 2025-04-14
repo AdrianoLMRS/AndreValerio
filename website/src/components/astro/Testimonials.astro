@@ -14,13 +14,14 @@ const media = `only screen and (max-width: ${mediaWidth}) and (hover: none)`;
 
 {TestimonialsData.map((testimonial, index) => (
     <ScrollAnimation className="" threshold={0.9} repeat={true} client:media={media}>
-        <div class="item testimonial">
+        <div class="item testimonial" itemscope itemtype="https://schema.org/Review">
+            <meta itemprop="reviewRating" content="5" />
             <figure class="testimonial-fig">
                 <figcaption>
-                    <blockquote>
+                    <blockquote itemprop="reviewBody">
                         <p>{testimonial.testimonial}</p>
                     </blockquote>
-                    <h3>{testimonial.name}</h3>
+                    <h3 itemprop="author">{testimonial.name}</h3>
                 </figcaption>
             </figure>
         </div>
