@@ -2,7 +2,7 @@ import Banner from '@/../public/banner.jpg';
 
 const n : number = 48;
 const size : string = String(n);
-const socialSize : string = String(92);
+export const socialSize : string = String(92);
 const logoSize : string = size + 'x' + size;
 // const backgroundSize : string = '1920x1080';
 

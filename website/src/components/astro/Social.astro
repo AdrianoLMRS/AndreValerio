@@ -1,9 +1,10 @@
 ---
 import { Image } from 'astro:assets';
 import Pages from '@data/pages';
-import Imgs from '@data/imgs';
+import Imgs, { socialSize as Size } from '@data/imgs';
 import UrlLink from '@components/nav/urlLink';
-const socialSize = 92;
+
+const socialSize = Number(Size); // 96px
 ---
 
 <div class="social">

@@ -57,7 +57,7 @@ export default function Header({ anime = false, logo, social }: HeaderProps) {
             itemScope itemType="https://schema.org/WPHeader">
             <div>
                 <a title="Home Page - André Valério" href={Pages.home} 
-                    rel="noopener noreferrer" itemProp="url">
+                    rel="noopener noreferrer">
                     {logo} {/* Logo .astro component */}
                 </a>
                 <AuthorHeader style={menuOpen ? { left: '20px' } : { left: '-150%' } } id="author" />
