@@ -8,6 +8,7 @@ import SpotifyEmbed from "@components/astro/spotifyAlbum.astro"
 import { author } from "@data/author"
 const { spotifyId } = author // André Valério artist ID
 
+import { formatArtistName } from "@utils/Album";
 import { fetchAlbums } from "@utils/Spotify"
 import type { Album as albumType } from "@types/albumTypes"
 
@@ -19,27 +20,37 @@ const ALBUM_URL = `https://api.spotify.com/v1/artists/${spotifyId}/albums?limit=
 
 const albums = await fetchAlbums(ALBUM_URL);
 // console.debug(albums);
+
 ---
 
 <div>
     {albums.items && albums.items.length > 0 ? (
-        <ul>
-            {albums.items
+      <ul aria-labelledby="Albums">
+        <meta itemprop="numTracks" content={albums.items.filter((album) => !disallowed.includes(album.id)).length.toString()} />
+  
+        {albums.items
             .filter((album) => !disallowed.includes(album.id))
-            .map((album: albumType) => (
-                <li>
-                    <SpotifyEmbed
-                        name={album.name}
-                        release_date={album.release_date}
-                        id={album.id}
-                        itemprop="description"
-                        content={`Album ${album.name} by ${author.name} (Spotify album).`}
-                        aria-label={`Album ${album.name} by ${author.name}`}
-                    />
-                </li>
-            ))}
-        </ul>
-        ) : (
-        <p>No albums available...</p>
+            .map((album) => (
+                <li
+                    itemprop="track"
+                    itemscope
+                    itemtype="https://schema.org/MusicAlbum"
+                    aria-label={`Album ${album.name} by ${formatArtistName(album.artists.map((artist) => artist.name))}`}
+                >
+                <meta itemprop="name" content={album.name} />
+                <meta itemprop="byArtist" content={formatArtistName(album.artists.map((artist) => artist.name))} />
+                <meta itemprop="datePublished" content={album.release_date} />
+    
+                <SpotifyEmbed
+                    name={album.name}
+                    release_date={album.release_date}
+                    id={album.id}
+                />
+            </li>
+          ))}
+      </ul>
+    ) : (
+      <p>No albums available...</p>
     )}
-</div>
+</div>  
+  

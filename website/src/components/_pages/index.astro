@@ -96,26 +96,23 @@ const { intro } = Imgs.videos;
             {/* Maybe more content in future */}
         </section>
 
-        {/* Songs section using Spotify API */} 
-        <section
-            id="songs"
-            class="songs"
-            {/* TODO: Make SEO better */}
-            itemscope
-            itemtype="https://schema.org/MusicPlaylist"
-            aria-labelledby="songs"
-            aria-label="songs"
-            aria-describedby="songs"
-            itemprop="description"
-            content={`Music playlist by ${author.name} (Spotify albums).`}
-        >
-            <h2>Songs/Albums</h2>
+            {/* Songs section using Spotify API */}
+            <section
+                id="songs"
+                class="songs"
+                itemscope
+                itemtype="https://schema.org/MusicPlaylist"
+                aria-labelledby="songs-heading"
+            >
+                <meta itemprop="name" content="Spotify Music Section" />
+                <meta itemprop="description" content={`Songs Section by ${author.name} (Spotify albums).`} />
 
-            <div class="content">
-                {/* Songs and Albums using Spotify API */}
-                <Songs />
-            </div>
-        </section>
+                <h2>Songs/Albums</h2>
+
+                <div class="content">
+                    <Songs />
+                </div>
+            </section>
 
         <section
             class="teach" id="teach"
