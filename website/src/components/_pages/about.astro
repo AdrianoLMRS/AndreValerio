@@ -32,7 +32,10 @@ import { author } from '@data/author';
         </div>
     <section/>
     <section class="about" id="about">
-        <h2>Who is {author.name}</h2>
+        <div class="title">
+            <h2>Who is {author.name}</h2>
+            <hr>
+        </div>
         <ScrollAnimation className="highlight-animation" threshold={0.2} client:load  >
             <AboutP />
         </ScrollAnimation>
@@ -88,8 +91,8 @@ import { author } from '@data/author';
             color: var(--highlight-color);
         }
 
-        h2 {
-            font-size: 2rem;
+        .title {
+            h2 { font-size: 2rem; }
             padding-bottom: 25px;
         }
     }
