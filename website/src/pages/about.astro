@@ -1,4 +1,8 @@
 ---
+import { author } from '@data/author';
+import Pages from '@data/pages';
+import Imgs from '@data/imgs';
+
 // * Components
 import Header from '@components/ts/Header';
 import Social from '@components/astro/Social.astro';
@@ -11,11 +15,79 @@ import MainContent from '@components/_pages/about.astro';
 import type { Props as seoProps } from "astro-seo";
 import type { Props as schemaProps } from "astro-seo-schema";
 
-const seo: seoProps = {
-    title: 'About - André Valério',
+const Shared = {
+    title: `About – ${author.name}`,
+    description: `Learn more about ${author.name}, his background as a musician and creative journey.`,
+    url: `${import.meta.env.SITE}${Pages.about}`,
+    image: Imgs.local.banner2.url
 };
 
-const schema: schemaProps = {};
+const seo: seoProps = {
+    title: Shared.title,
+    description: Shared.description,
+    canonical: Shared.url,
+    twitter: {
+            card: 'summary_large_image',
+            site: Pages.social.arroba.twitter,
+            creator: Pages.social.arroba.twitter,
+            title: Shared.title,
+            description: Shared.description,
+            image: Shared.image,
+            imageAlt: `${author.name} portrait`
+    },
+    openGraph: {
+        basic: {
+            title: Shared.title,
+            url: Shared.url,
+            image: `${Shared.image}`,
+            type: 'profile'
+        },
+        image: {
+            url: Shared.image,
+            secureUrl: Shared.image,
+            alt: `${author.name} portrait`,
+            type: `image/${Imgs.local.banner2.format}`,
+            width: Number(Imgs.local.banner2.width),
+            height: Number(Imgs.local.banner2.height)
+        },
+        optional: {
+            siteName: `${author.name}`,
+            description: Shared.description,
+            locale: 'en_CA'
+        }
+    }
+};
+
+const schema: schemaProps = {
+  item: {
+    '@context': 'https://schema.org',
+    '@type': ['WebPage', 'AboutPage'],
+    name: Shared.title,
+    description: Shared.description,
+    url: Shared.url,
+    author: {
+        '@type': 'Person',
+        name: author.name,
+        alternateName: author.altName,
+        image: Imgs.cdn.pic,
+        sameAs: Object.entries(Pages.social)
+            .filter(([k]) => k !== 'arroba')
+            .map(([, v]) => v),
+        jobTitle: author.job,
+        description: Shared.description,
+        address: {
+            '@type': 'PostalAddress',
+            addressLocality: 'Toronto',
+            addressCountry: 'CA',
+        },
+        birthDate: `${author.birthDate}`,
+        birthPlace: {
+            '@type': 'Place',
+            name: `${author.birthPlace}`,
+        },
+    }
+  }
+};
 ---
 
 <Layout seo={seo} schema={schema} >

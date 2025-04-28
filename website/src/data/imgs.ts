@@ -1,4 +1,5 @@
 import Banner from '@/../public/banner.jpg';
+import Banner2 from '@/../public/banner2.jpg';
 
 const n : number = 48;
 const size : string = String(n);
@@ -15,6 +16,13 @@ const Imgs = {
             format: Banner.format,
             height: Banner.height,
             width: Banner.width,
+        },
+        banner2: {
+            url: new URL('/banner2.jpg', import.meta.env.SITE),
+            PB: '/banner2.jpg',
+            format: Banner2.format,
+            height: Banner2.height,
+            width: Banner2.width,
         },
     },
     cdn: {
