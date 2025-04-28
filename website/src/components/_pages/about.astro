@@ -1,0 +1,96 @@
+---
+import { Picture } from 'astro:assets';
+import AboutP from "@components/astro/aboutP.astro"
+import ScrollAnimation from "@components/ts/scrollAnimation";
+
+import Imgs from '@data/imgs';
+import { author } from '@data/author';
+---
+
+<main
+    itemprop="mainEntity" itemscope itemtype="https://schema.org/MusicArtist"
+>
+    <section
+        class="apresentation"
+        id="apresentation"
+        itemscope
+        itemtype="https://schema.org/CreativeWork"
+        aria-labelledby="apresentation-heading"
+        aria-label="apresentation-heading"
+    >
+        <div class="wrapper">
+            <div class="overlay" aria-hidden="true" />
+            <h1>A little about <strong>{author.name}</strong></h1>
+            <Picture
+                src={Imgs.cdn.banner}
+                alt={`${author.name} (Banner)`} title={`${author.name} (Banner)`}
+                fit="cover"
+                layout="full-width"
+                priority
+                inferSize
+            />
+        </div>
+    <section/>
+    <section class="about" id="about">
+        <h2>Who is {author.name}</h2>
+        <ScrollAnimation className="highlight-animation" threshold={0.2} client:load  >
+            <AboutP />
+        </ScrollAnimation>
+    </section>
+</main>
+
+<style lang="scss" is:global >
+    .apresentation {
+        position: relative;
+        text-align: center;
+        color: var(--white-color);
+        font-size: clamp(1.5rem, 2vw + 1rem, 3rem);
+
+        .wrapper {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        picture {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+
+        h1 {
+            z-index: 1;
+        }
+    }
+
+    .about {
+        margin-inline: auto;
+        max-width: 800px;
+        padding: 20px 0;
+        font-size: clamp(1rem, 1.5vw + 0.5rem, 1.2rem);
+        line-height: 2;
+        color: var(--text-color);
+        
+        strong {
+            font-weight: bold;
+            color: var(--highlight-color);
+        }
+
+        h2 {
+            font-size: 2rem;
+            padding-bottom: 25px;
+        }
+    }
+</style>
