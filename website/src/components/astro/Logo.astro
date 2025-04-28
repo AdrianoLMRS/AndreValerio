@@ -1,19 +1,20 @@
 ---
 import { Image } from 'astro:assets';
-import Imgs from '@data/imgs';
+import logoImage from '@assets/favicon-96x96.png';
 
-const { logo } = Imgs.cdn;
+const size = 48;
 ---
 
-<div class="logo hide-title" itemscope itemtype="https://schema.org/Organization">
+<div class="logo hide-title"  itemscope itemtype="https://schema.org/Organization">
     <Image 
-        src={logo}
+        src={logoImage}
         alt="Logo André Valério"
         title="Website Logo" 
         aria-label="Website Logo" 
-        itemtype="https://schema.org/image" 
+        itemtype="https://schema.org/logo" 
         itemprop="logo"
         loading="eager"
-        inferSize
+        width={size}
+        height={size}
     />
 </div>
