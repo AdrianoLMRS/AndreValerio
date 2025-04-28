@@ -10,18 +10,19 @@ import UrlLink from '@components/nav/urlLink';
 import NavBtn from '@components/nav/navBtn';
 import '@styles/_components/Navbar.scss';
 
-const scrollPosition : number = 950;
 
 interface HeaderProps {
     anime?: boolean; // Default: false
     logo: ReactNode;
     social: ReactNode;
+    scrollPosition?: number; // Default: 950
 }
 
-export default function Header({ anime = false, logo, social }: HeaderProps) {
+export default function Header({ anime = false, logo, social, scrollPosition = 950 }: HeaderProps) {
     const { menuOpen, toggleMenu } = useToggleMenu();
     const [ isScrolled, setIsScrolled ] = useState(false);
     const [navBreakpoint, setNavBreakpoint] = useState<string | null>(null);
+    const scrollNumber : number = scrollPosition;
 
     // Getting the --navbar-breakpoint CSS variable
     useEffect(() => {
@@ -37,7 +38,7 @@ export default function Header({ anime = false, logo, social }: HeaderProps) {
     // Scroll animation - background Header
     useEffect(() => {
         if (anime) {
-            const cleanup = handleScroll(scrollPosition, () => setIsScrolled(true), () => setIsScrolled(false));
+            const cleanup = handleScroll(scrollNumber, () => setIsScrolled(true), () => setIsScrolled(false));
             return cleanup;
         }
     }, [anime]);
