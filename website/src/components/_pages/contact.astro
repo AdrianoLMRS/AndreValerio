@@ -1,0 +1,16 @@
+---
+import Apresentation from "@components/astro/Apresentation.astro"
+
+import Imgs from '@data/imgs';
+import { author } from '@data/author';
+
+---
+
+
+<main>
+    <Apresentation src={Imgs.cdn.banner} alt={`${author.name} (Banner)`} html={`Get in touch!`} />
+</main>
+
+<style lang="scss" is:global >
+    
+</style>
