@@ -2,6 +2,7 @@ export const author = {
     name: 'André Valério',
     altName: 'Valério Som',
     email: 'andrevalerio@gmail.com',
+    tel: '+16476480248',
     job: 'Guitarist | Composer | Educator',
     birthDate: '1983-10-02',
     birthPlace: 'São Paulo, SP, Brazil',

@@ -1,16 +1,70 @@
 ---
+import { Image } from "astro:assets";
+
 import Apresentation from "@components/astro/Apresentation.astro"
 
 import Imgs from '@data/imgs';
 import { author } from '@data/author';
+import Pages from "@data/pages";
+
+const contacts = [
+    {
+        href: `tel:${author.tel}`,
+        label: `Call ${author.tel}`,
+        icon: Imgs.cdn.phone,
+        alt: 'Phone',
+    },
+    {
+        href: `mailto:${author.email}?subject=Contact`,
+        label: `Email: ${author.email}`,
+        icon: Imgs.cdn.email,
+        alt: 'Email',
+    },
+    {
+        href: `https://wa.me/${author.tel.replace(/\D/g, '')}`,
+        label: 'Whatsapp',
+        icon: Imgs.cdn.whatsapp,
+        alt: 'Whatsapp',
+    },
+    {
+        href: Pages.social.twitter,
+        label: 'Twitter',
+        icon: Imgs.cdn.twitterFilled,
+        alt: 'Twitter',
+    },
+    {
+        href: Pages.social.instagram,
+        label: 'Instagram',
+        icon: Imgs.cdn.instagramBlack,
+        alt: 'Instagram',
+    },
+];
 
 ---
 
 
 <main>
-    <Apresentation src={Imgs.cdn.banner} alt={`${author.name} (Banner)`} html={`Get in touch!`} />
+    <Apresentation src={Imgs.cdn.banner2} alt={`${author.name} (Banner) 2`} html={`Get in touch!`} />
+    <section
+        class="contact"
+        id="contact"
+    >
+        <h2>Contact me</h2>
+        <p>Feel free to reach out to me via email or social media. I would love to hear from you!</p>
+        <ul class="contact-list">
+            {contacts.map((contact) => (
+                <li>
+                    <a href={contact.href} target="_blank" rel="noopener noreferrer">
+                        <Image src={contact.icon} alt={contact.alt} inferSize />
+                        <br />
+                        {contact.label}
+                    </a>
+                </li>
+            ))}
+        </ul>
+    </section>
 </main>
 
 <style lang="scss" is:global >
-    
+
 </style>
