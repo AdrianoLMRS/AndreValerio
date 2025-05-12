@@ -16,7 +16,7 @@ const contacts = [
     },
     {
         href: `mailto:${author.email}?subject=Contact`,
-        label: `Email: ${author.email}`,
+        label: `${author.email.replace(/@/g, '<wbr>@')}`,
         icon: Imgs.cdn.email,
         alt: 'Email',
     },
@@ -46,25 +46,105 @@ const contacts = [
 <main>
     <Apresentation src={Imgs.cdn.banner2} alt={`${author.name} (Banner) 2`} html={`Get in touch!`} />
     <section
-        class="contact"
-        id="contact"
+        class="social"
+        id="social"
     >
         <h2>Contact me</h2>
         <p>Feel free to reach out to me via email or social media. I would love to hear from you!</p>
-        <ul class="contact-list">
+        <hr>
+        <ul class="social-list">
             {contacts.map((contact) => (
-                <li>
-                    <a href={contact.href} target="_blank" rel="noopener noreferrer">
-                        <Image src={contact.icon} alt={contact.alt} inferSize />
-                        <br />
-                        {contact.label}
-                    </a>
-                </li>
+                <div class="item">
+                    <li>
+                        <a href={contact.href} target="_blank" rel="noopener noreferrer">
+                            <Image src={contact.icon} alt={contact.alt} inferSize />
+                            <br />
+                            <span set:html={contact.label} />
+                        </a>
+                    </li>
+                </div>
             ))}
         </ul>
     </section>
 </main>
 
 <style lang="scss" is:global >
+    @use "@styles/mixins" as m;
+    @use "@styles/variables" as v;
 
+    h2 {
+        font-size: 2rem;
+    }
+
+    main > section:not(.apresentation) {
+        padding: 20px 0;
+    }
+
+    .social {
+        text-align: center;
+
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        hr { width: 90%; margin-inline: auto; }
+
+        .social-list {
+            margin-top: 25px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            padding: 0 15px;
+            list-style: none;
+
+            .item {
+                flex: 1 1 150px;
+
+                li {
+                    
+                    a {
+                        $transition: 250ms ease-in-out;
+                        @include m.center-flex();
+                        flex-direction: column;
+                        background-color: var(--secondary-color);
+                        height: 200px;
+                        width: 100%;
+                        border: 1px solid var(--white-color);
+                        text-decoration: none;
+                        font-size: smaller;
+                        color: inherit;
+
+                        span {
+                            opacity: .5;
+                            transition: opacity $transition, transform $transition; 
+                        }
+    
+                        img {
+                            margin-bottom: 15px;
+                        }
+
+                        transition: all $transition;
+
+                        &:hover, &:focus {
+                            background-color: var(--fourth-color);
+                            color: var(--black-color, black);
+                            border-color: var(--fourth-color);
+                            border-radius: 20px;
+                            text-decoration: none;
+                            box-shadow: v.$over-box-shadow;
+                            filter: brightness(1.2);
+
+                            span {
+                                opacity: 1;
+                                transform: scale(1.05);
+                                text-decoration: underline;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 </style>
