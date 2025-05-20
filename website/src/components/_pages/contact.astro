@@ -7,6 +7,9 @@ import Imgs from '@data/imgs';
 import { author } from '@data/author';
 import Pages from "@data/pages";
 
+const mailResponse = `Thanks for your message! I will get back to you as soon as possible.`;
+const formSubmitUrl = `https://formsubmit.co/${import.meta.env.PROD ? author.email : 'adriano.limarossi@gmail.com'}`;
+
 const contacts = [
     {
         href: `tel:${author.tel}`,
@@ -40,6 +43,8 @@ const contacts = [
     },
 ];
 
+
+
 ---
 
 
@@ -65,6 +70,24 @@ const contacts = [
                 </div>
             ))}
         </ul>
+    </section>
+    <section
+        class="mail"
+        id="mail"
+    >
+        <form action={formSubmitUrl} method="POST">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" placeholder="Your Message" required />
+        
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_subject" value={`New message from ${import.meta.env.SITE}/contact`} />
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_next" value={`${import.meta.env.SITE}/thanks`}>
+            <input type="hidden" name="_autoresponse" value={mailResponse}>
+        
+            <button type="submit">Send message</button>
+        </form>      
     </section>
 </main>
 
