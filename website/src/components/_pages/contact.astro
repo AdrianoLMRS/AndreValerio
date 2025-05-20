@@ -75,10 +75,14 @@ const contacts = [
         class="mail"
         id="mail"
     >
-        <form action={formSubmitUrl} method="POST">
-            <input type="text" name="name" placeholder="Your Name" required>
-            <input type="email" name="email" placeholder="Your Email" required>
-            <textarea name="message" placeholder="Your Message" required />
+
+        <h3 style="padding-bottom: 20px;" >Send message</h3>
+        <form class="mail-form" action={formSubmitUrl} method="POST">
+            <label for="name">Name <small>(required)</small></label>
+            <input type="text" name="name" placeholder="Name" id="name" required>
+            <label for="email">Email <small>(required)</small></label>
+            <input type="email" name="email" placeholder="Email" id="email" required>
+            <textarea name="message" placeholder="Message" required />
         
             <input type="hidden" name="_captcha" value="false">
             <input type="hidden" name="_subject" value={`New message from ${import.meta.env.SITE}/contact`} />
@@ -170,4 +174,62 @@ const contacts = [
             }
         }
     }
+
+    .mail {
+        text-align: center;
+        
+        .mail-form {
+            text-align: left;
+            max-width: 800px;
+            margin-inline: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+            background: var(--secondary-color);
+            padding: 2rem;
+            border-radius: v.$normal-border-radius;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            
+            input, textarea {
+                width: 100%;
+                padding: 0.75rem 1rem;
+                font-size: 1rem;
+                border: 1px solid var(--fourth-color);
+                border-radius: 0.5rem;
+                background: var(--white-color, snow);
+                transition: border-color .2s, box-shadow .2s;
+
+                &:focus {
+                    border-color: var(--contrast-color, #4f46e5);
+                    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+                }
+            }
+
+            textarea {
+                min-height: 160px;
+                resize: vertical;
+            }
+
+            button {
+                align-self: flex-start;
+                background-color: var(--contrast-color, #4f46e5);
+                color: var(--white-color, snow);
+                padding: 0.75rem 1.5rem;
+                font-size: 1rem;
+                border: none;
+                border-radius: 0.5rem;
+                cursor: pointer;
+                transition: background-color .2s ease, transform .2s ease;
+
+                    &:hover {
+                        background-color: #4338ca;
+                    }
+
+                    &:active {
+                        transform: scale(0.97);
+                    }
+            }
+        }
+    }
+
 </style>
