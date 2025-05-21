@@ -48,7 +48,11 @@ const contacts = [
 ---
 
 
-<main>
+<main
+    itemtype="https://schema.org/ContactPage"
+    itemscope
+    itemid={Pages.contact}
+>
     <Apresentation src={Imgs.cdn.banner2} alt={`${author.name} (Banner) 2`} html={`Get in touch!`} />
     <section
         class="social"

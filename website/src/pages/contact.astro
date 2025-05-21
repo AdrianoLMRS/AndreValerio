@@ -18,16 +18,85 @@ const Shared = {
     title: `Contact – ${author.name}`,
     description: `Get in touch with ${author.name} for collaborations, inquiries, or just to say hello.`,
     url: `${import.meta.env.SITE}${Pages.contact}`,
-    image: Imgs.local.banner2.url
+    image: Imgs.local.banner2.url,
 };
 
 const seo: seoProps = {
     title: Shared.title,
     description: Shared.description,
     canonical: Shared.url,
+    twitter: {
+        card: 'summary_large_image',
+        site: Pages.social.arroba.twitter,
+        creator: Pages.social.arroba.twitter,
+        title: Shared.title,
+        description: Shared.description,
+        image: Shared.image,
+        imageAlt: `${author.name} portrait`,
+    },
+    openGraph: {
+        basic: {
+            title: Shared.title,
+            url: Shared.url,
+            image: `${Shared.image}`,
+            type: "website"
+        },
+        image: {
+            url: Shared.image,
+            secureUrl: Shared.image,
+            alt: Shared.title,
+            type: `image/${Imgs.local.banner2.format}`,
+            width: Number(Imgs.local.banner2.width),
+            height: Number(Imgs.local.banner2.height),
+        },
+        optional: {
+            siteName: Shared.title,
+            description: Shared.description,
+            locale: "en_CA",
+        }
+  }
 };
 
-const schema = {};
+const schema = {
+    item: {
+        '@context': 'https://schema.org',
+        '@type': ['WebPage', 'ContactPage'],
+        name: Shared.title,
+        description: Shared.description,
+        url: Shared.url,
+        author: {
+            '@type': 'Person',
+            name: author.name,
+            alternateName: author.altName,
+            image: Imgs.cdn.pic,
+            sameAs: Object.entries(Pages.social)
+                .filter(([k]) => k !== 'arroba')
+                .map(([, v]) => v),
+            jobTitle: author.job,
+            description: Shared.description,
+            address: {
+                '@type': 'PostalAddress',
+                addressLocality: 'Toronto',
+                addressCountry: 'CA'
+            },
+            birthDate: author.birthDate,
+            birthPlace: {
+                '@type': 'Place',
+                name: author.birthPlace
+            }
+        },
+        contactPoint: {
+            '@type': 'ContactPoint',
+            contactType: 'customer support',
+            email: author.email,
+            telephone: author.tel,
+            url: Shared.url,
+            areaServed: 'CA',
+            availableLanguage: ['English']
+        }
+    }
+};
+
 ---
 
 <Layout seo={seo} schema={schema} >
