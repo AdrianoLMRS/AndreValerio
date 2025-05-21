@@ -13,7 +13,6 @@ import MainContent from '@components/_pages/about.astro';
 
 // * Types
 import type { Props as seoProps } from "astro-seo";
-import type { Props as schemaProps } from "astro-seo-schema";
 
 const Shared = {
     title: `About – ${author.name}`,
@@ -58,7 +57,7 @@ const seo: seoProps = {
     }
 };
 
-const schema: schemaProps = {
+const schema = {
   item: {
     '@context': 'https://schema.org',
     '@type': ['WebPage', 'AboutPage'],

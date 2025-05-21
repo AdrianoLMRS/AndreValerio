@@ -13,7 +13,6 @@ import MainContent from '@components/_pages/contact.astro';
 
 // * Types
 import type { Props as seoProps } from "astro-seo";
-import type { Props as schemaProps } from "astro-seo-schema";
 
 const Shared = {
     title: `Contact – ${author.name}`,
@@ -28,7 +27,7 @@ const seo: seoProps = {
     canonical: Shared.url,
 };
 
-const schema: schemaProps = {};
+const schema = {};
 ---
 
 <Layout seo={seo} schema={schema} >

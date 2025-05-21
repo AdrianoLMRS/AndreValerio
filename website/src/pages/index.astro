@@ -16,7 +16,6 @@ import Pages from '@data/pages';
 import Imgs from '@data/imgs';
 import { author } from '@data/author';
 import type { Props as seoProps } from "astro-seo";
-import type { Props as schemaProps } from "astro-seo-schema"
 
 const Banner = Imgs.local.banner;
 
@@ -74,7 +73,7 @@ const seo: seoProps = {
     }
 };
 
-const schema: schemaProps = {
+const schema = {
     item: {
         '@context': 'https://schema.org',
         '@type': 'Person',
