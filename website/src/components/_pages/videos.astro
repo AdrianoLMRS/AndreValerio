@@ -1,0 +1,21 @@
+---
+import Apresentation from "@components/astro/Apresentation.astro"
+
+import Imgs from '@data/imgs';
+import { author } from '@data/author';
+// import Pages from "@data/pages";
+---
+
+<main
+
+>
+    <Apresentation src={Imgs.cdn.banner3} alt={`${author.name} (Banner) 3`} html={`Videos & Movies`} />
+    <section
+        class="social"
+        id="social"
+    >
+        <h2>Videos & Movies</h2>
+        <p>Explore a collection of videos and movies featuring {author.name}.</p>
+    </section>
+    
+</main>

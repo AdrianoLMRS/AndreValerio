@@ -31,6 +31,7 @@ const Imgs = {
         pic: 'https://iili.io/3cJZ2dF.jpg',
         banner: 'https://iili.io/3Wgfqzu.webp',
         banner2: 'https://iili.io/3vQM8es.webp',
+        banner3: 'https://iili.io/3LuKib9.webp',
         menu: `https://img.icons8.com/ios-filled/${size}/menu--v6.png`,
         logo: `https://placehold.jp/FFFAFA/333333/${logoSize}.png?text=Logo&css=%7B%22border-radius%22%3A%2215px%22%7D`,
         phone: `https://img.icons8.com/ios-filled/${socialSize}/phone.png`,
