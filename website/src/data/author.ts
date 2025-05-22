@@ -8,6 +8,7 @@ export const author = {
     birthPlace: 'São Paulo, SP, Brazil',
     about: 'Andre Valerio is a Brazilian multi-instrumentalist, guitarist, composer, and arranger. He has performed at renowned festivals and venues worldwide, blending jazz, Brazilian, and classical music. His debut album, Chrysalis (2017), showcases his talent and collaborations with esteemed musicians. With versatility and passion, Andre continues to captivate audiences globally.',
     spotifyId: '7bInuih8A0WSEqVwkbqXHN',
+    youtubeId: 'UCwk5prbrBn1NyQFSAbzCrag',
     site: 'https://andrevalerio.com/',
     musicGenre: ['Brazilian Jazz', 'Samba', 'Choro'],
     dev: {
