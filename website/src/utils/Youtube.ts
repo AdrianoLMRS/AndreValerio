@@ -1,3 +1,5 @@
+import { error } from "console";
+
 export type Video = {
     id: string
     title: string
@@ -14,7 +16,7 @@ export async function getLatestVideos(channelId: string, apiKey: string, max: nu
           type: 'video'
       });
     const res = await fetch(url);
-    if (!res.ok) throw new Error('YouTube API error');
+    if (!res.ok) throw new Error('YouTube API error' + error + '\nstatus: ' + res.status);
     const json = await res.json();
     // console.debug(json.items[0].snippet);
     return json.items.map((item: any) => ({

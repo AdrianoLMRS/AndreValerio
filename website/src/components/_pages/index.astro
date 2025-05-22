@@ -160,7 +160,7 @@ const { intro } = Imgs.videos;
 <style lang="scss" > @forward "@styles/_pages/index"; </style>
 
 <style lang="scss" is:global >
-    @use '@styles/variables' as v;
+    @forward "@styles/_components/box-sh";
 
     h2 {
         font-size: 2.5rem;
@@ -168,11 +168,5 @@ const { intro } = Imgs.videos;
 
     h3 {
         font-size: 2rem;
-    }
-    .box-sh {
-        &:hover {
-            box-shadow: v.$github-box-shadow;
-        }
-        transition: box-shadow 200ms;
     }
 </style>

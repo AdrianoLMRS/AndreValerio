@@ -1,0 +1,8 @@
+@use '@styles/variables' as v;
+
+.box-sh {
+    &:hover {
+        box-shadow: v.$github-box-shadow;
+    }
+    transition: box-shadow 200ms;
+}

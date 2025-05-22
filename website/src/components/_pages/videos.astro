@@ -21,6 +21,7 @@ try {
 
 const featuredVideos: string[] = ['HA36IiZ0A7k', 'XgBuDIc6KvM', 'e34NKDUIYQo', 'qX0aS4Le3xA', 'fdCXV5-Slcc', 'KOwlDGSmTQA' ];
 
+const style = { height1: '315', height2: '100%', width: '100%' };
 ---
 
 <main
@@ -40,40 +41,83 @@ const featuredVideos: string[] = ['HA36IiZ0A7k', 'XgBuDIc6KvM', 'e34NKDUIYQo', '
             {featuredVideos.length > 0 ? (
                 <div class="videos-wrapper">
                     {featuredVideos.map(video => (
-                        <iframe width="560" height="315"
-                            src={`https://www.youtube.com/embed/${video}`}
-                            title={`${video}`}
-                            frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen />
+                        <div class="iframe-wrapper">
+                            <iframe class="box-sh"
+                                src={`https://www.youtube.com/embed/${video}`}
+                                title={`${video}`}
+                                frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen
+                            />
+                        </div>
                     ))}
                 </div>
             ) : (
-                <p>No videos found.</p>
+                <p class="error-p" >No videos found...</p>
             )}
 
         </section>
 
         <section class="latest" id="latest" >
+            {/* TODO: Store fetch in a .json file and update only 1 time/day */}
             <h3>Latest videos</h3>
 
             {videos.length > 0 ? (
                 <div class="videos-wrapper">
                     {videos.map(video => (
-                        <YoutubeEmbed
-                            client:visible={{ rootMargin: '300px' }}
-                            html={`<iframe width="560" height="315" src="https://www.youtube.com/embed/${video.id}" title="${video.title}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`}
-                        >
-                            <div slot="loading" class="loading-skeleton" />
-                        </YoutubeEmbed>
+                        <div class="iframe-wrapper box-sh">
+                            <YoutubeEmbed client:visible={{ rootMargin: '300px' }} 
+                                wrapperClass="youtube-embed"
+                                html={`<iframe width="${style.width}" height="${style.height1}" src="https://www.youtube.com/embed/${video.id}" title="${video.title}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`}
+                            >
+                                <div slot="loading" class="loading-skeleton" />
+                            </YoutubeEmbed>
+                        </div>
                     ))}
                 </div>
             ) : (
-                <p>No videos found.</p>
+                <p class="error-p" >Sorry, no videos found...</p>
             )}
         </section>
     </section>
     
 </main>
 
-<style lang="scss" >
+<style lang="scss" define:vars={{ height: `${style.height1}px`, }} >
+    @forward "@styles/_components/Loading";
+    @forward "@styles/_components/box-sh";
 
+    main > section:not(.apresentation), main .videos > section { padding: 20px 0; }
+
+    .error-p { color: var(--color-error, yellow) !important; opacity: .8; }
+
+    .videos-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+        --_height: var(--height);
+    }
+
+    .videos {
+        text-align: center;
+
+        h2 { font-size: 2.5rem; }
+        > p { font-size: 1.2rem; }
+        h3 { font-size: 1.8rem; }
+
+        .featured {
+            .videos-wrapper {
+                padding: 25px 15px;
+                .iframe-wrapper {
+                    width: 100%;
+                    max-width: 600px;
+
+                    iframe {
+                        width: 100%;
+                        min-width: 250px;
+                        height: var(--_height);
+                    }
+                }
+            }
+        }
+    }
 </style>
