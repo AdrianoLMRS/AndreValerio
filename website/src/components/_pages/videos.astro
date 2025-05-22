@@ -8,7 +8,7 @@ import { author } from '@data/author';
 import YoutubeEmbed from "@components/ts/spotifyEmbed.tsx"
 import { getLatestVideos } from "@utils/Youtube";
 
-const API_KEY = import.meta.env.YOUTUBE_API_KEY;
+const API_KEY: string = `${import.meta.env.YOUTUBE_API_KEY}`;
 const CHANNEL_ID = `${author.youtubeId}`;
 
 let videos: { id: string; title: string }[] = [];
@@ -18,6 +18,8 @@ try {
     videos = [];
     console.error("Failed to fetch youtube videos..." + "\nError:  " + error);
 }
+
+const featuredVideos: string[] = ['HA36IiZ0A7k', 'XgBuDIc6KvM', 'e34NKDUIYQo', 'qX0aS4Le3xA', 'fdCXV5-Slcc', 'KOwlDGSmTQA' ];
 
 ---
 
@@ -32,11 +34,29 @@ try {
         <h2>Videos & Movies</h2>
         <p>Explore a collection of videos and movies featuring {author.name}.</p>
 
+        <section class="featured" id="featured" >
+            <h3>Featured videos</h3>
+
+            {featuredVideos.length > 0 ? (
+                <div class="videos-wrapper">
+                    {featuredVideos.map(video => (
+                        <iframe width="560" height="315"
+                            src={`https://www.youtube.com/embed/${video}`}
+                            title={`${video}`}
+                            frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen />
+                    ))}
+                </div>
+            ) : (
+                <p>No videos found.</p>
+            )}
+
+        </section>
+
         <section class="latest" id="latest" >
             <h3>Latest videos</h3>
 
             {videos.length > 0 ? (
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="videos-wrapper">
                     {videos.map(video => (
                         <YoutubeEmbed
                             client:visible={{ rootMargin: '300px' }}
