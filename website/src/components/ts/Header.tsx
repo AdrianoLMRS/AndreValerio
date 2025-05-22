@@ -108,7 +108,6 @@ export default function Header({ anime = false, logo, social, scrollPosition = 9
                                 href={Pages.videos}
                                 title="Videos Page - André Valério"
                                 ariaLabel="Videos"
-                                target="_blank"
                                 toggleMenu={handleLink} // For Open/Closing Navbar
                             >
                                 Videos
