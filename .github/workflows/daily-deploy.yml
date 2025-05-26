@@ -2,8 +2,8 @@ name: Daily Deploy to Render
 
 on:
   schedule:
-    - cron: '0 0 * * *' # All days at midnight UTC
-  workflow_dispatch: # For manual triggering
+    - cron: '0 0 * * *' # Runs every day at midnight UTC
+  workflow_dispatch: # Allows manual triggering of the workflow
 
 jobs:
   deploy:
@@ -11,5 +11,23 @@ jobs:
 
     steps:
       - name: Trigger Render Deploy
+        id: render_deploy
         run: |
-          curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK }}
+          response=$(curl -s -o /dev/null -w "%{http_code}" -X POST ${{ secrets.RENDER_DEPLOY_HOOK }})
+          echo "status=$response" >> $GITHUB_OUTPUT
+
+      - name: Send Discord Notification
+        if: always()
+        run: |
+          if [ "${{ steps.render_deploy.outputs.status }}" == "200" ]; then
+            message="✅ Deploy triggered with success in Render.com (Daily Deploy)."
+          else
+            message="❌ Daily deploy on Render.com Failed... Status: ${{ steps.render_deploy.outputs.status }}."
+          fi
+          
+          json="{\"content\": \"$message\"}"
+          
+          curl -H "Content-Type: application/json" \
+               -X POST \
+               -d "$json" \
+               ${{ secrets.DISCORD_WEBHOOK }}
