@@ -6,18 +6,9 @@ import { author } from '@data/author';
 
 // Youtube
 import YoutubeEmbed from "@components/ts/spotifyEmbed.tsx"
-import { getLatestVideos } from "@utils/Youtube";
+import v from '@data/videos.json';
 
-const API_KEY: string = `${import.meta.env.YOUTUBE_API_KEY}`;
-const CHANNEL_ID = `${author.youtubeId}`;
-
-let videos: { id: string; title: string }[] = [];
-try {
-    videos = await getLatestVideos(CHANNEL_ID, API_KEY, 5);
-} catch (error) {
-    videos = [];
-    console.error("Failed to fetch youtube videos..." + "\nError:  " + error);
-}
+const videos: {id: string, title: string}[] = v;
 
 const featuredVideos: string[] = ['HA36IiZ0A7k', 'XgBuDIc6KvM', 'e34NKDUIYQo', 'qX0aS4Le3xA', 'fdCXV5-Slcc', 'KOwlDGSmTQA' ];
 
