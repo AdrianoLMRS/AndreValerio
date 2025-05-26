@@ -1,13 +1,16 @@
 import fs from 'fs/promises';
+import { existsSync } from 'fs';
 
-// * Read the .env file and set environment variables
-const envRaw = await fs.readFile('./.env', 'utf-8');
-envRaw.split('\n').forEach(line => {
-    const [key, value] = line.split('=');
-    if (key && value) {
-        process.env[key.trim()] = value.trim();
-    }
-});
+// * Read environment variables from .env file if it exists
+if (existsSync('./.env')) {
+    const envRaw = await fs.readFile('./.env', 'utf-8');
+    envRaw.split('\n').forEach(line => {
+        const [key, value] = line.split('=');
+        if (key && value) {
+            process.env[key.trim()] = value.trim();
+        }
+    });
+}
 
 const API_KEY = process.env.YOUTUBE_API_KEY;
 const CHANNEL_ID = 'UCwk5prbrBn1NyQFSAbzCrag';
