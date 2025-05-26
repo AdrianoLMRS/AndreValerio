@@ -14,11 +14,15 @@ import MainContent from '@components/_pages/videos.astro';
 // * Types
 import type { Props as seoProps } from "astro-seo";
 
+// * YT videos data
+import latestVideos from '@data/videos.json';
+import featuredVideos from '@data/featuredVideos.json';
+
 const Shared = {
     title: `Videos & Movies – ${author.name}`,
     description: `Explore a collection of videos and movies featuring ${author.name}.`,
     url: `${import.meta.env.SITE}${Pages.videos}`,
-    image: Imgs.local.banner2.url,
+    image: Imgs.local.banner3.url,
 };
 
 const seo: seoProps = {
@@ -57,7 +61,51 @@ const seo: seoProps = {
   }
 };
 
-const schema = {};
+const schema = {
+    item: {
+        '@context': 'https://schema.org',
+        '@graph': [
+            {
+                '@type': 'WebPage',
+                name: Shared.title,
+                description: Shared.description,
+                url: Shared.url
+            },
+            {
+                '@type': 'VideoGallery',
+                name: `${author.name} Video Gallery`,
+                description: Shared.description,
+                thumbnailUrl: Shared.image,
+                url: Shared.url
+            },
+            ...featuredVideos.map(video => ({
+                '@type': 'VideoObject',
+                name: video.title,
+                description: video.description,
+                thumbnailUrl: video.thumbnail,
+                uploadDate: video.publishedAt,
+                contentUrl: `https://www.youtube.com/watch?v=${video.id}`,
+                embedUrl: `https://www.youtube.com/embed/${video.id}`,
+                musicBy: video.channel || author.name,
+                director: video.channel || author.name,
+                actor: author.name,
+            })),
+            ...latestVideos.map(video => ({
+                '@type': 'VideoObject',
+                name: video.title,
+                description: video.description,
+                thumbnailUrl: video.thumbnail,
+                uploadDate: video.publishedAt,
+                contentUrl: `https://www.youtube.com/watch?v=${video.id}`,
+                embedUrl: `https://www.youtube.com/embed/${video.id}`,
+                musicBy: author.name,
+                director: author.name,
+                actor: author.name,
+            }))
+        ]
+    }
+};
+// console.debug('Videos page schema:', JSON.stringify(schema, null, 2));
 
 ---
 

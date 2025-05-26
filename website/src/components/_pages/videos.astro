@@ -6,11 +6,12 @@ import { author } from '@data/author';
 
 // Youtube
 import YoutubeEmbed from "@components/ts/spotifyEmbed.tsx"
-import v from '@data/videos.json';
 
-const videos: {id: string, title: string}[] = v;
+import rawVideos from '@data/videos.json';
+import rawFeaturedVideos from '@data/featuredVideos.json';
 
-const featuredVideos: string[] = ['HA36IiZ0A7k', 'XgBuDIc6KvM', 'e34NKDUIYQo', 'qX0aS4Le3xA', 'fdCXV5-Slcc', 'KOwlDGSmTQA' ];
+const videos: { id: string; title: string }[] = rawVideos.map(({ id, title }) => ({ id, title }));
+const featuredVideos: { id: string; title: string }[] = rawFeaturedVideos.map(({ id, title }) => ({ id, title }));
 
 const style = { height1: '315', height2: '100%', width: '100%' };
 ---
@@ -34,8 +35,8 @@ const style = { height1: '315', height2: '100%', width: '100%' };
                     {featuredVideos.map(video => (
                         <div class="iframe-wrapper">
                             <iframe class="box-sh"
-                                src={`https://www.youtube.com/embed/${video}`}
-                                title={`${video}`}
+                                src={`https://www.youtube.com/embed/${video.id}`}
+                                title={`${video.title}`}
                                 frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen
                             />
                         </div>
@@ -72,7 +73,7 @@ const style = { height1: '315', height2: '100%', width: '100%' };
     
 </main>
 
-<style lang="scss" define:vars={{ height: `${style.height1}px`, }} >
+<style lang="scss" define:vars={{ height: `${style.height1}px`, }} is:global >
     @forward "@styles/_components/Loading";
     @forward "@styles/_components/box-sh";
 

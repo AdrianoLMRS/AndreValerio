@@ -24,6 +24,13 @@ const Imgs = {
             height: Banner2.height,
             width: Banner2.width,
         },
+        banner3: {
+            url: new URL('/banner3.webp', import.meta.env.SITE),
+            PB: '/banner3.webp',
+            format: Banner2.format,
+            height: Banner2.height,
+            width: Banner2.width,
+        },
     },
     cdn: {
         background: 'https://iili.io/3KXmjWP.webp',

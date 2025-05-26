@@ -23,11 +23,17 @@ const url = 'https://www.googleapis.com/youtube/v3/search?' +
 
 const res = await fetch(url);
 const json = await res.json();
-// console.log(json);
-const videos = json.items.map(i => ({
-    id: i.id.videoId,
-    title: i.snippet.title
+// console.debug(json);
+const videos = json.items.map(item => ({
+    id: item.id.videoId,
+    title: item.snippet.title,
+    description: item.snippet.description,
+    thumbnail: item.snippet.thumbnails.high.url,
+    publishedAt: item.snippet.publishedAt,
+    channelTitle: item.snippet.channelTitle,
+    channelId: item.snippet.channelId,
 }));
+// console.debug(videos);
 
 await fs.writeFile('./src/data/videos.json', JSON.stringify(videos, null, 2));
 
