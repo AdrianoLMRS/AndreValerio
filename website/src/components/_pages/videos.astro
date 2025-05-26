@@ -90,6 +90,7 @@ const style = { height1: '315', height2: '100%', width: '100%' };
     .error-p { color: var(--color-error, yellow) !important; opacity: .8; }
 
     .videos-wrapper {
+        padding: 25px 15px;
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
@@ -101,12 +102,11 @@ const style = { height1: '315', height2: '100%', width: '100%' };
         text-align: center;
 
         h2 { font-size: 2.5rem; }
-        > p { font-size: 1.2rem; }
+        & > p { font-size: 1.2rem; }
         h3 { font-size: 1.8rem; }
 
         .featured {
             .videos-wrapper {
-                padding: 25px 15px;
                 .iframe-wrapper {
                     width: 100%;
                     max-width: 600px;
