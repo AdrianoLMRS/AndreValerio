@@ -27,6 +27,7 @@ jobs:
             echo "SPOTIFY_CLIENT_ID=${{ secrets.SPOTIFY_CLIENT_ID }}"
             echo "SPOTIFY_CLIENT_SECRET=${{ secrets.SPOTIFY_CLIENT_SECRET }}"
             echo "SPOTIFY_REFRESH_TOKEN=${{ secrets.SPOTIFY_REFRESH_TOKEN }}"
+            echo "YOUTUBE_API_KEY=${{ secrets.YOUTUBE_API_KEY }}"
       - name: Install, build, and upload your site
         uses: withastro/action@v3
         with:

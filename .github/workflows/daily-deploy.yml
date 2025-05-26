@@ -1,33 +1,40 @@
-name: Daily Deploy to Render
+name: Daily Deploy to Render.com
 
 on:
   schedule:
-    - cron: '0 0 * * *' # Runs every day at midnight UTC
-  workflow_dispatch: # Allows manual triggering of the workflow
+    - cron: '0 0 * * *'  # Runs daily at 00:00 UTC
+  workflow_dispatch:     # Allows manual triggering of the workflow
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment: Main
 
     steps:
       - name: Trigger Render Deploy
         id: render_deploy
+        env:
+          RENDER_HOOK: ${{ secrets.RENDER_DEPLOY_HOOK }}
         run: |
-          response=$(curl -s -o /dev/null -w "%{http_code}" -X POST ${{ secrets.RENDER_DEPLOY_HOOK }})
+          response=$(curl -s -o /dev/null -w "%{http_code}" -X POST "$RENDER_HOOK")
           echo "status=$response" >> $GITHUB_OUTPUT
 
       - name: Send Discord Notification
         if: always()
+        env:
+          DISCORD_HOOK: ${{ secrets.DISCORD_WEBHOOK }}
         run: |
-          if [ "${{ steps.render_deploy.outputs.status }}" == "200" ]; then
-            message="✅ Deploy triggered with success in Render.com (Daily Deploy)."
+          status="${{ steps.render_deploy.outputs.status }}"
+          
+          if [ "$status" = "200" ]; then
+            message="✅ Render deploy triggered successfully (Daily Deploy)."
           else
-            message="❌ Daily deploy on Render.com Failed... Status: ${{ steps.render_deploy.outputs.status }}."
+            message="❌ Failed to trigger Render deploy. HTTP Status: $status."
           fi
-          
-          json="{\"content\": \"$message\"}"
-          
+
+          payload="{\"content\": \"$message\"}"
+
           curl -H "Content-Type: application/json" \
                -X POST \
-               -d "$json" \
-               ${{ secrets.DISCORD_WEBHOOK }}
+               -d "$payload" \
+               "$DISCORD_HOOK"
