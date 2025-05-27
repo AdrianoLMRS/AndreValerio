@@ -13,7 +13,10 @@ const spotifyURL = `https://api.spotify.com/v1/artists/${author.spotifyId}/album
 const data = await fetch(`${spotifyURL}`, {
     headers: { Authorization: `Bearer ${await getSpotifyToken()}` }
 });
+
+const disallowed : string[] = ["6gVncgomPUoXXQHvWzpRT0"]
 const { items } = await data.json();
+
 // console.debug(items);
 
 ---
@@ -29,7 +32,8 @@ const { items } = await data.json();
         <p>Explore the latest albums and singles from {author.name}. Discover new music and enjoy the latest releases.</p>
         <div class="albums-wrapper">
             {items.length > 0 ? (
-                items.map((album: { id: string; }) => (
+                items.filter((album: { id: string; }) => !disallowed.includes(album.id))
+                .map((album: { id: string; }) => (
                     <div class="wrapper">
                         <iframe
                             class="box-sh"
