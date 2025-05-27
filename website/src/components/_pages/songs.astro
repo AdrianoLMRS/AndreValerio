@@ -1,7 +1,90 @@
-<main style="height: 100vh;"
+---
+
+// * Components
+import Apresentation from '@components/astro/Apresentation.astro';
+
+// * Data
+import { author } from '@data/author';
+import Imgs from '@data/imgs';
+
+import { getSpotifyToken } from '@utils/Spotify';
+
+const spotifyURL = `https://api.spotify.com/v1/artists/${author.spotifyId}/albums?include_groups=album,single,appears_on&limit=10`
+const data = await fetch(`${spotifyURL}`, {
+    headers: { Authorization: `Bearer ${await getSpotifyToken()}` }
+});
+const { items } = await data.json();
+// console.debug(items);
+
+---
+
+<main
     itemprop="mainEntity" itemscope
 >
-    <section>
-        <h1>Songs</h1>
+    <Apresentation src={Imgs.cdn.banner3} alt={`${author.name} (Banner) 3`} html={`Songs & Albums`} />
+    <section
+        class="latest" id="latest"
+    >
+        <h2>Latest Albums</h2>
+        <p>Explore the latest albums and singles from {author.name}. Discover new music and enjoy the latest releases.</p>
+        <div class="albums-wrapper">
+            {items.length > 0 ? (
+                items.map((album: { id: string; }) => (
+                    <div class="wrapper">
+                        <iframe
+                            class="box-sh"
+                            src={`https://open.spotify.com/embed/album/${album.id}`}
+                            width="100%"
+                            height="380"
+                            frameborder="0"
+                            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                            allowfullscreen
+                            loading="lazy"
+                        />
+                        <div class="loading-skeleton" />
+                    </div>
+                ))
+            ) : (
+                <p style="color: yellow !important;">No albums found...</p>
+            )}
+        </div>
     </section>
 </main>
+
+<style lang="scss" is:global >
+    @use '@styles/variables' as v;
+
+    @forward '@styles/_components/box-sh';
+    @forward '@styles/_components/Loading';
+
+    main > section:not(.apresentation) { padding: 20px 0; }
+
+    .latest {
+        text-align: center;
+        font-size: larger;
+        & > * { padding: 10px 0; }
+    }
+
+    .albums-wrapper {
+        max-width: 90%;
+        margin-inline: auto;
+        
+        .wrapper {
+            $gap: 5px;
+            position: relative;
+            padding: $gap 0;
+            --_height: 380px;
+
+            .loading-skeleton {
+                position: absolute;
+                inset: $gap 0;
+                max-width: 99%;
+                margin-inline: auto;
+                z-index: -1;
+            }
+
+            .loading-skeleton, iframe { border-radius: v.$normal-border-radius; }
+        }
+    }
+
+</style>
