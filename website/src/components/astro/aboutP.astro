@@ -1,9 +1,21 @@
-<p
+---
+import { author } from "@data/author"
+---
+
+<article
     class="about-paragraph"
     id="about-p"
     itemscope
     itemtype="http://schema.org/about"
 >
+    {/* META tags for SEO */}
+    <meta itemprop="name" content={author.name}>
+    <meta itemprop="author" content={author.name}>
+    <meta itemprop="nationality" content="Brazilian">
+    <meta itemprop="jobTitle" content={author.job}>
+    <meta itemprop="image" content={`${import.meta.env.SITE}/favicon.svg`}>
+    <meta itemprop="url" content={`${import.meta.env.SITE}/about`}>
+
     <strong itemprop="name">André Valério</strong> is a
     <strong itemprop="nationality" lang="en">Brazilian-born</strong>
     <strong itemprop="jobTitle">guitarist</strong>, 
@@ -16,6 +28,7 @@
     An in-demand performer on Canada’s 
     <strong itemprop="genre">world</strong> and 
     <strong itemprop="genre">jazz</strong> scenes, André is the 
+    <slot name="div-1" />
     <strong itemprop="jobTitle">guitarist</strong> for 
     <strong itemprop="band">Tio Chorinho</strong>, Canada’s first ensemble dedicated to the traditional Brazilian style of 
     <strong itemprop="genre">choro</strong>. With the group, he won 
@@ -37,6 +50,7 @@
     <strong itemprop="musicalArtist">Carlos Cardozo</strong>, contributing original 
     <strong itemprop="workPerformed">songs</strong> and 
     <strong itemprop="workPerformed">arrangements</strong> that reflect his melodic sensibility and love for storytelling through music.
+    <slot name="div-2" />
     As an <strong itemprop="jobTitle">educator</strong>, André is a dedicated teacher who inspires students of all levels. With years of experience teaching 
     <strong itemprop="teaches">guitar</strong>, 
     <strong itemprop="teaches">harmony</strong>, and 
@@ -44,7 +58,7 @@
     <strong itemprop="skills">knowledge</strong> but also from his genuine joy in sharing music.
     Whether performing on stage, composing in the studio, or guiding a student through a new piece, 
     <strong itemprop="name">André Valério</strong> brings heart, clarity, and artistry to everything he does.
-</p>
+</article>
 
 
 
