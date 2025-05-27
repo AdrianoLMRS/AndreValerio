@@ -91,7 +91,6 @@ export default function Header({ anime = false, logo, social, scrollPosition = 9
                                 href={Pages.songs}
                                 title="Songs/Albums Page - André Valério"
                                 ariaLabel="Songs/Albums"
-                                target="_blank"
                                 toggleMenu={handleLink} // For Open/Closing Navbar
                             >
                                 Songs/Albums

@@ -1,0 +1,70 @@
+---
+import { author } from '@data/author';
+import Pages from '@data/pages';
+import Imgs from '@data/imgs';
+
+// * Components
+import Header from '@components/ts/Header';
+import Social from '@components/astro/Social.astro';
+import Layout from '@layouts/Layout.astro';
+import Footer from '@components/astro/Footer.astro';
+import Logo from '@components/astro/Logo.astro';
+import MainContent from '@components/_pages/songs.astro';
+
+// * Types
+import type { Props as seoProps } from "astro-seo";
+
+const Shared = {
+    title: `Songs & Albums – ${author.name}`,
+    description: `Explore the music of ${author.name}, including his latest songs and albums.`,
+    url: `${import.meta.env.SITE}${Pages.songs}`,
+    image: Imgs.local.banner.url
+};
+
+const seo: seoProps = {
+    title: Shared.title,
+    description: Shared.description,
+    canonical: Shared.url,
+    twitter: {
+        card: 'summary_large_image',
+        site: Pages.social.arroba.twitter,
+        creator: Pages.social.arroba.twitter,
+        title: Shared.title,
+        description: Shared.description,
+        image: Shared.image,
+        imageAlt: `${author.name} portrait`
+    },
+    openGraph: {
+        basic: {
+            title: Shared.title,
+            url: Shared.url,
+            image: `${Shared.image}`,
+            type: 'profile'
+        },
+        image: {
+            url: Shared.image,
+            secureUrl: Shared.image,
+            alt: `${author.name} portrait`,
+            type: `image/${Imgs.local.banner2.format}`,
+            width: Number(Imgs.local.banner2.width),
+            height: Number(Imgs.local.banner2.height)
+        },
+        optional: {
+            siteName: `${author.name}`,
+            description: Shared.description,
+            locale: 'en_CA'
+        }
+    }
+};
+
+const schema = {};
+---
+
+<Layout seo={seo} schema={schema} >
+    <Header anime={true} scrollPosition={450} client:load >
+        <Logo slot='logo' />
+        <Social slot='social' />
+    </Header>
+    <MainContent />
+    <Footer />
+</Layout>
