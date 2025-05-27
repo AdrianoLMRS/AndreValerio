@@ -37,6 +37,7 @@ const style = { height1: '315', height2: '100%', width: '100%' };
                             <iframe class="box-sh"
                                 src={`https://www.youtube.com/embed/${video.id}`}
                                 title={`${video.title}`}
+                                loading="lazy"
                                 frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen
                             />
                         </div>
@@ -58,7 +59,7 @@ const style = { height1: '315', height2: '100%', width: '100%' };
                         <div class="iframe-wrapper box-sh">
                             <YoutubeEmbed client:visible={{ rootMargin: '300px' }} 
                                 wrapperClass="youtube-embed"
-                                html={`<iframe width="${style.width}" height="${style.height1}" src="https://www.youtube.com/embed/${video.id}" title="${video.title}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`}
+                                html={`<iframe width="${style.width}" height="${style.height1}" src="https://www.youtube.com/embed/${video.id}" title="${video.title}" loading="lazy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`}
                             >
                                 <div slot="loading" class="loading-skeleton" />
                             </YoutubeEmbed>
