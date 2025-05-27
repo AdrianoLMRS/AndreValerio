@@ -4,11 +4,7 @@ import Pages from '@data/pages';
 import Imgs from '@data/imgs';
 
 // * Components
-import Header from '@components/ts/Header';
-import Social from '@components/astro/Social.astro';
-import Layout from '@layouts/Layout.astro';
-import Footer from '@components/astro/Footer.astro';
-import Logo from '@components/astro/Logo.astro';
+import Layout from '@layouts/Normal.astro';
 import MainContent from '@components/_pages/about.astro';
 
 // * Types
@@ -90,10 +86,5 @@ const schema = {
 ---
 
 <Layout seo={seo} schema={schema} >
-    <Header anime={true} scrollPosition={450} client:load >
-        <Logo slot='logo' />
-        <Social slot='social' />
-    </Header>
     <MainContent />
-    <Footer />
 </Layout>

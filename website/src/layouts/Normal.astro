@@ -1,0 +1,28 @@
+---
+
+import { type Props as seoProps } from "astro-seo";
+import { type SchemaProps as schemaProps } from "astro-seo-schema";
+const { seo, schema, headerAnime, scrollPosition } = Astro.props as {
+    seo?: seoProps;
+    schema?: schemaProps<any>;
+    headerAnime?: boolean; // Default: true
+    scrollPosition?: number | null; // Default: 450
+};
+
+// * Components
+import Header from '@components/ts/Header';
+import Social from '@components/astro/Social.astro';
+import Layout from '@layouts/Layout.astro';
+import Footer from '@components/astro/Footer.astro';
+import Logo from '@components/astro/Logo.astro';
+
+---
+
+<Layout seo={seo} schema={schema} >
+    <Header anime={headerAnime || true} scrollPosition={scrollPosition || 450} client:load >
+        <Logo slot='logo' />
+        <Social slot='social' />
+    </Header>
+    <slot />
+    <Footer />
+</Layout>

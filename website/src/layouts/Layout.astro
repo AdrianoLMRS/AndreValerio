@@ -1,11 +1,11 @@
 ---
 import { SEO, type Props as seoProps } from "astro-seo";
-import { Schema, type Props as schemaProps } from "astro-seo-schema"
+import { Schema, type SchemaProps as schemaProps } from "astro-seo-schema"
 import '@styles/global.scss';
 
 const { seo, schema } = Astro.props as {
   seo?: seoProps;
-  schema?: schemaProps;
+  schema?: schemaProps<any>;
 };
 ---
 
