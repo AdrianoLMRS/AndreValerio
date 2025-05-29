@@ -14,7 +14,7 @@ import { Picture } from 'astro:assets';
 >
     <div class="wrapper">
         <div class="overlay" aria-hidden="true" />
-        <h1 set:html={html} />
+        <h2 set:html={html} />
         <Picture
             src={src}
             alt={alt}
@@ -58,7 +58,7 @@ import { Picture } from 'astro:assets';
             }
         }
 
-        h1 {
+        h2 {
             z-index: 1;
         }
     }
