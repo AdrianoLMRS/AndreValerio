@@ -2,6 +2,8 @@
 import { author } from '@data/author';
 import Pages from '@data/pages';
 import Imgs from '@data/imgs';
+import { fetchAlbums } from '@utils/Spotify';
+import { formatAlbums } from '@utils/Album';
 
 // * Components
 import Layout from '@layouts/Normal.astro';
@@ -16,6 +18,12 @@ const Shared = {
     url: `${import.meta.env.SITE}${Pages.songs}`,
     image: Imgs.local.banner4.url,
 };
+
+const spotifyURL = `https://api.spotify.com/v1/artists/${author.spotifyId}/albums?include_groups=single,album,appears_on&limit=10`;
+const albums = await fetchAlbums(spotifyURL); // Should return { items: [...] }
+
+const disallowed: string[] = ["6gVncgomPUoXXQHvWzpRT0"];
+const albumsSchema = formatAlbums(albums, disallowed);
 
 const seo: seoProps = {
     title: Shared.title,
@@ -41,9 +49,9 @@ const seo: seoProps = {
             url: Shared.image,
             secureUrl: Shared.image,
             alt: `${author.name} portrait`,
-            type: `image/${Imgs.local.banner2.format}`,
-            width: Number(Imgs.local.banner2.width),
-            height: Number(Imgs.local.banner2.height)
+            type: `image/${Imgs.local.banner4.format}`,
+            width: Number(Imgs.local.banner4.width),
+            height: Number(Imgs.local.banner4.height)
         },
         optional: {
             siteName: `${author.name}`,
@@ -53,7 +61,21 @@ const seo: seoProps = {
     }
 };
 
-const schema = {};
+const schema = {
+    item: {
+        '@context': 'https://schema.org',
+        '@graph': [
+            { '@type': 'WebPage', name: Shared.title, description: Shared.description, url: Shared.url },
+            {
+                '@type': 'MusicPlaylist',
+                name: `${author.name} Latest Releases & Songs`,
+                description: Shared.description,
+                url: Shared.url,
+            },
+            {albums: albumsSchema,}
+        ]
+    }
+};
 ---
 
 <Layout seo={seo} schema={schema} >
