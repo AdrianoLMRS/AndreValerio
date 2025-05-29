@@ -52,6 +52,9 @@ export default defineConfig({
     // base: 'website',
 
     integrations: [react(), sitemap()],
+    prefetch: {
+        prefetchAll: true,
+    },
 });
 
 // css: {
