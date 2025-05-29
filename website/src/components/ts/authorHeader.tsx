@@ -1,5 +1,7 @@
 import React from 'react';
 import { author } from '@data/author';
+import Pages from '@data/pages';
+import { navigate } from 'astro:transitions/client'; // For Astro view transition
 
 const name: string = author.name;
 const job: string = author.job;
@@ -7,7 +9,7 @@ const job: string = author.job;
 interface Props extends React.HTMLAttributes<HTMLHeadingElement> {
     style?: React.CSSProperties;
     headingLevel?: 1 | 2 | 3 | 4 | 5 | 6; // Choose <h> default = <h1>
-    hideJob?: boolean; // Default: false
+    hideJob?: boolean; // Default: true
 }
 
 const AuthorHeader: React.FC<Props> = ({ style, headingLevel = 1, hideJob = true, ...rest }) => {
@@ -23,7 +25,7 @@ const AuthorHeader: React.FC<Props> = ({ style, headingLevel = 1, hideJob = true
             itemScope
             itemType="https://schema.org/Person"
             title="Page Header"
-            onClick={() => { window.location.href = '/#'; }}
+            onClick={() => { navigate(Pages.home); }}
             {...rest}
         >
             <strong
