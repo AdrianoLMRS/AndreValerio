@@ -1,0 +1,72 @@
+---
+
+import Layout from '@layouts/Normal.astro';
+import Pages from '@data/pages';
+const entries = Object.entries(Pages).filter(([key]) => key !== 'social');
+
+const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
+
+---
+
+<Layout seo={null} schema={null} >
+    <main>
+        <h1>404 - <strong>Page Not Found</strong></h1>
+        <p>Sorry, the page you are looking for does not exist.</p>
+        <p>You can go back to the <a href={Pages.home}>Homepage</a>.</p>
+        <section>
+            <h2>Other pages</h2>
+            <ul>
+            {entries.map(([key, url]) => (
+                <li><a href={url}>{capitalize(key)}</a></li>
+            ))}
+            </ul>
+        </section>
+      </main>
+</Layout>
+
+<style lang="scss" is:global >
+    main {
+        text-align: center;
+        min-height: 100dvh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            & > strong {
+                text-decoration: underline;
+            }
+        }
+    
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+    
+        a {
+            color: var(--highlight-color);
+            font-weight: bolder;
+        }
+    
+        section {
+            margin-top: 2rem;
+        
+            h2 {
+                font-size: 1.8rem;
+                margin-bottom: 1rem;
+            }
+        
+            ul {
+                list-style-type: none;
+                padding: 0;
+        
+                li {
+                    margin-bottom: 0.5rem;
+                }
+            }
+        }
+    }
+</style>
