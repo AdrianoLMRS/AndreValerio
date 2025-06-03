@@ -4,6 +4,7 @@ import LoadingIndicator from "astro-loading-indicator/component"
 import { SEO, type Props as seoProps } from "astro-seo";
 import { Schema, type SchemaProps as schemaProps } from "astro-seo-schema"
 import { GoogleFontsOptimizer } from "astro-google-fonts-optimizer";
+import { GoogleAnalytics } from 'astro-analytics';
 import '@styles/global.scss';
 
 const { seo, schema } = Astro.props as {
@@ -33,6 +34,8 @@ const { seo, schema } = Astro.props as {
     
     <ClientRouter /> {/* View transitions API */}
         <LoadingIndicator color="var(--highlight-color, #FA8334)" /> {/* Custom loading indicator component */}
+
+    <GoogleAnalytics id={`${import.meta.env.GOOGLE_ANALYTICS_ID}`} /> {/* Google Analytics tracking ID */}
 </head>
     <body transition:animate="fade" itemtype="https://schema.org/WebPage" itemscope>
         <slot />

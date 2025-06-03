@@ -23,6 +23,7 @@
     "@types/react-dom": "^19.0.4",
     "@vitejs/plugin-react": "^4.3.4",
     "astro": "^5.8.0",
+    "astro-analytics": "^2.7.0",
     "astro-google-fonts-optimizer": "^0.2.2",
     "astro-loading-indicator": "^0.7.0",
     "astro-purgecss": "^5.2.2",
