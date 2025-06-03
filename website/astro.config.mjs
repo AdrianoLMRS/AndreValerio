@@ -3,6 +3,7 @@ import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 // import vercel from '@astrojs/vercel';
 import { loadEnv } from 'vite';
+import playformInline from '@playform/inline';
 const ALIAS_URL = import.meta.url;
 
 export default defineConfig({
@@ -51,7 +52,7 @@ export default defineConfig({
     // site: BASE_URL.toString(),
     // base: 'website',
 
-    integrations: [react(), sitemap()],
+    integrations: [react(), sitemap(), playformInline()],
     prefetch: {
         prefetchAll: true,
     },
