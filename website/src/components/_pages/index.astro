@@ -8,6 +8,7 @@ import AboutParagraph from '@components/astro/aboutP.min.astro';
 import Songs from '@components/astro/Songs.astro';
 import Artist from "@components/astro/Artist.astro";
 import Testimonials from '@components/astro/Testimonials.astro';
+import { YouTube } from '@astro-community/astro-embed-youtube';
 // import "@styles/_pages/index.scss"; // * Import like this if global styles
 
 import Imgs from '@data/imgs';
@@ -118,16 +119,9 @@ const { intro } = Imgs.videos;
                     <h2>Let's play some guitar!</h2>
                     {/* Youtube André Valério video lesson intro */}
                     <div class="video-container">
-                        <iframe
-                            id="lessons-intro"
-                            class="box-sh"
-                            src={`https://www.youtube.com/embed/${intro}`}
-                            title="André Valério lessons introduction"
-                            frameborder="0"
-                            loading="lazy"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            allowfullscreen
-                        />
+                        <div class="box-sh">
+                            <YouTube id={`${intro}`} title="André Valério lessons introduction" posterQuality='max' playlabel='Play the video' />
+                        </div>
                     </div>
                 
                     <p>
