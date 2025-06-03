@@ -2,8 +2,9 @@ import { defineConfig, passthroughImageService } from 'astro/config';
 import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 // import vercel from '@astrojs/vercel';
-import { loadEnv } from 'vite';
 import playformInline from '@playform/inline';
+import purgecss from 'astro-purgecss';
+import { loadEnv } from 'vite';
 const ALIAS_URL = import.meta.url;
 
 export default defineConfig({
@@ -52,7 +53,18 @@ export default defineConfig({
     // site: BASE_URL.toString(),
     // base: 'website',
 
-    integrations: [react(), sitemap(), playformInline()],
+    integrations: [react(), sitemap(), playformInline(), purgecss({
+        fontFace: true,
+        keyframes: true,
+        rejected: true,
+        variables: true,
+        safelist: {
+            greedy: [
+                /*astro*/
+            ]
+        }
+        // safelist: ['playform-inline', 'playform-inline-iframe', 'playform-inline-iframe-container', 'playform-inline-iframe-container--loading', 'playform-inline-iframe-container--loaded', 'playform-inline-iframe-container--error'],
+    }),],
     prefetch: {
         prefetchAll: true,
     },
