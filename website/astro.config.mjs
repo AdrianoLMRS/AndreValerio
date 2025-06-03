@@ -4,6 +4,7 @@ import sitemap from '@astrojs/sitemap';
 // import vercel from '@astrojs/vercel';
 import playformInline from '@playform/inline';
 import purgecss from 'astro-purgecss';
+import playformCompress from '@playform/compress';
 import { loadEnv } from 'vite';
 const ALIAS_URL = import.meta.url;
 
@@ -64,7 +65,7 @@ export default defineConfig({
             ]
         }
         // safelist: ['playform-inline', 'playform-inline-iframe', 'playform-inline-iframe-container', 'playform-inline-iframe-container--loading', 'playform-inline-iframe-container--loaded', 'playform-inline-iframe-container--error'],
-    }),],
+    }), playformCompress()],
     prefetch: {
         prefetchAll: true,
     },
