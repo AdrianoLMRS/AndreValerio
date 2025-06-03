@@ -2,6 +2,7 @@
 import { ClientRouter } from "astro:transitions";
 import { SEO, type Props as seoProps } from "astro-seo";
 import { Schema, type SchemaProps as schemaProps } from "astro-seo-schema"
+import { GoogleFontsOptimizer } from "astro-google-fonts-optimizer";
 import '@styles/global.scss';
 
 const { seo, schema } = Astro.props as {
@@ -27,12 +28,7 @@ const { seo, schema } = Astro.props as {
     {seo && <SEO {...seo} titleDefault="No title" />}
     {schema && <Schema {...schema} />}
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
-        rel="stylesheet"
-    />
+    <GoogleFontsOptimizer url="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" />
     
     <ClientRouter /> {/* View transitions API */}
 </head>
