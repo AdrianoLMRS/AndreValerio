@@ -1,5 +1,6 @@
 ---
 import { ClientRouter } from "astro:transitions";
+import LoadingIndicator from "astro-loading-indicator/component"
 import { SEO, type Props as seoProps } from "astro-seo";
 import { Schema, type SchemaProps as schemaProps } from "astro-seo-schema"
 import { GoogleFontsOptimizer } from "astro-google-fonts-optimizer";
@@ -31,6 +32,7 @@ const { seo, schema } = Astro.props as {
     <GoogleFontsOptimizer url="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" />
     
     <ClientRouter /> {/* View transitions API */}
+        <LoadingIndicator color="var(--highlight-color, #FA8334)" /> {/* Custom loading indicator component */}
 </head>
     <body transition:animate="fade" itemtype="https://schema.org/WebPage" itemscope>
         <slot />

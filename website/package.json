@@ -22,6 +22,7 @@
     "@vitejs/plugin-react": "^4.3.4",
     "astro": "^5.8.0",
     "astro-google-fonts-optimizer": "^0.2.2",
+    "astro-loading-indicator": "^0.7.0",
     "astro-seo": "^0.8.4",
     "astro-seo-schema": "^5.0.0",
     "react": "^19.0.0",
