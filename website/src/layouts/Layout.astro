@@ -5,7 +5,10 @@ import { SEO, type Props as seoProps } from "astro-seo";
 import { Schema, type SchemaProps as schemaProps } from "astro-seo-schema"
 import { GoogleFontsOptimizer } from "astro-google-fonts-optimizer";
 import { GoogleAnalytics } from 'astro-analytics';
+import { GoogleTagmanager, GoogleTagmanagerNoscript } from '@digi4care/astro-google-tagmanager'; // GTM integration
 import '@styles/global.scss';
+
+const GTM_ID = 'GTM-58BFMJQD';
 
 const { seo, schema } = Astro.props as {
   seo?: seoProps;
@@ -16,6 +19,7 @@ const { seo, schema } = Astro.props as {
 <!doctype html>
 <html lang="en" transition:name="root" transition:animate="none">
 <head>
+    <GoogleTagmanager id={`${GTM_ID}`} />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="license" content="MIT" />
@@ -38,6 +42,7 @@ const { seo, schema } = Astro.props as {
     <GoogleAnalytics id={`${import.meta.env.GOOGLE_ANALYTICS_ID}`} /> {/* Google Analytics tracking ID */}
 </head>
     <body transition:animate="fade" itemtype="https://schema.org/WebPage" itemscope>
+    <GoogleTagmanagerNoscript id={`${GTM_ID}`} />
         <slot />
     </body>
 </html>
