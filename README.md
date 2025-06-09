@@ -2,7 +2,7 @@
 
 [andrevalerio.com][1] is a [static website][gl-static-page] for the Canadian musician & composer [André Valério][2].
 
-This [website][1] was built with [Astro][astro] + [integrations][astro-integrations] such as [React][react], see the [tech stack](#tech-stack- "Development tools").
+This [website][1] was built with [Astro][astro] + [integrations][astro-integrations] such as [React][react], see the [tech stack](#tech-stack-%EF%B8%8F "Development tools").
 
 The [website][1] has an emphasis on SEO, content & performance.
 
@@ -14,16 +14,18 @@ The [website][1] has an emphasis on SEO, content & performance.
 
 **Major tools**:
 
-- [Astro][astro]
-- [React][react]
-- [Typescript](https://www.typescriptlang.org/)
-- [Sass](https://sass-lang.com/)
+- [**Astro**][astro]
+- [**React**][react]
+- [**Typescript**](https://www.typescriptlang.org/)
+- [**Sass**](https://sass-lang.com/)
 
 <small>See the full [package.json here](./website/package.json)</small>
 
 ### Deploy & [CI/CD](https://github.com/resources/articles/devops/ci-cd)
 
 The [website][1] is served by a [global CDN](https://render.com/docs/static-sites#global-cdn) in [render.com](https://render.com/ "Render plataform (Web-Host)"), I also used the [IaC model](https://aws.amazon.com/what-is/iac/ "Infraestructure as Code model (AWS)") with [Render blueprints](https://render.com/docs/infrastructure-as-code "Render.com blueprints Docs"), see the [render.yaml file](./render.yaml).
+
+You can also deploy with [Docker][docker], build with [Astro][astro] and host a [web-server](https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_web_server "Web server overview - MDN reference") with [NGINX](https://nginx.org/ "nginx website").  Check the [`Dockerfile`](./website/Dockerfile).
 
 <details>
     <summary><small>Available domains</small></summary>
@@ -35,7 +37,7 @@ The [website][1] is served by a [global CDN](https://render.com/docs/static-site
     </ul>
 </details>
 
-I also used [Github Actions][github-actions] to deploy to [Github Pages](https://pages.github.com/ "Github Pages") see _[deploy.yml file](./.github/workflows/deploy.yml)_, **and** I used [actions][github-actions] to trigger a [Render deploy hook](https://render.com/docs/deploy-hooks) every 24 hours, see _[daily-deploy.yml file](./.github/workflows/daily-deploy.yml)_, check [why I did that](#pages).
+I also used [Github Actions][github-actions] to deploy to [Github Pages][github-pages] see _[deploy.yml file](./.github/workflows/deploy.yml)_, **and** I used [actions][github-actions] to trigger a [Render deploy hook](https://render.com/docs/deploy-hooks) every 24 hours, see _[daily-deploy.yml file](./.github/workflows/daily-deploy.yml)_, check [why I did that](#pages).
 
 ### Website content
 
@@ -139,6 +141,49 @@ graph TD
 ```
 <br></details>
 
+### SEO
+
+The website was created with the main focus on [SEO][SEO] because one of the main objectives was to appear in [Google searches](https://developers.google.com/search/docs/fundamentals/how-search-works "Google Search - Google"), this also had a great influence on the choice of the [Astro framework][astro], which is excellent when it comes to the subject and has several [integrations][astro-integrations].
+
+Test in [Google Lighthouse](https://googlechrome.github.io/lighthouse/viewer/?psiurl=https%3A%2F%2Fandrevalerio.com%2F&strategy=mobile&category=performance&category=accessibility&category=best-practices&category=seo&category=pwa&utm_source=lh-chrome-ext# "andrevalerio.com lighthouse test") or [Google pagespeed insights](https://pagespeed.web.dev/analysis?url=https%3A%2F%2Fandrevalerio.com%2F "andrevalerio.com pagespeed test").
+
+Some strategies applied for [SEO][SEO] were:
+
+- [**Structured data markup**](https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data "Structured data intro - Google") with [schema.org](https://schema.org/), _used integrations: [Astro-Seo-Schema][astro-in-schema]._  [Test here.](https://search.google.com/test/rich-results?url=https%3A%2F%2Fandrevalerio.com%2F "Google rich snippets test")
+- [**Website Metadata**](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/Webpage_metadata "Website metadata - MDN reference"), _used integrations: [Astro-Seo][astro-in-seo]._
+- [**`Robots.txt`**](./website/public/robots.txt) file & [sitemap](https://developers.google.com/search/docs/crawling-indexing/sitemaps/overview "Sitemap intro - Google"), _used integrations: [Astro-Sitemap][astro-in-sitemap]._
+- [**Microdata in HTML**](https://developer.mozilla.org/en-US/docs/Web/HTML/Guides/Microdata "Microdata - MDN reference").
+- Good [**HTML semantics**](https://developer.mozilla.org/en-US/docs/Glossary/Semantics#semantics_in_html "HTML semantics - MDN reference"), which causes good [accessibility](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Accessibility/What_is_accessibility "Accessibility - MDN reference") overall.
+
+<details><summary><small>Integrations metioned</small></summary>
+
+- [Astro-Seo][astro-in-seo].
+- [Astro-Seo-Schema][astro-in-schema].
+- [Astro-Sitemap][astro-in-sitemap].
+
+</details>
+
+### About - [André Valério][2]
+
+A little bit [about André Valério][about]
+
+#### Who is [André Valério][about]
+
+[André Valério][2] is a Brazilian-born guitarist, composer, arranger, and educator based in Toronto, celebrated for his versatility, passion for teaching, and deep connection to Brazilian music traditions.  [See more about André Valério.][about]
+
+#### Client Testimonial
+
+> I had a poorly functioning website for about five years, until I met Adriano. He built a new site from scratch, exactly the way I needed it, and he's always available for adjustments and updates whenever necessary.  
+> In addition to solving the technical issues, Adriano also helped me sync the site with Google, which greatly improved my online visibility.  
+> I highly recommend his work!  
+> -- <cite>[_André Valério_][2]</cite>
+
+### About - [Adriano Rossi][adriano] (Developer)
+
+I'm [Adriano][adriano], a [Full-Stack](https://www.w3schools.com/whatis/whatis_fullstack.asp) developer with experience in developing [web applications](https://en.wikipedia.org/wiki/Web_application). I'm passionate about both [frontend](https://en.wikipedia.org/wiki/Front-end_web_development) and [backend](https://en.wikibooks.org/wiki/Web_Development/What_is_a_backend%3F), and I also work with [Docker][docker] and [application deployment](https://www.vmware.com/topics/application-deployment) on platforms like [GitHub Pages][github-pages] and [Render](https://render.com/). Always looking for new challenges, I'm open to opportunities to grow and contribute to the world of technology. Check out my projects on [GitHub][adriano-github] and [get in touch](https://github.com/AdrianoLMRS/#contato)!
+
+[**See more about Adriano**][adriano-about].
+
 #### Developer experience
 
 Great, no more words.  The [Astro contribuitors team](https://docs.astro.build/en/contribute/#our-contributors) is just phenomenal, couldn't have chosen a better framework.
@@ -146,18 +191,32 @@ Of course, as it is a "new" tool, it inevitably has some [bugs](https://github.c
 
 For me, the difference was the way I was able to have absolute control over what to [render](https://docs.astro.build/en/concepts/islands/ "Astro islands architecture") on the web.
 
-[1]: https://andrevalerio.com/ "André Valério website"
+<!-- Website - André Valério links -->
+[1]: https://andrevalerio.com/ "André Valério - website"
 [about]: https://andrevalerio.com/about/ "André Valério About page"
 [songs]: https://andrevalerio.com/songs/ "André Valério Spotify Songs"
 [videos]: https://andrevalerio.com/songs/ "André Valério Youtube Videos"
 [contact]: https://andrevalerio.com/contact/ "André Valério Contact page"
 [error404]: https://andrevalerio.com/404.html "André Valério 404 page"
 [2]: https://g.co/kgs/Djfi9FM "André Valério knowledge panel"
+<!-- Astro related links -->
 [astro]: https://astro.build/ "Astro framework"
 [astro-integrations]: https://astro.build/integrations/ "Astro integrations"
-[react]: https://react.dev/ "React framework"
+[astro-in-sitemap]: https://docs.astro.build/en/guides/integrations-guide/sitemap/ "@astrojs/sitemap integration for Astro"
+[astro-in-schema]: https://github.com/codiume/orbit/tree/main/packages/astro-seo-schema#readme "astro-seo-schema integration for Astro"
+[astro-in-seo]: https://github.com/jonasmerlin/astro-seo#readme "astro-seo integration for Astro"
+<!-- Github related -->
 [github-actions]: https://github.com/features/actions "Github Actions"
+[github-pages]: https://pages.github.com/ "Github Pages"
+[Commit-prebuild]: https://github.com/AdrianoLMRS/AndreValerio/commit/8e96b849d779791bc017610896c1febb69537c02#diff-3d62ff5b75ea06afd756cd96c43165f01b0251a7f253227fef99b35bbd0e5befR1 "fetch-videos.js file commit"
+<!-- Others -->
+[SEO]: https://developers.google.com/search/docs/fundamentals/seo-starter-guide "What is SEO - Google"
+[react]: https://react.dev/ "React framework"
+[docker]: https://www.docker.com/ "Docker website"
 [YT-API]: https://developers.google.com/youtube/v3/docs "Youtube v3 API Documentation"
 [Spotify-API]: https://developer.spotify.com/ "Spotify Developer introduction"
-[Commit-prebuild]: https://github.com/AdrianoLMRS/AndreValerio/commit/8e96b849d779791bc017610896c1febb69537c02#diff-3d62ff5b75ea06afd756cd96c43165f01b0251a7f253227fef99b35bbd0e5befR1 "fetch-videos.js file commit"
 [gl-static-page]: https://en.wikipedia.org/wiki/Static_web_page "Wikipedia Static web page"
+<!-- Developer links -->
+[adriano]: https://portfolio-adriano-p4dj.onrender.com/ "Adriano Rossi (Dev & author) - website"
+[adriano-about]: https://portfolio-adriano-p4dj.onrender.com/#about "Adriano Rossi - About (website)"
+[adriano-github]: https://github.com/AdrianoLMRS/ "Adriano Rossi - Github profile"
