@@ -8,7 +8,9 @@ import { GoogleAnalytics } from 'astro-analytics';
 import { GoogleTagmanager, GoogleTagmanagerNoscript } from '@digi4care/astro-google-tagmanager'; // GTM integration
 import '@styles/global.scss';
 
-const GTM_ID = 'GTM-58BFMJQD';
+const GTM_ID = 'GTM-58BFMJQD'; // Google Tag Manager ID
+
+const dnsPrefetch: string[] = ['https://fonts.googleapis.com/', 'https://img.icons8.com/', 'https://iili.io/'] // Default DNS prefetch URLs
 
 const { seo, schema } = Astro.props as {
   seo?: seoProps;
@@ -22,13 +24,17 @@ const { seo, schema } = Astro.props as {
     <GoogleTagmanager id={`${GTM_ID}`} />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <meta name="license" content="MIT" />
+    {/* DNS prefetch links for optimization */}
+    {dnsPrefetch.map(url => (
+        <link rel="dns-prefetch" href={url} />
+    ))}
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="license" itemprop="license" href="https://github.com/AdrianoLMRS/AndreValerio/blob/main/LICENSE" />
+    <meta name="license" content="MIT" />
     <meta name="generator" content={Astro.generator} />
 
     {seo && <SEO {...seo} titleDefault="No title" />}

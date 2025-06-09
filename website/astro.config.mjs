@@ -1,4 +1,4 @@
-import { defineConfig, passthroughImageService } from 'astro/config';
+import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 // import vercel from '@astrojs/vercel';
@@ -38,12 +38,6 @@ export default defineConfig({
             // }
             hmr: true, // Disable HMR
         },
-    },
-    image: {
-        domains: ['https://placehold.jp'],
-        remotePatterns: [{ protocol: 'https' }],
-        service: passthroughImageService(),
-        // experimentalLayout: 'responsive',
     },
     experimental: {
         responsiveImages: true,
