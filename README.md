@@ -1,10 +1,10 @@
 # André Valério Website 🌐  – [andrevalerio.com][1]
 
-[andrevalerio.com][1] is a [static website][gl-static-page] for the Canadian musician & composer [André Valério][2].
+[andrevalerio.com][1] is a [static website][gl-static-page] for the Canadian musician & composer [André Valério](#about---andré-valério).
 
 This [website][1] was built with [Astro][astro] + [integrations][astro-integrations] such as [React][react], see the [tech stack](#tech-stack-%EF%B8%8F "Development tools").
 
-The [website][1] has an emphasis on SEO, content & performance.
+The [website][1] has an emphasis on [SEO](#seo), content & performance.
 
 ---
 
@@ -21,7 +21,7 @@ The [website][1] has an emphasis on SEO, content & performance.
 
 <small>See the full [package.json here](./website/package.json)</small>
 
-### Deploy & [CI/CD](https://github.com/resources/articles/devops/ci-cd)
+## Deploy & [CI/CD](https://github.com/resources/articles/devops/ci-cd)
 
 The [website][1] is served by a [global CDN](https://render.com/docs/static-sites#global-cdn) in [render.com](https://render.com/ "Render plataform (Web-Host)"), I also used the [IaC model](https://aws.amazon.com/what-is/iac/ "Infraestructure as Code model (AWS)") with [Render blueprints](https://render.com/docs/infrastructure-as-code "Render.com blueprints Docs"), see the [render.yaml file](./render.yaml).
 
@@ -39,11 +39,11 @@ You can also deploy with [Docker][docker], build with [Astro][astro] and host a 
 
 I also used [Github Actions][github-actions] to deploy to [Github Pages][github-pages] see _[deploy.yml file](./.github/workflows/deploy.yml)_, **and** I used [actions][github-actions] to trigger a [Render deploy hook](https://render.com/docs/deploy-hooks) every 24 hours, see _[daily-deploy.yml file](./.github/workflows/daily-deploy.yml)_, check [why I did that](#pages).
 
-### Website content
+## Website content
 
 Website pages content & folder structure
 
-#### Pages
+### Pages
 
 - **[/home][1]** [`index.astro`](./website/src/pages/index.astro): The main landing page introducing André Valério and his work.
 - **[/about][about]** [`about.astro`](./website/src/pages/about.astro): A page detailing André Valério's biography, career, and achievements.
@@ -141,7 +141,7 @@ graph TD
 ```
 <br></details>
 
-### SEO
+## SEO
 
 The website was created with the main focus on [SEO][SEO] because one of the main objectives was to appear in [Google searches](https://developers.google.com/search/docs/fundamentals/how-search-works "Google Search - Google"), this also had a great influence on the choice of the [Astro framework][astro], which is excellent when it comes to the subject and has several [integrations][astro-integrations].
 
@@ -163,28 +163,28 @@ Some strategies applied for [SEO][SEO] were:
 
 </details>
 
-### About - [André Valério][2]
+## About - [André Valério][2]
 
 A little bit [about André Valério][about]
 
-#### Who is [André Valério][about]
+### Who is [André Valério][about]
 
 [André Valério][2] is a Brazilian-born guitarist, composer, arranger, and educator based in Toronto, celebrated for his versatility, passion for teaching, and deep connection to Brazilian music traditions.  [See more about André Valério.][about]
 
-#### Client Testimonial
+### Client Testimonial
 
 > I had a poorly functioning website for about five years, until I met Adriano. He built a new site from scratch, exactly the way I needed it, and he's always available for adjustments and updates whenever necessary.  
 > In addition to solving the technical issues, Adriano also helped me sync the site with Google, which greatly improved my online visibility.  
 > I highly recommend his work!  
 > -- <cite>[_André Valério_][2]</cite>
 
-### About - [Adriano Rossi][adriano] (Developer)
+## About - [Adriano Rossi][adriano] (Developer)
 
 I'm [Adriano][adriano], a [Full-Stack](https://www.w3schools.com/whatis/whatis_fullstack.asp) developer with experience in developing [web applications](https://en.wikipedia.org/wiki/Web_application). I'm passionate about both [frontend](https://en.wikipedia.org/wiki/Front-end_web_development) and [backend](https://en.wikibooks.org/wiki/Web_Development/What_is_a_backend%3F), and I also work with [Docker][docker] and [application deployment](https://www.vmware.com/topics/application-deployment) on platforms like [GitHub Pages][github-pages] and [Render](https://render.com/). Always looking for new challenges, I'm open to opportunities to grow and contribute to the world of technology. Check out my projects on [GitHub][adriano-github] and [get in touch](https://github.com/AdrianoLMRS/#contato)!
 
 [**See more about Adriano**][adriano-about].
 
-#### Developer experience
+### Developer experience
 
 Great, no more words.  The [Astro contribuitors team](https://docs.astro.build/en/contribute/#our-contributors) is just phenomenal, couldn't have chosen a better framework.
 Of course, as it is a "new" tool, it inevitably has some [bugs](https://github.com/withastro/astro/issues/ "Astro github issues").
