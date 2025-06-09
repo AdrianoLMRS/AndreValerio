@@ -29,8 +29,8 @@ export default defineConfig({
             },
         },
         css: {
-            // * Need css minify for css to run
-            minify: true,
+            minify: true, // Enable CSS minification
+            transformer: 'lightningcss',
         },
         server: {
             // watch: {
