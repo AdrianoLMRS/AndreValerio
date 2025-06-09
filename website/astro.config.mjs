@@ -30,7 +30,7 @@ export default defineConfig({
         },
         css: {
             minify: true, // Enable CSS minification
-            transformer: 'lightningcss',
+            // transformer: 'lightningcss',
         },
         server: {
             // watch: {
