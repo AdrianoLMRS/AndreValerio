@@ -45,9 +45,13 @@ export default defineConfig({
     define: {
         'process.env': loadEnv('', process.cwd())
     },
-    // site: BASE_URL.toString(),
-    // base: 'website',
-
+    i18n: {
+        locales: ['es', 'en', 'pt-br'],
+        defaultLocale: 'en',
+        routing: {
+            fallbackType: 'redirect',
+        },
+    },
     integrations: [react(), sitemap(), playformInline(), purgecss({
         fontFace: true,
         keyframes: true,
