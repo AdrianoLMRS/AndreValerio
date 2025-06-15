@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "astro dev",
     "dev:watch": "nodemon --watch src --watch components --ext astro,js,ts,jsx,tsx,json,md --exec astro dev",
+    "translate": "node ./src/i18n/gen-seo.js && node ./src/i18n/translate.js",
     "prebuild": "node ./fetch-videos.js",
     "build": "astro build",
     "preview": "astro preview",

@@ -1,11 +1,15 @@
 // * This script is for generating SEO metadata in JSON format for a website.  (Need this because internationalization)
 
 import fs from 'fs/promises';
-import path from 'path';
+import path, { dirname } from 'path';
+import { fileURLToPath } from 'url';
 import { author } from '../data/author.js';
 
-const PATH = new URL('./locales/en.json', import.meta.url);
-const DIR = path.dirname(PATH.pathname);
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+const PATH = path.resolve(__dirname, './locales/en.json');
+const DIR = path.dirname(PATH);
 
 // Will generate a JSON file with SEO data for the website
 const seo = {
@@ -58,7 +62,7 @@ async function main() {
   
 main()
     .then(() => {
-        console.log('SEO JSON file generated successfully at:', PATH.href);
+        console.log('SEO JSON file generated successfully at:', PATH);
     })
     .catch((error) => {
         console.error('Error generating SEO JSON file:', error);
