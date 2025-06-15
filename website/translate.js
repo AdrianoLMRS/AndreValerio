@@ -9,8 +9,8 @@ import fs from 'fs/promises';
 import fetch from 'node-fetch';
 
 const baseLang = 'en';
-const basePath= './src/locales/';
-const targetLangs = ['pt', 'pt-br', 'es', 'fr'];
+const basePath= './src/i18n/locales/';
+const targetLangs = ['pt', 'pt-br', 'es', 'de', 'fr'];
 const endpoint = 'http://localhost:5000/translate';
 
 // Translate text using the LibreTranslate service

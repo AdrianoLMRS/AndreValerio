@@ -46,7 +46,7 @@ export default defineConfig({
         'process.env': loadEnv('', process.cwd())
     },
     i18n: {
-        locales: ['es', 'en', 'pt-br'],
+        locales: ['en', 'pt', 'pt-br', 'es', 'de', 'fr'],
         defaultLocale: 'en',
         routing: {
             fallbackType: 'redirect',
