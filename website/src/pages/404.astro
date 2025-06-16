@@ -1,7 +1,7 @@
 ---
 
 import Layout from '@layouts/Normal.astro';
-import Pages from '@data/pages';
+import Pages from '@data/constants/pages';
 const entries = Object.entries(Pages).filter(([key]) => key !== 'social');
 
 const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);

@@ -1,5 +1,5 @@
 import type { AlbumResponse } from '@types/albumTypes';
-import { author } from '@data/author';
+import { author } from '@data/constants/author';
 
 export function formatArtistName(names: string[]): string {
     const fullArtistName = names.join(', ');

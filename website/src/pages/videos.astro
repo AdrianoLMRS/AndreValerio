@@ -1,7 +1,7 @@
 ---
-import { author } from '@data/author';
-import Pages from '@data/pages';
-import Imgs from '@data/imgs';
+import { author } from '@data/constants/author';
+import Pages from '@data/constants/pages';
+import Imgs from '@data/constants/imgs';
 
 // * Components
 import Layout from '@layouts/Normal.astro';
@@ -11,8 +11,8 @@ import MainContent from '@components/_pages/videos.astro';
 import type { Props as seoProps } from "astro-seo";
 
 // * YT videos data
-import latestVideos from '@data/videos.json';
-import featuredVideos from '@data/featuredVideos.json';
+import latestVideos from '@data/json/videos.json'
+import featuredVideos from '@data/json/featuredVideos.json';
 
 const Shared = {
     title: `Videos & Movies – ${author.name}`,
