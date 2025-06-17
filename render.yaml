@@ -21,10 +21,7 @@ services:
     repo: https://github.com/AdrianoLMRS/AndreValerio
     staticPublishPath: dist
     rootDir: website
-    buildCommand: |
-      echo "Waiting for LibreTranslate to be ready..."
-      until curl --silent https://libretranslate.onrender.com/health; do sleep 2; done
-      npm run build
+    buildCommand: npm run build:render
     envVars:
       - key: SPOTIFY_ACCESS
         sync: false
@@ -39,4 +36,6 @@ services:
       - key: YOUTUBE_API_KEY
         sync: false
       - key: GOOGLE_ANALYTICS_ID
+        sync: false
+      - key: LIBRETRANSLATE
         sync: false

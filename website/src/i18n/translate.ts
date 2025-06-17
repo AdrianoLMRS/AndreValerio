@@ -23,7 +23,7 @@ import { locales, defaultLang } from './ui.ts';
 
 const baseLang = defaultLang;
 const targetLangs = locales;
-const endpoint = `${process.env.LIBRETRANSLATE || import.meta.env.LIBRETRANSLATE}/translate`;
+const endpoint = new URL('/translate', `${process.env.LIBRETRANSLATE || import.meta.env.LIBRETRANSLATE}`);
 
 type TranslatableObject = {
     [key: string]: string | TranslatableObject;
@@ -39,8 +39,8 @@ type TranslatedObject<T = unknown> = {
 
 // Translate text using the LibreTranslate service
 async function translateText(text: string, target: string): Promise<string> {
-    if (!endpoint) throw new Error('Missing LibreTranslate endpoint...');
-    const res = await fetch(endpoint, {
+    if (!endpoint || !endpoint.href) throw new Error('Missing LibreTranslate endpoint...');
+    const res = await fetch(endpoint.href, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
