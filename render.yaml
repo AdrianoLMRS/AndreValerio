@@ -10,7 +10,11 @@ services:
     plan: free
     envVars:
       - key: PORT
-        value: 5000
+        value: "5000"
+      - key: LT_PORT
+        value: "5000"
+      - key: LT_LOAD_ONLY
+        value: en,pt,pt-br,de,fr,es,it
     region: ohio
     autoDeploy: false
 
