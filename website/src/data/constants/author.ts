@@ -16,4 +16,4 @@ export const author = {
         site: 'https://portfolio-adriano-p4dj.onrender.com/',
         icons8: 'https://icons8.com.br/',
     }
-};
+} as const;
