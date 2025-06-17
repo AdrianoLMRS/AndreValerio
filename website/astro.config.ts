@@ -6,6 +6,9 @@ import playformInline from '@playform/inline';
 import purgecss from 'astro-purgecss';
 import playformCompress from '@playform/compress';
 
+// * My integrations
+import i18nPrebuild from './src/integrations/i18n';
+
 import { locales, defaultLang, normalize } from './src/i18n/ui';
 
 // * Config
@@ -39,7 +42,7 @@ export default defineConfig({
             fallbackType: 'redirect',
         },
     },
-    integrations: [react(), sitemap(), playformInline(), purgecss({
+    integrations: [i18nPrebuild(), react(), sitemap(), playformInline(), purgecss({
         fontFace: true,
         keyframes: true,
         rejected: true,

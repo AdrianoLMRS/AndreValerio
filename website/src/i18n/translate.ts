@@ -8,13 +8,34 @@
 import fs from 'fs/promises';
 import fetch from 'node-fetch';
 
-const baseLang = 'en';
-const basePath= './src/i18n/locales/';
-const targetLangs = ['pt', 'pt-br', 'es', 'de', 'fr'];
+import { fileURLToPath } from 'url';
+import path from 'path';
+
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const basePath = path.resolve(__dirname, './locales/');
+
+import { locales, defaultLang } from './ui.ts';
+
+const baseLang = defaultLang;
+const targetLangs = locales;
 const endpoint = 'http://localhost:5000/translate';
 
+type TranslatableObject = {
+    [key: string]: string | TranslatableObject;
+};
+
+type TranslatedObject<T = unknown> = {
+    [K in keyof T]: T[K] extends string
+      ? string
+      : T[K] extends object
+      ? TranslatedObject<T[K]>
+      : never;
+};
+
 // Translate text using the LibreTranslate service
-async function translateText(text, target) {
+async function translateText(text: string, target: string): Promise<string> {
     const res = await fetch(endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -31,14 +52,14 @@ async function translateText(text, target) {
 }
 
 // Recursively translate an object, translating all string values
-async function translateObject(obj, target) {
-    const translated = {};
+async function translateObject<T extends TranslatableObject>(
+    obj: T,
+    target: string
+): Promise<TranslatedObject<T>> {
+    const translated = {} as TranslatedObject<T>;
     for (const key in obj) {
-        if (typeof obj[key] === 'string') {
-            translated[key] = await translateText(obj[key], target);
-        } else if (typeof obj[key] === 'object') {
-            translated[key] = await translateObject(obj[key], target);
-        }
+        const value = obj[key];
+        translated[key] = typeof value === 'string' ? await translateText(value, target) as TranslatedObject<T>[typeof key] : await translateObject(value as TranslatableObject, target) as TranslatedObject<T>[typeof key];
     }
     return translated;
 }
@@ -50,15 +71,17 @@ async function run() {
         underscore: '\x1b[4m', // Underline
         reset: '\x1b[0m', // Reset
         bright: '\x1b[1m', // Bright
-    };
-    const baseRaw = await fs.readFile(`${basePath}en.json`, 'utf-8');
-    const baseJson = JSON.parse(baseRaw);
+    } as const;
+    const baseRaw = await fs.readFile(`${basePath}/en.json`, 'utf-8');
+    const baseJson = JSON.parse(baseRaw) as TranslatableObject;
 
     for (const lang of targetLangs) {
+        if (lang === baseLang) continue;
+
         const translated = await translateObject(baseJson, lang);
-        await fs.writeFile(`${basePath}${lang}.json`, JSON.stringify(translated, null, 2), 'utf-8');
+        await fs.writeFile(`${basePath}/${lang}.json`, JSON.stringify(translated, null, 2), 'utf-8');
         console.log(`${d.color}%s${d.reset}`, `✔  Translation to ${d.underscore + d.bright + d.color2}${lang}${d.reset + d.color} generated with success!.`);
     }
 }
 
-run().catch(console.error);
+export { run as translateAll };
