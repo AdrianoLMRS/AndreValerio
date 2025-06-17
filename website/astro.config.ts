@@ -8,6 +8,7 @@ import playformCompress from '@playform/compress';
 
 // * My integrations
 import i18nPrebuild from './src/integrations/i18n';
+import YTfetchIntegration from './src/integrations/fetch-videos';
 
 import { locales, defaultLang, normalize } from './src/i18n/ui';
 
@@ -42,7 +43,7 @@ export default defineConfig({
             fallbackType: 'redirect',
         },
     },
-    integrations: [i18nPrebuild(), react(), sitemap(), playformInline(), purgecss({
+    integrations: [YTfetchIntegration(), i18nPrebuild(), react(), sitemap(), playformInline(), purgecss({
         fontFace: true,
         keyframes: true,
         rejected: true,

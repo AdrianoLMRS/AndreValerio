@@ -1,6 +1,6 @@
 // Integration log format message
 export const log = (label: string, message: string, type: 'info' | 'success' | 'error' = 'info') => {
-    const time = new Date().toLocaleTimeString('pt-BR', { hour12: false });
+    const time = new Date().toLocaleTimeString(undefined, { hour12: false });
     const gray = '\x1b[90m';
     const blue = '\x1b[34m';
     const green = '\x1b[32m';
