@@ -40,4 +40,4 @@ const videos = json.items.map(item => ({
 
 await fs.writeFile('./src/data/videos.json', JSON.stringify(videos, null, 2));
 
-console.log('\x1b[32m' + 'Videos fetched and saved to src/data/videos.json');
+console.log('\x1b[32m' + 'Videos fetched and saved to src/data/videos.json' + '\x1b[0m');

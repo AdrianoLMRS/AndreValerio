@@ -52,9 +52,9 @@ export async function generateSEO() {
         const merged = { ...existingData, ...seo };
         await fs.writeFile(PATH, JSON.stringify(merged, null, 2), 'utf-8');
 
-        console.log('✔ SEO JSON file generated successfully at:', PATH);
+        console.log('✔  SEO JSON file generated successfully at:', PATH);
     } catch (error) {
-        console.error('✖ Error generating SEO JSON file:', error);
+        console.error('✖  Error generating SEO JSON file:', error);
         throw error;
     }
 }
