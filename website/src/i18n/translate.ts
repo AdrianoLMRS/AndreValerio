@@ -8,9 +8,12 @@
 import fs from 'fs/promises';
 import fetch from 'node-fetch';
 
+import { config } from 'dotenv';
+
+config(); // Load .env variables
+
 import { fileURLToPath } from 'url';
 import path from 'path';
-
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -20,7 +23,7 @@ import { locales, defaultLang } from './ui.ts';
 
 const baseLang = defaultLang;
 const targetLangs = locales;
-const endpoint = 'http://localhost:5000/translate';
+const endpoint = `${process.env.LIBRETRANSLATE || import.meta.env.LIBRETRANSLATE}/translate`;
 
 type TranslatableObject = {
     [key: string]: string | TranslatableObject;
@@ -36,6 +39,7 @@ type TranslatedObject<T = unknown> = {
 
 // Translate text using the LibreTranslate service
 async function translateText(text: string, target: string): Promise<string> {
+    if (!endpoint) throw new Error('Missing LibreTranslate endpoint...');
     const res = await fetch(endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
