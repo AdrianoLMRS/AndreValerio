@@ -23,7 +23,8 @@ import { locales, defaultLang } from './ui.ts';
 
 const baseLang = defaultLang;
 const targetLangs = locales;
-const endpoint = new URL('/translate', `${process.env.LIBRETRANSLATE || import.meta.env.LIBRETRANSLATE}`);
+const baseUrl: string = process.env.LIBRETRANSLATE || import.meta.env.LIBRETRANSLATE || 'http://localhost:5000';
+const endpoint = new URL('/translate', baseUrl);
 
 type TranslatableObject = {
     [key: string]: string | TranslatableObject;
@@ -40,20 +41,37 @@ type TranslatedObject<T = unknown> = {
 // Translate text using the LibreTranslate service
 async function translateText(text: string, target: string): Promise<string> {
     if (!endpoint || !endpoint.href) throw new Error('Missing LibreTranslate endpoint...');
-    const res = await fetch(endpoint.href, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            q: text,
-            source: baseLang,
-            target,
-            format: 'text',
-        }),
-    });
+    try {
+        const res = await fetch(endpoint, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                q: text,
+                source: baseLang,
+                target,
+                format: 'text',
+            }),
+        });
 
-    const json = await res.json();
-    return json.translatedText;
+        const body = await res.text();
+
+        if (!res.ok) {
+            throw new Error(`HTTP ${res.status}: ${body}`);
+        }
+
+        const json = JSON.parse(body);
+        if (!json.translatedText) {
+            throw new Error(`No translatedText in response: ${body}`);
+        }
+
+        return json.translatedText;
+
+    } catch (err) {
+        console.error(`❌ Error translating "${text}" to ${target}:`, err);
+        return text; // fallback: return original text if error occurs
+    }
 }
+
 
 // Recursively translate an object, translating all string values
 async function translateObject<T extends TranslatableObject>(

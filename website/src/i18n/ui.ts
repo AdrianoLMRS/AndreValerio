@@ -8,7 +8,7 @@ export const languages = {
     es: 'Español',
     fr: 'Français',
     de: 'Deutsch',
-    // it: 'Italiano',
+    it: 'Italiano',
 } as const;
 
 export type LanguageCode = keyof typeof languages;

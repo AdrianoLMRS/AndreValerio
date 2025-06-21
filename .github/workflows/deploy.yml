@@ -1,54 +1,64 @@
-name: Deploy to GitHub Pages
+name: Build & Deploy in Render CDN
 
 on:
-  # Trigger the workflow every time you push to the `main` branch
-  # Using a different branch name? Replace `main` with your branch’s name
   push:
-    branches: [ main ]
-  # Allows you to run this workflow manually from the Actions tab on GitHub.
+    branches: [ main, internationalization ]
   workflow_dispatch:
 
-# Allow this job to clone the repo and create a page deployment
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
-    environment: github-pages
+    environment: deploy
+    defaults:
+      run:
+        working-directory: ./website
+
     steps:
-      - name: Checkout your repository using git
-        uses: actions/checkout@v4
-      - name: Debug ENV
+      - uses: actions/checkout@v3
+
+      - name: Start LibreTranslate
         run: |
-            echo "PUBLIC_BASE_URL=${{ vars.PUBLIC_BASE_URL }}"
-            echo "SPOTIFY_CLIENT_ID=${{ secrets.SPOTIFY_CLIENT_ID }}"
-            echo "SPOTIFY_CLIENT_SECRET=${{ secrets.SPOTIFY_CLIENT_SECRET }}"
-            echo "SPOTIFY_REFRESH_TOKEN=${{ secrets.SPOTIFY_REFRESH_TOKEN }}"
-            echo "YOUTUBE_API_KEY=${{ secrets.YOUTUBE_API_KEY }}"
-      - name: Install, build, and upload your site
-        uses: withastro/action@v3
+          docker pull libretranslate/libretranslate:latest
+          docker run -d --name libretranslate \
+            -p 5000:5000 \
+            -e LT_LOAD_ONLY=en,pt,pt-br,de,fr,es,it \
+            libretranslate/libretranslate:latest
+
+      - name: Wait for LibreTranslate
+        run: |
+          until curl --silent http://localhost:5000/; do
+            sleep 2
+          done
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
-          path: ./website # The root location of your Astro project inside the repository. (optional)
-          # node-version: 20 # The specific version of Node that should be used to build your site. Defaults to 20. (optional)
-          # package-manager: pnpm@latest # The Node package manager that should be used to install dependencies and build your site. Automatically detected based on your lockfile. (optional)
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Astro site
         env:
+          LIBRETRANSLATE: http://localhost:5000/
           PUBLIC_BASE_URL: ${{ vars.PUBLIC_BASE_URL }}
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+          SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
           SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
           SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
-          SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
-        
-          
+          GOOGLE_ANALYTICS_ID: ${{ secrets.GOOGLE_ANALYTICS_ID }}
+        run: npm run build
 
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Archive build output
+        run: tar czf dist.tar.gz -C dist .
+
+      - name: Deploy via Render API
+        run: |
+          curl -X POST https://api.render.com/deploy/static/sites/${{ secrets.RENDER_SERVICE_ID }}/deploys \
+            -H "Authorization: Bearer ${{ secrets.RENDER_API_KEY }}" \
+            -H 'Content-Type: application/gzip' \
+            --data-binary @dist.tar.gz
+
+      - name: Stop LibreTranslate
+        if: always()
+        run: docker stop libretranslate

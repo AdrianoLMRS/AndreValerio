@@ -1,45 +1,10 @@
 version: "1"
 
 services:
-  # Libretranslate Web service
-  - type: web
-    name: libretranslate
-    runtime: image
-    image:
-      url: docker.io/libretranslate/libretranslate:latest
-    plan: free
-    envVars:
-      - key: PORT
-        value: "5000"
-      - key: LT_PORT
-        value: "5000"
-      - key: LT_LOAD_ONLY
-        value: en,pt,pt-br,de,fr,es,it
-    region: ohio
-    autoDeploy: false
-
-  # André valério website
   - type: web
     name: AndreValerio
     runtime: static
-    repo: https://github.com/AdrianoLMRS/AndreValerio
     staticPublishPath: dist
-    rootDir: website
-    buildCommand: npm run build:render
-    envVars:
-      - key: SPOTIFY_ACCESS
-        sync: false
-      - key: SPOTIFY_CLIENT_SECRET
-        sync: false
-      - key: SPOTIFY_CLIENT_ID
-        sync: false
-      - key: SPOTIFY_REFRESH_TOKEN
-        sync: false
-      - key: PUBLIC_BASE_URL
-        sync: false
-      - key: YOUTUBE_API_KEY
-        sync: false
-      - key: GOOGLE_ANALYTICS_ID
-        sync: false
-      - key: LIBRETRANSLATE
-        sync: false
+    buildFilter:
+      paths:
+        - ignore_all
