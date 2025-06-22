@@ -12,10 +12,10 @@ if [ -z "$GITHUB_PAT" ]; then
     exit 1
 fi
 
-echo "🔍 Searching last success run in branch 'internationalization'..."
+echo "🔍 Searching last success run"
 
 RUN_ID=$(curl -s -H "Authorization: token $GITHUB_PAT" \
-    "https://api.github.com/repos/AdrianoLMRS/AndreValerio/actions/workflows/deploy.yml/runs?branch=internationalization&status=success&per_page=1" |
+    "https://api.github.com/repos/AdrianoLMRS/AndreValerio/actions/workflows/deploy.yml/runs?status=success&per_page=1" |
     jq '.workflow_runs[0].id')
 
 
