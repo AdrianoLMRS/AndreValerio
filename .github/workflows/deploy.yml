@@ -26,7 +26,7 @@ jobs:
 
       - name: Wait for LibreTranslate
         run: |
-          until curl --silent http://localhost:5000/; do
+          until curl --write-out '%{http_code}' --silent --output /dev/null http://localhost:5000/; do
             sleep 2
           done
 
