@@ -4,7 +4,21 @@ services:
   - type: web
     name: AndreValerio
     runtime: static
+    plan: free
+    repo: https://github.com/AdrianoLMRS/AndreValerio
+    rootDir: website
+    buildCommand: npm run render # Get GHA /dist artifact
     staticPublishPath: dist
+    autoDeployTrigger: off
+    domains:
+      - andrevalerio.com
+      - www.andrevalerio.com
+      - andrevalerio.onrender.com
     buildFilter:
       paths:
         - ignore_all
+    envVars:
+      - key: GITHUB_PAT
+        sync: false
+      - key: SKIP_INSTALL_DEPS # Skip installing node_modules
+        value: true
