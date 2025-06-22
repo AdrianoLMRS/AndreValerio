@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-and-deploy:
+  build-and-up-artifact:
     runs-on: ubuntu-latest
     environment: deploy
     defaults:
@@ -56,20 +56,6 @@ jobs:
         with:
           name: site-dist
           path: ./website/dist
-
-      - name: Trigger Render Deploy (API)
-        run: |
-          curl --request POST \
-              --url https://api.render.com/v1/services/${{ secrets.RENDER_SERVICE_ID }}/deploys \
-              --header 'accept: application/json' \
-              --header 'authorization: Bearer ${{ secrets.RENDER_API_KEY }}' \
-              --header 'content-type: application/json' \
-              --data '
-          {
-            "clearCache": "clear",
-            "commitId": "${{ github.sha }}"
-          }
-          '
 
       - name: Stop LibreTranslate
         if: always()

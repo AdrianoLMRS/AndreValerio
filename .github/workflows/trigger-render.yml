@@ -1,0 +1,24 @@
+name: Trigger Render Deploy
+
+on:
+  workflow_run:
+    workflows: ["Build & Deploy in Render CDN"]
+    types:
+      - completed
+  workflow_dispatch:
+
+jobs:
+  trigger-render-deploy:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    environment: deploy
+
+    steps:
+      - name: Trigger Render Deploy (API)
+        run: |
+          curl --request POST \
+              --url https://api.render.com/v1/services/${{ secrets.RENDER_SERVICE_ID }}/deploys \
+              --header 'accept: application/json' \
+              --header 'authorization: Bearer ${{ secrets.RENDER_API_KEY }}' \
+              --header 'content-type: application/json' \
+              --data '{"clearCache":"clear"}'
