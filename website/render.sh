@@ -14,7 +14,7 @@ fi
 
 echo "🔍 Searching last success run"
 
-WORKFLOW_ID=146823217
+WORKFLOW_ID=170075385
 
 RUN_ID=$(curl -s -H "Authorization: token $GITHUB_PAT" \
     "https://api.github.com/repos/AdrianoLMRS/AndreValerio/actions/workflows/$WORKFLOW_ID/runs?status=success&per_page=1" |
