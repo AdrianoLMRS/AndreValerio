@@ -15,8 +15,9 @@ fi
 echo "🔍 Searching last success run in branch 'internationalization'..."
 
 RUN_ID=$(curl -s -H "Authorization: token $GITHUB_PAT" \
-    "https://api.github.com/repos/AdrianoLMRS/AndreValerio/actions/runs?branch=internationalization&status=success&per_page=1" |
-    grep '"id":' | head -n 1 | sed 's/[^0-9]*//g')
+    "https://api.github.com/repos/AdrianoLMRS/AndreValerio/actions/workflows/deploy.yml/runs?branch=internationalization&status=success&per_page=1" |
+    jq '.workflow_runs[0].id')
+
 
 if [ -z "$RUN_ID" ]; then
     echo "❌ No success run found in 'internationalization'."
