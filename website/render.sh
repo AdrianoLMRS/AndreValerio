@@ -14,8 +14,10 @@ fi
 
 echo "🔍 Searching last success run"
 
+WORKFLOW_ID=146823217
+
 RUN_ID=$(curl -s -H "Authorization: token $GITHUB_PAT" \
-    "https://api.github.com/repos/AdrianoLMRS/AndreValerio/actions/workflows/deploy.yml/runs?status=success&per_page=1" |
+    "https://api.github.com/repos/AdrianoLMRS/AndreValerio/actions/workflows/$WORKFLOW_ID/runs?status=success&per_page=1" |
     jq '.workflow_runs[0].id')
 
 

@@ -1,4 +1,4 @@
-name: Build & Deploy in Render CDN
+name: Build & Upload artifact
 
 on:
   push:
