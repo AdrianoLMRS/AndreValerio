@@ -52,6 +52,7 @@ jobs:
 
         # Need to upload because render.com will download the artifact to host
       - name: Upload dist as artifact
+        id: upload-artifact
         uses: actions/upload-artifact@v4
         with:
           name: site-dist
@@ -60,3 +61,22 @@ jobs:
       - name: Stop LibreTranslate
         if: always()
         run: docker stop libretranslate
+
+  notify:
+    needs: build-and-up-artifact
+    runs-on: ubuntu-latest
+    if: ${{ needs.build-and-up-artifact.result == 'success' }}
+
+    steps:
+      - name: Send Discord notification
+        uses: stegzilla/discord-notify@v4
+        with:
+          webhook_url: ${{ secrets.DISCORD_HOOK }}
+          username: "GHA build-artifact"
+          title: "Build & Upload Artifact Success"
+          message: |
+            ✅ Build and artifact upload succeeded for **${{ github.repository }}**
+            GHA run: #${{ github.run_number }}
+            Artifact ID: ${{ steps.upload-artifact.outputs.artifact-id }}
+            Artifact URL: ${{ steps.upload-artifact.outputs.artifact-url }}
+            Artifact SHA: ${{ steps.upload-artifact.outputs.artifact-digest }}

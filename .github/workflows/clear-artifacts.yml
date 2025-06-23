@@ -13,6 +13,7 @@ jobs:
 
     steps:
       - uses: actions/github-script@v7
+        id: cleanup-script
         with:
           github-token: ${{ secrets.GH_PAT }}
           script: |
@@ -39,7 +40,23 @@ jobs:
                 });
                 console.log(`deleted ${a.name} (${a.id})`);
             };
+            return `Deleted ${toDelete.length} artifacts, kept the last ${keepCount} artifacts.`;
+          result-encoding: string
         env:
           PER_PAGE: ${{ vars.PER_PAGE }}
           LAST_ARTIFACTS: ${{ vars.LAST_ARTIFACTS }}
           ARTIFACT_PREFIX: ${{ vars.PREFIX }}
+
+  notify:
+    needs: cleanup
+    runs-on: ubuntu-latest
+    if: ${{ needs.cleanup.result == 'success' }}
+
+    steps:
+      - name: Send Discord notification
+        uses: stegzilla/discord-notify@v4
+        with:
+          webhook_url: ${{ secrets.DISCORD_HOOK }}
+          title: "GHA Clear Old Artifacts"
+          username: "GHA clear-artifacts"
+          message: "Old artifacts cleared successfully.\n${{ steps.cleanup-script.outputs.result }}"
