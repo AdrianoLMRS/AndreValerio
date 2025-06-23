@@ -1,0 +1,44 @@
+name: Clear old artifacts
+
+on:
+  workflow_run:
+    workflows: ["Build & Upload artifact"]
+    types: [completed]
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    environment: artifacts
+
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const perPage = parseInt(process.env.PER_PAGE) || 100; // Default 100
+            const keepCount = parseInt(process.env.LAST_ARTIFACTS) || 10; // Default 10
+            const prefix = `${process.env.ARTIFACT_PREFIX}` || "site-dist";
+
+            // * Get the 100 latest artifacts in https://github.com/AdrianoLMRS/AndreValerio
+            const res = await github.rest.actions.listArtifactsForRepo({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                per_page: perPage // num of artifacts in response
+            });
+            // Store in variable sorted by date & prefix
+            const artifacts = res.data.artifacts
+                .filter(a => a.name.startsWith(prefix)) // Filter artifacts by prefix ("site-dist")
+                .sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+            const toDelete = artifacts.slice(keepCount); // Maintain the last 10 artifacts
+            for (const a of toDelete) {
+                await github.rest.actions.deleteArtifact({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    artifact_id: a.id
+                });
+                console.log(`deleted ${a.name} (${a.id})`);
+            };
+        env:
+          PER_PAGE: ${{ vars.PER_PAGE }}
+          LAST_ARTIFACTS: ${{ vars.LAST_ARTIFACTS }}
+          ARTIFACT_PREFIX: ${{ vars.PREFIX }}
