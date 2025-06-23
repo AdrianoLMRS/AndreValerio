@@ -25,13 +25,14 @@ jobs:
   notify:
     needs: trigger-render-deploy
     runs-on: ubuntu-latest
+    environment: discord
     if: ${{ needs.trigger-render-deploy.result == 'success' }}
 
     steps:
       - name: Send Discord notification
         uses: stegzilla/discord-notify@v4
         with:
-          webhook_url: ${{ secrets.DISCORD_HOOK_RENDER }}
+          webhook_url: ${{ secrets.DEPLOY_RENDER}}
           title: "Render Deploy Triggered with API"
           username: "GHA trigger-render"
           message: |

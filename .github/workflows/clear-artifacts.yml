@@ -50,13 +50,14 @@ jobs:
   notify:
     needs: cleanup
     runs-on: ubuntu-latest
+    environment: discord
     if: ${{ needs.cleanup.result == 'success' }}
 
     steps:
       - name: Send Discord notification
         uses: stegzilla/discord-notify@v4
         with:
-          webhook_url: ${{ secrets.DISCORD_HOOK }}
+          webhook_url: ${{ secrets.CLEAR_ARTIFACTS }}
           title: "GHA Clear Old Artifacts"
           username: "GHA clear-artifacts"
           message: "Old artifacts cleared successfully.\n${{ steps.cleanup-script.outputs.result }}"

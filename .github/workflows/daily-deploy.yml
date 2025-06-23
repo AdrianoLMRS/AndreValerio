@@ -19,22 +19,18 @@ jobs:
           response=$(curl -s -o /dev/null -w "%{http_code}" -X POST "$RENDER_HOOK")
           echo "status=$response" >> $GITHUB_OUTPUT
 
-      - name: Send Discord Notification
-        if: always()
-        env:
-          DISCORD_HOOK: ${{ secrets.DISCORD_WEBHOOK }}
-        run: |
-          status="${{ steps.render_deploy.outputs.status }}"
-          
-          if [ "$status" = "200" ]; then
-            message="✅ Render deploy triggered successfully (Daily Deploy)."
-          else
-            message="❌ Failed to trigger Render deploy. HTTP Status: $status."
-          fi
+  notify:
+    needs: deploy
+    runs-on: ubuntu-latest
+    environment: discord
+    if: always()
 
-          payload="{\"content\": \"$message\"}"
-
-          curl -H "Content-Type: application/json" \
-               -X POST \
-               -d "$payload" \
-               "$DISCORD_HOOK"
+    steps:
+      - name: Send Discord notification
+        uses: stegzilla/discord-notify@v4
+        with:
+          webhook_url: ${{ secrets.DEPLOY_DAILY }}
+          title: "Daily Render Deploy"
+          username: "GHA daily-deploy"
+          message: |
+            ${{ needs.deploy.outputs.status == '200' && '✅ Render deploy triggered successfully (Daily Deploy).' || format('❌ Failed to trigger Render deploy (Daily Deploy).\nHTTP Status: {0}', needs.deploy.outputs.status) }}

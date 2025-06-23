@@ -65,13 +65,14 @@ jobs:
   notify:
     needs: build-and-up-artifact
     runs-on: ubuntu-latest
+    environment: discord
     if: ${{ needs.build-and-up-artifact.result == 'success' }}
 
     steps:
       - name: Send Discord notification
         uses: stegzilla/discord-notify@v4
         with:
-          webhook_url: ${{ secrets.DISCORD_HOOK }}
+          webhook_url: ${{ secrets.BUILD }}
           username: "GHA build-artifact"
           title: "Build & Upload Artifact Success"
           message: |
