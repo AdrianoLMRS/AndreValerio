@@ -5,7 +5,7 @@ on:
   workflow_run:
     workflows: ["Build & Upload artifact"]
     types: [completed]
-  pull_request:
+  pull_request: 
 
 jobs:
   cleanup:
