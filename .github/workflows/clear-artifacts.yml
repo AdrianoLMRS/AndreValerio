@@ -1,6 +1,7 @@
 name: Clear old artifacts
 
 on:
+  workflow_dispatch:
   workflow_run:
     workflows: ["Build & Upload artifact"]
     types: [completed]
