@@ -9,6 +9,8 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     environment: Main
+    outputs:
+      status: ${{ steps.render_deploy.outputs.status }}
 
     steps:
       - name: Trigger Render Deploy

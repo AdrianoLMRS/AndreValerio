@@ -12,6 +12,10 @@ jobs:
     defaults:
       run:
         working-directory: ./website
+    outputs:
+      artifact-id: ${{ steps.upload-artifact.outputs.artifact-id }}
+      artifact-url: ${{ steps.upload-artifact.outputs.artifact-url }}
+      artifact-digest: ${{ steps.upload-artifact.outputs.artifact-digest }}
 
     steps:
       - uses: actions/checkout@v4 # Clone the repo
@@ -78,6 +82,6 @@ jobs:
           message: |
             ✅ Build and artifact upload succeeded for **${{ github.repository }}**
             GHA run: #${{ github.run_number }}
-            Artifact ID: ${{ steps.upload-artifact.outputs.artifact-id }}
-            Artifact URL: ${{ steps.upload-artifact.outputs.artifact-url }}
-            Artifact SHA: ${{ steps.upload-artifact.outputs.artifact-digest }}
+            Artifact ID: ${{ needs.build-and-up-artifact.outputs.artifact-id }}
+            Artifact URL: ${{ needs.build-and-up-artifact.outputs.artifact-url }}
+            Artifact SHA: ${{ needs.build-and-up-artifact.outputs.artifact-digest }}
