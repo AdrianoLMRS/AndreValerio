@@ -8,7 +8,7 @@ on:
 
 jobs:
   deploy-pages:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     environment: deploy
     runs-on: ubuntu-latest
     outputs:
