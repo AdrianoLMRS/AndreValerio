@@ -67,7 +67,7 @@ jobs:
       id: upload
       uses: actions/upload-artifact@v4
       with:
-        name: site-dist
+        name: ${{ vars.ARTIFACT_NAME || 'site-dist' }}
         path: ./website/dist
         retention-days: 90
 
