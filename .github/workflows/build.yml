@@ -5,72 +5,77 @@ on:
     branches: [ main, internationalization ]
   workflow_dispatch:
 
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true    
+
 jobs:
-  build-and-up-artifact:
+  build:
     runs-on: ubuntu-latest
     environment: deploy
     defaults:
       run:
         working-directory: ./website
+    services:
+      libretranslate:
+        image: libretranslate/libretranslate:latest
+        ports:
+          - 5000:5000
+        options: --env LT_LOAD_ONLY=en,pt,pt-br,de,fr,es,it
+    timeout-minutes: 20
     outputs:
-      artifact-id: ${{ steps.upload-artifact.outputs.artifact-id }}
-      artifact-url: ${{ steps.upload-artifact.outputs.artifact-url }}
-      artifact-digest: ${{ steps.upload-artifact.outputs.artifact-digest }}
+      artifact-id: ${{ steps.upload.outputs.artifact-id }}
+      artifact-url: ${{ steps.upload.outputs.artifact-url }}
+      artifact-digest: ${{ steps.upload.outputs.artifact-digest }}
 
     steps:
-      - uses: actions/checkout@v4 # Clone the repo
+    - uses: actions/checkout@v4
 
-      # Run Libretranslate w/ Docker
-      - name: Start LibreTranslate
-        run: |
-          docker pull libretranslate/libretranslate:latest
-          docker run -d --name libretranslate \
-            -p 5000:5000 \
-            -e LT_LOAD_ONLY=en,pt,pt-br,de,fr,es,it \
-            libretranslate/libretranslate:latest
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 22.11.0
 
-      - name: Wait for LibreTranslate
-        run: |
-          until curl --write-out '%{http_code}' --silent --output /dev/null http://localhost:5000/; do
-            sleep 2
-          done
+    - name: Cache node modules
+      uses: actions/cache@v4
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('website/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22.11.0
+    - name: Install dependencies
+      run: npm ci
 
-      - name: Install dependencies
-        run: npm ci
+    - name: Wait for LibreTranslate
+      run: |
+        timeout 60 bash -c \
+          'until curl --silent --output /dev/null --write-out "%{http_code}" http://localhost:5000/; do sleep 2; done'
 
-      - name: Build Astro site
-        env:
-          LIBRETRANSLATE: http://localhost:5000/
-          PUBLIC_BASE_URL: ${{ vars.PUBLIC_BASE_URL }}
-          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
-          SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
-          SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
-          SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
-          GOOGLE_ANALYTICS_ID: ${{ secrets.GOOGLE_ANALYTICS_ID }}
-        run: npm run build
+    - name: Build Astro site
+      env:
+        LIBRETRANSLATE: http://localhost:5000/
+        PUBLIC_BASE_URL: ${{ vars.PUBLIC_BASE_URL }}
+        YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+        SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
+        SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
+        SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
+        GOOGLE_ANALYTICS_ID: ${{ secrets.GOOGLE_ANALYTICS_ID }}
+      run: npm run build
 
-        # Need to upload because render.com will download the artifact to host
-      - name: Upload dist as artifact
-        id: upload-artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: site-dist
-          path: ./website/dist
-
-      - name: Stop LibreTranslate
-        if: always()
-        run: docker stop libretranslate
+    - name: Upload artifact
+      id: upload
+      uses: actions/upload-artifact@v4
+      with:
+        name: site-dist
+        path: ./website/dist
+        retention-days: 90
 
   notify:
-    needs: build-and-up-artifact
+    needs: build
     runs-on: ubuntu-latest
     environment: discord
-    if: ${{ needs.build-and-up-artifact.result == 'success' }}
+    if: ${{ needs.build.result == 'success' }}
 
     steps:
       - name: Send Discord notification
@@ -82,6 +87,6 @@ jobs:
           message: |
             ✅ Build and artifact upload succeeded for **${{ github.repository }}**
             GHA run: #${{ github.run_number }}
-            Artifact ID: ${{ needs.build-and-up-artifact.outputs.artifact-id }}
-            Artifact URL: ${{ needs.build-and-up-artifact.outputs.artifact-url }}
-            Artifact SHA: ${{ needs.build-and-up-artifact.outputs.artifact-digest }}
+            Artifact ID: ${{ needs.build.outputs.artifact-id }}
+            Artifact URL: ${{ needs.build.outputs.artifact-url }}
+            Artifact SHA: ${{ needs.build.outputs.artifact-digest }}
