@@ -1,13 +1,30 @@
-name: Build & Upload artifact
+name: Build & Upload
 
 on:
-  push:
-    branches: [ main, internationalization ]
   workflow_dispatch:
-
-concurrency:
-  group: build-${{ github.ref }}
-  cancel-in-progress: true    
+    inputs:
+      node-version:
+        description: 'Node.js version to use for the build'
+        type: number
+        required: false
+        default: 22.11.0
+      working-dir:
+        description: 'Directory where the Astro project is located'
+        type: string
+        required: false
+        default: './website'
+  workflow_call:
+    inputs:
+      node-version:
+        description: 'Node.js version to use for the build'
+        type: number
+        required: false
+        default: 22.11.0
+      working-dir:
+        description: 'Directory where the Astro project is located'
+        type: string
+        required: false
+        default: './website'
 
 jobs:
   build:
@@ -15,12 +32,11 @@ jobs:
     environment: deploy
     defaults:
       run:
-        working-directory: ./website
+        working-directory: ${{ inputs.working-dir }}
     services:
       libretranslate:
         image: libretranslate/libretranslate:latest
-        ports:
-          - 5000:5000
+        ports: ['5000:5000']
         options: --env LT_LOAD_ONLY=en,pt,pt-br,de,fr,es,it
     timeout-minutes: 20
     outputs:
@@ -29,30 +45,30 @@ jobs:
       artifact-digest: ${{ steps.upload.outputs.artifact-digest }}
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v4 # Checkout the repository to the runner
+    # - uses: actions/cache@v4
+    #   with:
+    #     path: ~/.npm
+    #     key: ${{ runner.os }}-node-${{ hashFiles('${{ inputs.working-dir }}/package-lock.json') }}
+    #     restore-keys: |
+    #       ${{ runner.os }}-node-
 
-    - name: Setup Node.js
+    - name: Set up Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: 22.11.0
+        node-version: ${{ inputs.node-version }}
+        cache: 'npm'
+        cache-dependency-path: ${{ inputs.working-dir }}/package-lock.json
 
-    - name: Cache node modules
-      uses: actions/cache@v4
-      with:
-        path: ~/.npm
-        key: ${{ runner.os }}-node-${{ hashFiles('website/package-lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-node-
-
-    - name: Install dependencies
+    - name: Install dependencies with NPM
       run: npm ci
-
-    - name: Wait for LibreTranslate
+    
+    - name: Wait for LibreTranslate # Wait for the LibreTranslate service to be ready
       run: |
-        timeout 60 bash -c \
-          'until curl --silent --output /dev/null --write-out "%{http_code}" http://localhost:5000/; do sleep 2; done'
+        timeout 60 bash -c 'until curl --silent --output /dev/null --write-out "%{http_code}" http://localhost:5000/; do sleep 2; done'
 
-    - name: Build Astro site
+    - name: Build with Astro
+      run: npm run build
       env:
         LIBRETRANSLATE: http://localhost:5000/
         PUBLIC_BASE_URL: ${{ vars.PUBLIC_BASE_URL }}
@@ -61,32 +77,11 @@ jobs:
         SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
         SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
         GOOGLE_ANALYTICS_ID: ${{ secrets.GOOGLE_ANALYTICS_ID }}
-      run: npm run build
 
     - name: Upload artifact
       id: upload
       uses: actions/upload-artifact@v4
       with:
-        name: ${{ vars.ARTIFACT_NAME || 'site-dist' }}
-        path: ./website/dist
+        name: ${{ vars.ARTIFACT_NAME }}
+        path: ./dist
         retention-days: 90
-
-  notify:
-    needs: build
-    runs-on: ubuntu-latest
-    environment: discord
-    if: ${{ needs.build.result == 'success' }}
-
-    steps:
-      - name: Send Discord notification
-        uses: stegzilla/discord-notify@v4
-        with:
-          webhook_url: ${{ secrets.BUILD }}
-          username: "GHA build-artifact"
-          title: "Build & Upload Artifact Success"
-          message: |
-            ✅ Build and artifact upload succeeded for **${{ github.repository }}**
-            GHA run: #${{ github.run_number }}
-            Artifact ID: ${{ needs.build.outputs.artifact-id }}
-            Artifact URL: ${{ needs.build.outputs.artifact-url }}
-            Artifact SHA: ${{ needs.build.outputs.artifact-digest }}
