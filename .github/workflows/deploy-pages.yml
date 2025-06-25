@@ -26,7 +26,7 @@ jobs:
     - run: echo "Artifact downloaded path - ${{ steps.download-artifact.outputs.download-path }}"
 
     - name: Move files to dist directory
-      run: mv ${{ vars.ARTIFACT_NAME }}/* dist
+      run: mv ${{ vars.ARTIFACT_NAME }}/* website/dist
 
     - name: Configure GitHub Pages
       uses: actions/configure-pages@v5
@@ -35,7 +35,7 @@ jobs:
       uses: actions/upload-pages-artifact@v3
       with:
         name: ${{ vars.ARTIFACT_NAME }}
-        path: ./dist
+        path: ./website/dist
 
     - name: Deploy to GitHub Pages
       uses: actions/deploy-pages@v4
