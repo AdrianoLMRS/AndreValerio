@@ -1,13 +1,13 @@
-name: Build & Upload
+name: Build & Upload artifact
 
 on:
   workflow_dispatch:
     inputs:
       node-version:
         description: 'Node.js version to use for the build'
-        type: number
+        type: string
         required: false
-        default: 22.11.0
+        default: '22.11.0'
       working-dir:
         description: 'Directory where the Astro project is located'
         type: string
@@ -17,9 +17,9 @@ on:
     inputs:
       node-version:
         description: 'Node.js version to use for the build'
-        type: number
+        type: string
         required: false
-        default: 22.11.0
+        default: '22.11.0'
       working-dir:
         description: 'Directory where the Astro project is located'
         type: string
