@@ -11,14 +11,17 @@ on:
 jobs:
   build:
     uses: ./.github/workflows/build.yml
+    secrets: inherit
 
   clear-artifacts:
     needs: build
     uses: ./.github/workflows/clear-artifacts.yml
+    secrets: inherit
 
   trigger-render:
     needs: build
     uses: ./.github/workflows/trigger-render.yml
+    secrets: inherit
 
   deploy-pages:
     needs: build

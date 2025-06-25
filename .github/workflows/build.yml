@@ -25,6 +25,17 @@ on:
         type: string
         required: false
         default: './website'
+    secrets:
+      YOUTUBE_API_KEY:
+        required: true
+      SPOTIFY_REFRESH_TOKEN:
+        required: true
+      SPOTIFY_CLIENT_ID:
+        required: true
+      SPOTIFY_CLIENT_SECRET:
+        required: true
+      GOOGLE_ANALYTICS_ID:
+        required: true
 
 jobs:
   build:
