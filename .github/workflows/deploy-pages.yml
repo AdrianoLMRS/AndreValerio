@@ -2,15 +2,12 @@ name: Deploy Pages
 
 on:
   workflow_dispatch:
-  workflow_run:
-    workflows: ["Build & Upload artifact"]
-    types: [completed]
+  workflow_call:
 
 jobs:
   deploy-pages:
-    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
-    environment: deploy
     runs-on: ubuntu-latest
+    environment: deploy
     outputs:
       artifact-name: ${{ vars.ARTIFACT_NAME }}
       download-path: ${{ steps.download-artifact.outputs.download-path }}
@@ -24,7 +21,7 @@ jobs:
       id: download-artifact
       with:
         name: ${{ vars.ARTIFACT_NAME }}
-        path: ./${{ vars.ARTIFACT_NAME }}}}
+        path: ./${{ vars.ARTIFACT_NAME }}
 
     - run: echo "Artifact downloaded path - ${{ steps.download-artifact.outputs.download-path }}"
 
@@ -47,23 +44,3 @@ jobs:
         artifact_name: ${{ vars.ARTIFACT_NAME }}
 
     - run: echo "Pages URL - ${{ steps.deploy-pages.outputs.page_url }}"
-
-  notify:
-    needs: deploy-pages
-    runs-on: ubuntu-latest
-    environment: discord
-    if: ${{ needs.deploy-pages.result == 'success' }}
-
-    steps:
-      - name: Send Discord notification
-        uses: stegzilla/discord-notify@v4
-        with:
-          webhook_url: ${{ secrets.DEPLOY_PAGES }}
-          username: "GHA deploy-pages"
-          title: "Deploy Pages Success"
-          message: |
-            ✅ Deploy to Github Pages succeeded for **${{ github.repository }}**
-            - GHA run: #${{ github.run_number }}
-            - Artifact Name: `${{ needs.deploy-pages.outputs.artifact-name }}`
-            - Download Path: `${{ needs.deploy-pages.outputs.download-path }}`
-            - **Pages URL: `${{ needs.deploy-pages.outputs.pages-url }}`**

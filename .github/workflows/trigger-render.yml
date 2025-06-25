@@ -2,40 +2,17 @@ name: Trigger Render Deploy
 
 on:
   workflow_dispatch:
-  workflow_run:
-    workflows: ["Build & Upload artifact"]
-    types: [completed]
+  workflow_call:
 
 jobs:
   trigger-render-deploy:
-    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     environment: deploy
-
     steps:
-      - name: Trigger Render Deploy (API)
-        run: |
-          curl --request POST \
-              --url https://api.render.com/v1/services/${{ secrets.RENDER_SERVICE_ID }}/deploys \
-              --header 'accept: application/json' \
-              --header 'authorization: Bearer ${{ secrets.RENDER_API_KEY }}' \
-              --header 'content-type: application/json' \
-              --data '{"clearCache":"clear", "commitId": "${{ github.sha }}"}'
-
-  notify:
-    needs: trigger-render-deploy
-    runs-on: ubuntu-latest
-    environment: discord
-    if: ${{ needs.trigger-render-deploy.result == 'success' }}
-
-    steps:
-      - name: Send Discord notification
-        uses: stegzilla/discord-notify@v4
-        with:
-          webhook_url: ${{ secrets.DEPLOY_RENDER}}
-          title: "Render Deploy Triggered with API"
-          username: "GHA trigger-render"
-          message: |
-            🚀 Render deploy triggered successfully for **${{ github.repository }}**  
-            • Commit: `${{ github.sha }}`  
-            • Run: #${{ github.run_number }}
+    - run: |
+        curl -X POST \
+          https://api.render.com/v1/services/${{ secrets.RENDER_SERVICE_ID }}/deploys \
+          -H "accept: application/json" \
+          -H "authorization: Bearer ${{ secrets.RENDER_API_KEY }}" \
+          -H "content-type: application/json" \
+          -d '{"clearCache":"clear","commitId":"'"${{ github.sha }}"'"}'
