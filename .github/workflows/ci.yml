@@ -26,6 +26,11 @@ jobs:
   deploy-pages:
     needs: build
     uses: ./.github/workflows/deploy-pages.yml
+    # Permissions for Deploy Pages
+    permissions:
+      id-token: write
+      contents: read
+      pages: write
 
   notify-build:
     needs: build
