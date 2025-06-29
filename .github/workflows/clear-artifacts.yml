@@ -3,6 +3,10 @@ name: Clear old artifacts
 on:
   workflow_dispatch:
   workflow_call:
+    outputs:
+      result:
+        description: "Result of the cleanup job"
+        value: ${{ jobs.cleanup.outputs.result }}
 
 jobs:
   cleanup:

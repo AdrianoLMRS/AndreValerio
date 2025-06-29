@@ -36,6 +36,16 @@ on:
         required: true
       GOOGLE_ANALYTICS_ID:
         required: true
+    outputs:
+      artifact-id:
+        description: "ID of the uploaded artifact"
+        value: ${{ jobs.build.outputs.artifact-id }}
+      artifact-url:
+        description: "URL of the uploaded artifact"
+        value: ${{ jobs.build.outputs.artifact-url }}
+      artifact-digest:
+        description: "SHA256 digest of the uploaded artifact"
+        value: ${{ jobs.build.outputs.artifact-digest }}
 
 jobs:
   build:
