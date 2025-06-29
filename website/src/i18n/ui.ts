@@ -1,19 +1,7 @@
+import { type LanguageCode } from './constants';
+
 // Translation file in .json format (generated w/ LibreTranslate), check: ./translate.js
 const modules = import.meta.glob('./locales/*.json', { eager: true });
-
-export const languages = {
-    en: 'English',
-    pt: 'Português',
-    'pt-BR': 'Português (Brasil)',
-    es: 'Español',
-    fr: 'Français',
-    de: 'Deutsch',
-    it: 'Italiano',
-} as const;
-
-export type LanguageCode = keyof typeof languages;
-
-export const locales: LanguageCode[] = Object.keys(languages) as LanguageCode[];
 
 // This function flattens a nested object into a single-level object with dot notation for keys.
 // e.g: { a: { b: 'c' } } becomes { 'a.b': 'c' }
@@ -27,8 +15,6 @@ function flatten(obj: Record<string, string>, prefix = ''): Record<string, strin
 // This function normalizes the language code by removing the './locales/' prefix and '.json' suffix
 // e.g: './locales/en.json' becomes 'en' and './locales/pt-BR.json' becomes 'pt-BR'.
 export const normalize = (code: string): LanguageCode => code.replace('./locales/', '').replace('.json', '') as LanguageCode;
-
-export const defaultLang: LanguageCode = 'en';
 
 export const ui = Object.entries(modules).reduce((acc, [path, mod]) => {
     const langCode = normalize(path);

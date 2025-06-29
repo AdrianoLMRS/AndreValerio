@@ -10,7 +10,8 @@ import playformCompress from '@playform/compress';
 import i18nPrebuild from './src/integrations/i18n';
 import YTfetchIntegration from './src/integrations/fetch-videos';
 
-import { locales, defaultLang, normalize } from './src/i18n/ui';
+import { locales, defaultLang } from './src/i18n/constants';
+import { normalize } from './src/i18n/ui';
 
 // * Config
 export default defineConfig({

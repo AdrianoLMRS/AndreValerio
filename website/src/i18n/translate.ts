@@ -19,7 +19,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const basePath = path.resolve(__dirname, './locales/');
 
-import { locales, defaultLang } from './ui.ts';
+import { locales, defaultLang } from './constants.ts';
 
 const baseLang = defaultLang;
 const targetLangs = locales;
