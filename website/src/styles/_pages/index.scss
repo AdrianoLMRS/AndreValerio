@@ -2,6 +2,9 @@
 @use "@styles/mixins" as m;
 @use "@styles/animations" as a;
 
+:global(font) {
+    display: contents;
+}
 
 main {
     $children-gap: 50px;
@@ -46,21 +49,21 @@ main {
 
             .author {
                 // TODO: box-shadow/text-shadow text CSS
-                opacity: 0; // Only appears after animation
+                opacity: .9;
                 width: fit-content;
-                position: absolute;
+                position: relative;
                 z-index: 2;
                 font-size: clamp(2.5rem, 3vw, 3.5rem);
-                bottom: 20%;
+                bottom: 40%;
                 left: clamp(30px, 10%, 500px);
 
                 @media only screen and (max-width: v.$breakpoint-sx) {
                     opacity: 0.8;
-                    margin-top: clamp(100px, 17.5%, 400px);
                     text-align: center;
-                    bottom: initial !important;
-                    @include m.center(absolute);
+                    bottom: 50%;
+                    left: 0;
                 }
+                @include a.slide-in($duration: 700ms);
             }
 
             & :global(span.author-job) {
@@ -73,12 +76,6 @@ main {
             & :global(div.animated.visible) {
                 .author {
                     @include a.slide-in($duration: 700ms);
-                }
-            }
-
-            & :global(div.animated.rendered.visible) {
-                .author {
-                    @include a.slide-in($duration: 700ms);  opacity: 1 !important;
                 }
             }
 

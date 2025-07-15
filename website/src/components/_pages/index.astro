@@ -51,11 +51,7 @@ const { intro } = Imgs.videos;
                 </div>
             </div>
             
-            <div class="paralax__hero">
-                <ScrollAnimation client:load repeat={true} >
-                    <AuthorHeader headingLevel={2} hideJob={false} data-style="presentation-header" id='header-top' />
-                </ScrollAnimation>
-            </div>
+            <AuthorHeader headingLevel={2} hideJob={false} data-style="presentation-header" id='header-top' />
 
             {/*
                 <style lang="scss" is:global> @forward "@styles/_components/Paralax.scss"; </style>
