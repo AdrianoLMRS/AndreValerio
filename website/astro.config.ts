@@ -7,11 +7,7 @@ import purgecss from 'astro-purgecss';
 import playformCompress from '@playform/compress';
 
 // * My integrations
-import i18nPrebuild from './src/integrations/i18n';
 import YTfetchIntegration from './src/integrations/fetch-videos';
-
-import { locales, defaultLang } from './src/i18n/constants';
-import { normalize } from './src/i18n/ui';
 
 // * Config
 export default defineConfig({
@@ -37,14 +33,7 @@ export default defineConfig({
     experimental: {
         responsiveImages: true,
     },
-    i18n: {
-        locales: locales,
-        defaultLocale: normalize(defaultLang),
-        routing: {
-            fallbackType: 'redirect',
-        },
-    },
-    integrations: [YTfetchIntegration(), i18nPrebuild(), react(), sitemap(), playformInline(), purgecss({
+    integrations: [YTfetchIntegration(), react(), sitemap(), playformInline(), purgecss({
         fontFace: true,
         keyframes: true,
         rejected: true,

@@ -1,13 +1,11 @@
-import { getRelativeLocaleUrl } from 'astro:i18n';
-
 const Pages = {
-    home: getRelativeLocaleUrl('en', '/'),
-    about: getRelativeLocaleUrl('en', '/about'),
-    songs: getRelativeLocaleUrl('en', '/songs'),
-    videos: getRelativeLocaleUrl('en', '/videos'),
-    contact: getRelativeLocaleUrl('en', '/contact'),
-    shop: getRelativeLocaleUrl('en', '/shop'),
-    teach: getRelativeLocaleUrl('en', '/lessons'),
+    home: '/',
+    about: '/about',
+    songs: '/songs',
+    videos: '/videos',
+    contact: '/contact',
+    shop: '/shop',
+    teach: '/lessons',
     social: {
         site: 'https://andrevalerio.com',
         linktree: 'https://linktr.ee/andrevalerioguitar',
