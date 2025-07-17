@@ -75,7 +75,7 @@ export default function Header({ anime = false, logo, social, scrollPosition = 9
                                 ariaLabel="Home"
                                 toggleMenu={handleLink} // For Open/Closing Navbar
                             >
-                                Home
+                                <span translate='no'>Home</span>
                             </UrlLink>
                             <hr />
                             <UrlLink

@@ -2,9 +2,7 @@
 @use "@styles/mixins" as m;
 @use "@styles/animations" as a;
 
-:global(font) {
-    display: contents;
-}
+
 
 main {
     $children-gap: 50px;

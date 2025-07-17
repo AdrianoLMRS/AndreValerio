@@ -30,8 +30,8 @@ export default defineConfig({
             },
         },
     },
-    experimental: {
-        responsiveImages: true,
+    image: {
+        responsiveStyles: true,
     },
     integrations: [YTfetchIntegration(), react(), sitemap(), playformInline(), purgecss({
         fontFace: true,
