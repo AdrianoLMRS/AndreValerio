@@ -54,11 +54,6 @@ jobs:
     defaults:
       run:
         working-directory: ${{ inputs.working-dir }}
-    services:
-      libretranslate:
-        image: libretranslate/libretranslate:latest
-        ports: ['5000:5000']
-        options: --env LT_LOAD_ONLY=en,pt,pt-br,de,fr,es,it
     timeout-minutes: 20
     outputs:
       artifact-id: ${{ steps.upload.outputs.artifact-id }}
@@ -83,15 +78,10 @@ jobs:
 
     - name: Install dependencies with NPM
       run: npm ci
-    
-    - name: Wait for LibreTranslate # Wait for the LibreTranslate service to be ready
-      run: |
-        timeout 60 bash -c 'until curl --silent --output /dev/null --write-out "%{http_code}" http://localhost:5000/; do sleep 2; done'
 
     - name: Build with Astro
       run: npm run build
       env:
-        LIBRETRANSLATE: http://localhost:5000/
         PUBLIC_BASE_URL: ${{ vars.PUBLIC_BASE_URL }}
         YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
         SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
