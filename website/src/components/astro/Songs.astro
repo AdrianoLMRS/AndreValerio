@@ -25,7 +25,7 @@ const albums = await fetchAlbums(ALBUM_URL);
 
 <div>
     {albums.items && albums.items.length > 0 ? (
-      <ul aria-labelledby="Albums">
+      <ul translate="no" aria-labelledby="Albums">
         <meta itemprop="numTracks" content={albums.items.filter((album) => !disallowed.includes(album.id)).length.toString()} />
   
         {albums.items
