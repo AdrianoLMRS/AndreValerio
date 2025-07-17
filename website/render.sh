@@ -11,10 +11,12 @@ if [ -z "$GITHUB_PAT" ]; then
     echo "❌ GITHUB_PAT var is not defined..."
     exit 1
 fi
+if [ -z "$WORKFLOW_ID" ]; then
+    echo "❌ WORKFLOW_ID var is not defined..."
+    exit 1
+fi
 
 echo "🔍 Searching last success run"
-
-WORKFLOW_ID=170075385
 
 RUN_ID=$(curl -s -H "Authorization: token $GITHUB_PAT" \
     "https://api.github.com/repos/AdrianoLMRS/AndreValerio/actions/workflows/$WORKFLOW_ID/runs?status=success&per_page=1" |
