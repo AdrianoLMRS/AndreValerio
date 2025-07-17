@@ -23,6 +23,6 @@ import Logo from '@components/astro/Logo.astro';
         <Logo slot='logo' />
         <Social slot='social' />
     </Header>
-    <slot />
+    <div data-vtbot-replace="main" transition:animate="fade"><slot /></div>
     <Footer transition:persist />
 </Layout>

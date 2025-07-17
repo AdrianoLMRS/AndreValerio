@@ -31,6 +31,7 @@
     "astro-purgecss": "^5.2.2",
     "astro-seo": "^0.8.4",
     "astro-seo-schema": "^5.0.0",
+    "astro-vtbot": "^2.1.6",
     "dotenv": "^16.5.0",
     "purgecss": "^7.0.2",
     "react": "^19.0.0",
