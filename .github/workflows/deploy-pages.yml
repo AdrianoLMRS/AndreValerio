@@ -39,8 +39,8 @@ jobs:
     - name: Download artifact - ${{ env.PAGES_ARTIFACT_NAME }}
       uses: actions/download-artifact@v4
       with:
-        run-id: ${{ github.event.workflow_run.id }}
-        name: ${{ env.PAGES_ARTIFACT_NAME }}
+        # run-id: ${{ github.event.workflow_run.id }}
+        artifact-ids: ${{ needs.build-pages.outputs.artifact-id }}
         path: ./${{ env.PAGES_ARTIFACT_NAME }}
 
     - name: Move files to dist directory
