@@ -16,6 +16,7 @@ on:
 
 env:
   PAGES_ARTIFACT_NAME: 'pages-artifact'
+  NEXT_PAGES_ARTIFACT_NAME: 'prod-pages-artifact'
 
 jobs:
   # Build & Upload artifact for Pages
@@ -50,13 +51,13 @@ jobs:
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          name: ${{ env.PAGES_ARTIFACT_NAME }}
+          name: ${{ env.NEXT_PAGES_ARTIFACT_NAME }}
           path: ./dist
 
       - name: Deploy to GitHub Pages
         id: deploy
         uses: actions/deploy-pages@v4
         with:
-          artifact_name: ${{ env.PAGES_ARTIFACT_NAME }}
+          artifact_name: ${{ env.NEXT_PAGES_ARTIFACT_NAME }}
 
       - run: echo "Pages URL = ${{ steps.deploy.outputs.page_url }}"
