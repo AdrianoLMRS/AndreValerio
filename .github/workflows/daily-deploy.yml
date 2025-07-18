@@ -5,9 +5,16 @@ on:
     - cron: '0 0 * * *'  # Runs daily at 00:00 UTC
   workflow_dispatch:     # Allows manual triggering of the workflow
 
+# Need this for ci.yml
+permissions:
+  contents: read
+  id-token: write
+  pages: write
+
 jobs:
   ci:
     uses: ./.github/workflows/ci.yml
+    secrets: inherit
 
   notify-success:
     needs: ci
