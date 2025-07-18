@@ -6,6 +6,7 @@ on:
       - main
       - internationalization
   workflow_dispatch:
+  workflow_call:  # Allow calling from another workflow (daily-deploy.yml)
   pull_request:
 
 jobs:

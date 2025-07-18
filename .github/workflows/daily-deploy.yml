@@ -6,33 +6,5 @@ on:
   workflow_dispatch:     # Allows manual triggering of the workflow
 
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    environment: Main
-    outputs:
-      status: ${{ steps.render_deploy.outputs.status }}
-
-    steps:
-      - name: Trigger Render Deploy
-        id: render_deploy
-        env:
-          RENDER_HOOK: ${{ secrets.RENDER_DEPLOY_HOOK }}
-        run: |
-          response=$(curl -s -o /dev/null -w "%{http_code}" -X POST "$RENDER_HOOK")
-          echo "status=$response" >> $GITHUB_OUTPUT
-
-  notify:
-    needs: deploy
-    runs-on: ubuntu-latest
-    environment: discord
-    if: always()
-
-    steps:
-      - name: Send Discord notification
-        uses: stegzilla/discord-notify@v4
-        with:
-          webhook_url: ${{ secrets.DEPLOY_DAILY }}
-          title: "Daily Render Deploy"
-          username: "GHA daily-deploy"
-          message: |
-            ${{ needs.deploy.outputs.status == '200' && '✅ Render deploy triggered successfully (Daily Deploy).' || format('❌ Failed to trigger Render deploy (Daily Deploy).\nHTTP Status: {0}', needs.deploy.outputs.status) }}
+  ci:
+    uses: ./.github/workflows/ci.yml
