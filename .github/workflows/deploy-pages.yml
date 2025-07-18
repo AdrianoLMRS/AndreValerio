@@ -23,7 +23,7 @@ jobs:
     uses: ./.github/workflows/build.yml
     with:
       build-command: 'npm run build:pages'
-      artifact-name: '$PAGES_ARTIFACT_NAME'
+      artifact-name: 'pages-artifact'
     secrets: inherit
 
   deploy-pages:
@@ -44,7 +44,7 @@ jobs:
         path: ./${{ env.PAGES_ARTIFACT_NAME }}
 
     - name: Move files to dist directory
-      run: mkdir -p dist && mv ${{ env.PAGES_ARTIFACT_NAME }} }}/* dist
+      run: mkdir -p dist && mv ${{ env.PAGES_ARTIFACT_NAME }}/* dist
 
     - name: Configure GitHub Pages
       uses: actions/configure-pages@v5
