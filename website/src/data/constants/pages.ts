@@ -1,5 +1,5 @@
 const Pages = {
-    home: '/#',
+    home: '/',
     about: '/about',
     songs: '/songs',
     videos: '/videos',

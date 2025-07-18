@@ -1,0 +1,60 @@
+name: Deploy Pages
+
+on:
+  workflow_dispatch:
+  workflow_call:
+    outputs:
+      artifact-name:
+        description: "Artifact name used for deployment"
+        value: ${{ jobs.deploy-pages.outputs.artifact-name }}
+      download-path:
+        description: "Path where the artifact was downloaded"
+        value: ${{ jobs.deploy-pages.outputs.download-path }}
+      pages-url:
+        description: "Github Pages complete URL"
+        value: ${{ jobs.deploy-pages.outputs.pages-url }}
+
+env:
+  PAGES_ARTIFACT_NAME: 'pages-artifact'
+
+jobs:
+  deploy-pages:
+    runs-on: ubuntu-latest
+    environment: deploy
+    outputs:
+      artifact-name: ${{ vars.ARTIFACT_NAME }}
+      download-path: ${{ steps.download-artifact.outputs.download-path }}
+      pages-url: ${{ steps.deploy-pages.outputs.page_url}}
+
+    steps:
+    - uses: actions/checkout@v4 # required to config pages
+
+    - name: Download artifact - ${{ vars.ARTIFACT_NAME }}
+      uses: actions/download-artifact@v4
+      id: download-artifact
+      with:
+        run-id: ${{ github.event.workflow_run.id }}
+        name: ${{ vars.ARTIFACT_NAME }}
+        path: ./${{ vars.ARTIFACT_NAME }}
+
+    - run: echo "Artifact downloaded path - ${{ steps.download-artifact.outputs.download-path }}"
+
+    - name: Move files to dist directory
+      run: mkdir -p dist && mv ${{ vars.ARTIFACT_NAME }}/* dist
+
+    - name: Configure GitHub Pages
+      uses: actions/configure-pages@v5
+
+    - name: Upload artifact to GitHub Pages
+      uses: actions/upload-pages-artifact@v3
+      with:
+        name: ${{ env.PAGES_ARTIFACT_NAME }}
+        path: ./dist
+
+    - name: Deploy to GitHub Pages
+      uses: actions/deploy-pages@v4
+      id: deploy-pages
+      with:
+        artifact_name: ${{ env.PAGES_ARTIFACT_NAME }}
+
+    - run: echo "Pages URL - ${{ steps.deploy-pages.outputs.page_url }}"

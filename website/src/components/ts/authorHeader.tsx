@@ -1,6 +1,6 @@
 import React from 'react';
-import { author } from '@data/author';
-import Pages from '@data/pages';
+import { author } from '@data/constants/author';
+import Pages from '@data/constants/pages';
 import { navigate } from 'astro:transitions/client'; // For Astro view transition
 
 const name: string = author.name;

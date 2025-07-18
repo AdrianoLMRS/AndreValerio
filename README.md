@@ -163,6 +163,10 @@ Some strategies applied for [SEO][SEO] were:
 
 </details>
 
+## Internationalization
+
+Using [**GTranslate Widget**](https://gtranslate.io/website-translator-widget/ "Gtranslate Widget official page").  [See more][internationalization-pr]
+
 ## About - [André Valério][2]
 
 A little bit [about André Valério][about]
@@ -209,6 +213,7 @@ For me, the difference was the way I was able to have absolute control over what
 [github-actions]: https://github.com/features/actions "Github Actions"
 [github-pages]: https://pages.github.com/ "Github Pages"
 [Commit-prebuild]: https://github.com/AdrianoLMRS/AndreValerio/commit/8e96b849d779791bc017610896c1febb69537c02#diff-3d62ff5b75ea06afd756cd96c43165f01b0251a7f253227fef99b35bbd0e5befR1 "fetch-videos.js file commit"
+[internationalization-pr]: https://github.com/AdrianoLMRS/AndreValerio/pull/4 "Internationalization PR"
 <!-- Others -->
 [SEO]: https://developers.google.com/search/docs/fundamentals/seo-starter-guide "What is SEO - Google"
 [react]: https://react.dev/ "React framework"

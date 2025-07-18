@@ -1,5 +1,5 @@
 ---
-import Pages from "@data/pages";
+import Pages from "@data/constants/pages";
 ---
 
 <p
@@ -17,8 +17,8 @@ import Pages from "@data/pages";
     <strong itemprop="passion">passion for teaching</strong>. A key figure in Canada’s 
     <span itemprop="genre">jazz</span> and 
     <strong itemprop="genre">Brazilian music</strong> scenes, he performs with 
-    <strong itemprop="band">award-winning group Tio Chorinho</strong> and leads the cross-cultural 
-    <strong itemprop="band">Ona Ensemble</strong>.
+    <strong itemprop="band">award-winning group</strong> <strong translate="no">Tio Chorinho</strong> and leads the cross-cultural 
+    <strong translate="no" itemprop="band">Ona Ensemble</strong>.
     Whether on stage, in the studio, or in the classroom, 
     <span itemprop="name">André</span> brings 
     <strong itemprop="skills">warmth</strong>, 
@@ -29,7 +29,7 @@ import Pages from "@data/pages";
 </p>
 
 <style lang="scss" is:global >
-$mark_quantity: 15; // Number of <strong> elements to animate
+$mark_quantity: 16; // Number of <strong> elements to animate
 $color: var(--secondary-color, black);
 
 @keyframes highlight {

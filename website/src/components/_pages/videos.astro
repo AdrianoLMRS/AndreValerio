@@ -1,14 +1,14 @@
 ---
 import Apresentation from "@components/astro/Apresentation.astro"
 
-import Imgs from '@data/imgs';
-import { author } from '@data/author';
+import Imgs from '@data/constants/imgs';
+import { author } from '@data/constants/author';
 
 // Youtube
 import YoutubeEmbed from "@components/ts/spotifyEmbed.tsx"
 
-import rawVideos from '@data/videos.json';
-import rawFeaturedVideos from '@data/featuredVideos.json';
+import rawVideos from '@data/json/videos.json'
+import rawFeaturedVideos from '@data/json/featuredVideos.json';
 
 const videos: { id: string; title: string }[] = rawVideos.map(({ id, title }) => ({ id, title }));
 const featuredVideos: { id: string; title: string }[] = rawFeaturedVideos.map(({ id, title }) => ({ id, title }));

@@ -5,17 +5,18 @@ services:
     name: AndreValerio
     runtime: static
     repo: https://github.com/AdrianoLMRS/AndreValerio
-    buildCommand: npm run build
-    staticPublishPath: dist
     rootDir: website
+    buildCommand: npm run render # Get GHA /dist artifact
+    staticPublishPath: dist
+    autoDeployTrigger: off
+    domains:
+      - andrevalerio.com
+      - www.andrevalerio.com
+    buildFilter:
+      paths:
+        - ignore_all
     envVars:
-      - key: SPOTIFY_ACCESS
+      - key: GITHUB_PAT
         sync: false
-      - key: SPOTIFY_CLIENT_SECRET
-        sync: false
-      - key: SPOTIFY_CLIENT_ID
-        sync: false
-      - key: SPOTIFY_REFRESH_TOKEN
-        sync: false
-      - key: PUBLIC_BASE_URL
-        sync: false
+      - key: SKIP_INSTALL_DEPS # Skip installing node_modules
+        value: true

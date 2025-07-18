@@ -19,10 +19,10 @@ import Logo from '@components/astro/Logo.astro';
 ---
 
 <Layout seo={seo} schema={schema} >
-    <Header anime={headerAnime || true} scrollPosition={scrollPosition || 450} client:load transition:persist-props >
+    <Header anime={headerAnime || true} scrollPosition={scrollPosition || 450} client:load >
         <Logo slot='logo' />
         <Social slot='social' />
     </Header>
     <slot />
-    <Footer transition:persist />
+    <Footer />
 </Layout>

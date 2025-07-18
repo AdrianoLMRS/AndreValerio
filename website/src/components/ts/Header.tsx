@@ -4,7 +4,7 @@ import { useMediaQuery } from '@hooks/useMediaQuery';
 import { handleScroll } from '@utils/handleScroll';
 import { getCssVariable } from '@utils/getCssVariable';
 import lockScroll from '@utils/lockScroll';
-import Pages from '@data/pages';
+import Pages from '@data/constants/pages';
 import AuthorHeader from '@components/ts/authorHeader';
 import UrlLink from '@components/nav/urlLink';
 import NavBtn from '@components/nav/navBtn';
@@ -75,7 +75,7 @@ export default function Header({ anime = false, logo, social, scrollPosition = 9
                                 ariaLabel="Home"
                                 toggleMenu={handleLink} // For Open/Closing Navbar
                             >
-                                Home
+                                <span translate='no'>Home</span>
                             </UrlLink>
                             <hr />
                             <UrlLink
