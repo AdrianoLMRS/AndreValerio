@@ -25,6 +25,15 @@ on:
         type: string
         required: false
         default: './website'
+      build-command:
+        description: 'Command to run for building the Astro project'
+        type: string
+        required: false
+        default: 'npm run build'
+      artifact-name:
+        description: 'Name of the artifact to be uploaded'
+        type: string
+        required: false
     secrets:
       YOUTUBE_API_KEY:
         required: true
@@ -80,7 +89,7 @@ jobs:
       run: npm ci
 
     - name: Build with Astro
-      run: npm run build
+      run: ${{ inputs.build-command }}
       env:
         PUBLIC_BASE_URL: ${{ vars.PUBLIC_BASE_URL }}
         YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
@@ -93,6 +102,6 @@ jobs:
       id: upload
       uses: actions/upload-artifact@v4
       with:
-        name: ${{ vars.ARTIFACT_NAME }}
+        name: ${{ inputs.artifact-name || vars.ARTIFACT_NAME }}
         path: ./website/dist
         retention-days: 90

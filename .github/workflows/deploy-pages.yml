@@ -18,38 +18,36 @@ env:
   PAGES_ARTIFACT_NAME: 'pages-artifact'
 
 jobs:
+  # Build & Upload artifact for Pages
+  build-pages:
+    uses: ./.github/workflows/build.yml
+    with:
+      build-command: 'npm run build:pages'
+      artifact-name: '$PAGES_ARTIFACT_NAME'
+    secrets: inherit
+
   deploy-pages:
+    needs: build-pages
     runs-on: ubuntu-latest
     environment: deploy
     outputs:
-      artifact-name: ${{ vars.ARTIFACT_NAME }}
-      download-path: ${{ steps.download-artifact.outputs.download-path }}
+      artifact-name: ${{ env.PAGES_ARTIFACT_NAME }}
+      download-path: ${{ needs.build-pages.outputs.artifact-url }}
       pages-url: ${{ steps.deploy-pages.outputs.page_url}}
 
     steps:
-    - uses: actions/checkout@v4 # required to config pages
-
-    - name: Download artifact - ${{ vars.ARTIFACT_NAME }}
+    - name: Download artifact - ${{ env.PAGES_ARTIFACT_NAME }}
       uses: actions/download-artifact@v4
-      id: download-artifact
       with:
         run-id: ${{ github.event.workflow_run.id }}
-        name: ${{ vars.ARTIFACT_NAME }}
-        path: ./${{ vars.ARTIFACT_NAME }}
-
-    - run: echo "Artifact downloaded path - ${{ steps.download-artifact.outputs.download-path }}"
+        name: ${{ env.PAGES_ARTIFACT_NAME }}
+        path: ./${{ env.PAGES_ARTIFACT_NAME }}
 
     - name: Move files to dist directory
-      run: mkdir -p dist && mv ${{ vars.ARTIFACT_NAME }}/* dist
+      run: mkdir -p dist && mv ${{ env.PAGES_ARTIFACT_NAME }} }}/* dist
 
     - name: Configure GitHub Pages
       uses: actions/configure-pages@v5
-
-    - name: Upload artifact to GitHub Pages
-      uses: actions/upload-pages-artifact@v3
-      with:
-        name: ${{ env.PAGES_ARTIFACT_NAME }}
-        path: ./dist
 
     - name: Deploy to GitHub Pages
       uses: actions/deploy-pages@v4

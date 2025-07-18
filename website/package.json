@@ -6,7 +6,7 @@
     "dev": "astro dev",
     "dev:watch": "nodemon --watch src --watch components --ext astro,js,ts,jsx,tsx,json,md --exec astro dev",
     "build": "astro build",
-    "build:render": "bash ./build-render.sh",
+    "build:pages": "astro build --site https://adrianolmrs.github.io/AndreValerio",
     "preview": "astro preview",
     "astro": "astro",
     "lint": "eslint .",

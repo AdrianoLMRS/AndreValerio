@@ -1,4 +1,5 @@
 import { defineConfig } from 'astro/config';
+import { loadEnv } from 'vite';
 // * Astro Integrations
 import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
