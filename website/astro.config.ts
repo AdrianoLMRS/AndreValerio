@@ -1,11 +1,11 @@
 import { defineConfig } from 'astro/config';
-import { loadEnv } from 'vite';
 // * Astro Integrations
 import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 import playformInline from '@playform/inline';
 import purgecss from 'astro-purgecss';
 import playformCompress from '@playform/compress';
+import robotsTxt from 'astro-robots-txt';
 
 // * My integrations
 import YTfetchIntegration from './src/integrations/fetch-videos';
@@ -45,7 +45,7 @@ export default defineConfig({
             ]
         }
         // safelist: ['playform-inline', 'playform-inline-iframe', 'playform-inline-iframe-container', 'playform-inline-iframe-container--loading', 'playform-inline-iframe-container--loaded', 'playform-inline-iframe-container--error'],
-    }), playformCompress()],
+    }), playformCompress(), robotsTxt()],
     prefetch: {
         prefetchAll: true,
     },
