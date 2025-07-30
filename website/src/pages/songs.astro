@@ -16,7 +16,7 @@ const Shared = {
     title: `Songs & Albums – ${author.name}`,
     description: `Explore the music of ${author.name}, including his latest songs and albums.`,
     url: `${import.meta.env.SITE}${Pages.songs}`,
-    image: Imgs.local.banner4.url,
+    image: Imgs.local.banner4.src,
 };
 
 const spotifyURL = `https://api.spotify.com/v1/artists/${author.spotifyId}/albums?include_groups=single,album,appears_on&limit=10`;

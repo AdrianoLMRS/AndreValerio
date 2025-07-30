@@ -41,19 +41,19 @@ const seo: seoProps = {
         creator: `${Pages.social.arroba.twitter}`,
         title: Shared.title,
         description: Shared.description,
-        image: Banner.url,
+        image: Banner.src,
         imageAlt: `${author.name} official banner`,
     },
     openGraph: {
         basic: {
             title: Shared.title,
             url: `${import.meta.env.SITE}`,
-            image: Banner.url.toString(),
+            image: Banner.src.toString(),
             type: 'website',
         },
         image: {
-            url: Banner.url,
-            secureUrl: Banner.url,
+            url: Banner.src,
+            secureUrl: Banner.src,
             alt: `${author.name} official banner`,
             type: `image/${Banner.format}`,
             width: Number(Banner.width),
