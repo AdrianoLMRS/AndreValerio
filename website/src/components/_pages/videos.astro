@@ -1,7 +1,8 @@
 ---
 import Apresentation from "@components/astro/Apresentation.astro"
 
-import Imgs from '@data/constants/imgs';
+import Banner3 from '@assets/img/Banner-3.webp';
+
 import { author } from '@data/constants/author';
 
 // Youtube
@@ -19,12 +20,13 @@ const style = { height1: '315', height2: '100%', width: '100%' };
 <main
 
 >
-    <Apresentation src={Imgs.cdn.banner3} alt={`${author.name} (Banner) 3`} html={`Videos & Movies`} />
+    <Apresentation src={Banner3} alt={`${author.name} (Banner) 3`} html={`Videos & Movies`} />
     <section
         class="videos"
         id="videos"
+        aria-labelledby="videos-header"
     >
-        <h2>Videos & Movies</h2>
+        <h2 id="videos-header">Videos & Movies</h2>
         <p>Explore a collection of videos and movies featuring {author.name}.</p>
 
         <section class="featured" id="featured" >

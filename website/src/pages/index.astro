@@ -10,6 +10,7 @@ import { formatAlbums } from "@utils/Album";
 // * Data & Types
 import Pages from '@data/constants/pages';
 import Imgs from '@data/constants/imgs';
+import Picture from '@assets/img/Andre-valerio.jpg';
 import { author } from '@data/constants/author';
 import type { Props as seoProps } from "astro-seo";
 
@@ -76,7 +77,7 @@ const schema = {
         name: `${author.name}`,
         alternateName: `${author.altName}`,
         url: import.meta.env.SITE,
-        image: `${Imgs.cdn.pic}`,
+        image: `${new URL(Picture.src, import.meta.env.SITE)}`,
         jobTitle: author.job,
         genre: author.musicGenre,
         sameAs: Object.entries(Pages.social)

@@ -4,6 +4,7 @@ import { Image } from "astro:assets";
 import Apresentation from "@components/astro/Apresentation.astro"
 
 import Imgs from '@data/constants/imgs';
+import Banner2 from '@assets/img/Banner-2.webp';
 import { author } from '@data/constants/author';
 import Pages from "@data/constants/pages";
 
@@ -43,8 +44,6 @@ const contacts = [
     },
 ];
 
-
-
 ---
 
 
@@ -53,12 +52,13 @@ const contacts = [
     itemscope
     itemid={Pages.contact}
 >
-    <Apresentation src={Imgs.cdn.banner2} alt={`${author.name} (Banner) 2`} html={`Get in touch!`} />
+    <Apresentation src={Banner2} alt={`${author.name} (Banner) 2`} html={`Get in touch!`} />
     <section
         class="social"
         id="social"
+        aria-labelledby="contact-header"
     >
-        <h2>Contact me</h2>
+        <h2 id="contact-header">Contact me</h2>
         <p>Feel free to reach out to me via email or social media. I would love to hear from you!</p>
         <hr>
         <ul class="social-list">
@@ -78,9 +78,10 @@ const contacts = [
     <section
         class="mail"
         id="mail"
+        aria-labelledby="form-header"
     >
 
-        <h3 style="padding-bottom: 20px;" >Send message</h3>
+        <h3 id="form-header" style="padding-bottom: 20px;" >Send message</h3>
         <form class="mail-form" action={formSubmitUrl} method="POST">
             <label for="name">Name <small>(required)</small></label>
             <input type="text" name="name" placeholder="Name" id="name" required>

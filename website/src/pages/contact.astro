@@ -2,6 +2,7 @@
 import { author } from '@data/constants/author';
 import Pages from '@data/constants/pages';
 import Imgs from '@data/constants/imgs';
+import Picture from '@assets/img/Andre-valerio.jpg';
 
 // * Components
 import Layout from '@layouts/Normal.astro';
@@ -64,7 +65,7 @@ const schema = {
             '@type': 'Person',
             name: author.name,
             alternateName: author.altName,
-            image: Imgs.cdn.pic,
+            image: new URL(Picture.src, import.meta.env.SITE),
             sameAs: Object.entries(Pages.social)
                 .filter(([k]) => k !== 'arroba')
                 .map(([, v]) => v),

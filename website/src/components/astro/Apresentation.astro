@@ -9,19 +9,17 @@ import { Picture } from 'astro:assets';
     id="apresentation"
     itemscope
     itemtype="https://schema.org/CreativeWork"
-    aria-labelledby="apresentation-heading"
-    aria-label="apresentation-heading"
+    aria-labelledby="apresentation-header"
 >
     <div class="wrapper">
         <div class="overlay" aria-hidden="true" />
-        <h2 set:html={html} />
+        <h2 id="apresentation-header" set:html={html} />
         <Picture
             src={src}
             alt={alt}
             fit="cover"
             layout="full-width"
             priority
-            inferSize
         />
     </div>
 <section/>

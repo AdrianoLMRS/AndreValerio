@@ -5,7 +5,7 @@ import Apresentation from '@components/astro/Apresentation.astro';
 
 // * Data
 import { author } from '@data/constants/author';
-import Imgs from '@data/constants/imgs';
+import Banner4 from '@assets/img/Banner-4.webp';
 
 import { getSpotifyToken } from '@utils/Spotify';
 
@@ -17,19 +17,16 @@ const data = await fetch(`${spotifyURL}`, {
 const disallowed : string[] = ["6gVncgomPUoXXQHvWzpRT0"]
 const { items } = await data.json();
 
-// console.debug(items);
-console.debug(Imgs.local.banner3.url.href)
-
 ---
 
 <main
     itemprop="mainEntity" itemscope
 >
-    <Apresentation src={Imgs.cdn.banner4} alt={`${author.name} (Banner) 4`} html={`Songs & Albums`} />
+    <Apresentation src={Banner4} alt={`${author.name} (Banner) 4`} html={`Songs & Albums`} />
     <section
-        class="latest" id="latest"
+        class="latest" id="latest" aria-labelledby="latest-header"
     >
-        <h2>Latest Albums</h2>
+        <h2 id="latest-header">Latest Albums</h2>
         <p>Explore the latest albums and singles from {author.name}. Discover new music and enjoy the latest releases.</p>
         <div class="albums-wrapper">
             {items.length > 0 ? (

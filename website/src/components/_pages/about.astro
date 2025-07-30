@@ -5,7 +5,9 @@ import Apresentation from "@components/astro/Apresentation.astro";
 import AboutP from "@components/astro/aboutP.astro"
 import ScrollAnimation from "@components/ts/scrollAnimation";
 
-import Imgs from '@data/constants/imgs';
+import Banner from '@assets/img/Banner.webp';
+import Portrait from '@assets/img/Portrait.webp';
+import Portrait2 from '@assets/img/Portrait-2.webp';
 import { author } from '@data/constants/author';
 
 const h1Html = `A little about <strong>${author.name}</strong>`;
@@ -14,31 +16,29 @@ const h1Html = `A little about <strong>${author.name}</strong>`;
 <main
     itemprop="mainEntity" itemscope itemtype="https://schema.org/MusicArtist"
 >
-    <Apresentation src={Imgs.cdn.banner} alt={`${author.name} (Banner)`} html={h1Html} />
-    <section class="about" id="about">
+    <Apresentation src={Banner} alt={`${author.name} (Banner)`} html={h1Html} />
+    <section class="about" id="about" aria-labelledby="title-header">
         <div class="title">
-            <h2>Who is {author.name}</h2>
+            <h2 id="title-header">Who is {author.name}</h2>
             <hr>
         </div>
         <ScrollAnimation className="highlight-animation" threshold={0.2} client:load  >
             <AboutP>
                 <div class="image image--first" slot="div-1" >
                     <Image
-                        src={Imgs.cdn.portrait}
+                        src={Portrait}
                         alt={`${author.name} (Portrait)`}
                         title={`${author.name} (Portrait)`}
                         layout="constrained"
-                        inferSize
                         priority
                     />
                 </div>
                 <div class="image image--second" slot="div-2" >
                     <Image
-                        src={Imgs.cdn.portrait2}
+                        src={Portrait2}
                         alt={`${author.name} (Portrait 2)`}
                         title={`${author.name} (Portrait 2)`}
                         layout="constrained"
-                        inferSize
                         priority
                     />
                 </div>

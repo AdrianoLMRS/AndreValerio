@@ -12,9 +12,9 @@ import { YouTube } from '@astro-community/astro-embed-youtube';
 // import "@styles/_pages/index.scss"; // * Import like this if global styles
 
 import Imgs from '@data/constants/imgs';
+import Background from '@assets/img/Bg.webp';
 import { author } from '@data/constants/author';
 import Pages from "@data/constants/pages"
-const { background } = Imgs.cdn;
 const { intro } = Imgs.videos;
 
 // import test from "@assets/test.png"
@@ -30,7 +30,6 @@ const { intro } = Imgs.videos;
         id="apresentation"
         itemscope
         itemtype="https://schema.org/CreativeWork"
-        aria-labelledby="apresentation-heading"
         aria-label="apresentation-heading"
     >
         <div class="content parallax">
@@ -38,13 +37,12 @@ const { intro } = Imgs.videos;
                 <div aria-hidden="true" class="overlay"></div>
                 <Picture
                     class="parallax__fixed"
-                    src={background}
+                    src={Background}
                     alt={`${author.name} - ${author.job}`}
                     title={`${author.name} - ${author.job}`}
                     fit="cover"
                     layout="full-width"
                     priority
-                    inferSize
                 />
                 <div aria-hidden="true" class="scroll-container parallax__fixed">
                     <ScrollDown style="opacity: 0.3;" />
@@ -68,10 +66,10 @@ const { intro } = Imgs.videos;
             id="about"
             itemscope
             itemtype="https://schema.org/Person"
-            aria-labelledby="About"
+            aria-labelledby="about-header"
         >
             <div class="content">
-                <h2>
+                <h2 id="about-header">
                     About me
                 </h2>
                 <ScrollAnimation className="highlight-animation" threshold={0.2} client:load  >
@@ -90,12 +88,12 @@ const { intro } = Imgs.videos;
                 class="songs"
                 itemscope
                 itemtype="https://schema.org/MusicPlaylist"
-                aria-labelledby="songs-heading"
+                aria-labelledby="songs-header"
             >
                 <meta itemprop="name" content="Spotify Music Section" />
                 <meta itemprop="description" content={`Songs Section by ${author.name} (Spotify albums).`} />
 
-                <h2>Songs/Albums</h2>
+                <h2 id="songs-header">Songs/Albums</h2>
 
                 <div class="content">
                     <Songs />
@@ -107,12 +105,13 @@ const { intro } = Imgs.videos;
                 id="teach"
                 itemscope
                 itemtype="https://schema.org/Course"
+                aria-labelledby="teach-header"
             >
                 <meta itemprop="name" content="Guitar Lessons" />
                 <meta itemprop="description" content={`Learn guitar online with personalized lessons covering rock, pop, jazz, and blues, taught by ${author.name}.`} />
                 
                 <div class="content">
-                    <h2>Let's play some guitar!</h2>
+                    <h2 id="teach-header">Let's play some guitar!</h2>
                     {/* Youtube André Valério video lesson intro */}
                     <div class="video-container">
                         <div class="box-sh">
@@ -126,14 +125,14 @@ const { intro } = Imgs.videos;
                         But don't just take my word for it - book your <strong>online guitar lessons</strong> with me today and let's play together! Whether you're a <strong>beginner</strong> or an <strong>experienced player</strong> looking to take your skills to the next level, I'm here to help you reach your <strong>goals</strong>.
                     </p> 
                 
-                    <div class="testimonials" id="testimonials">
-                        <h3>What my students say...</h3>
+                    <section aria-labelledby="testimonials-header" class="testimonials" id="testimonials">
+                        <h3 id="testimonials-header">What my students say...</h3>
                         <div class="wrapper">
                             <Testimonials />
                         </div>
-                    </div>
+                    </section>
                     
-                    <p> 
+                    <p id="call-to-action"> 
                         <span>
                             So what are you waiting for?
                             <a href={Pages.teach} target="_blank" rel="noopener noreferrer">Let's make some <strong>music</strong>!</a>
