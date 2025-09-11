@@ -195,6 +195,8 @@ Of course, as it is a "new" tool, it inevitably has some [bugs](https://github.c
 
 For me, the difference was the way I was able to have absolute control over what to [render](https://docs.astro.build/en/concepts/islands/ "Astro islands architecture") on the web.
 
+#### Video demo: [youtu.be/eHdklhjWBtA](https://youtu.be/eHdklhjWBtA)
+
 <!-- Website - André Valério links -->
 [1]: https://andrevalerio.com/ "André Valério - website"
 [about]: https://andrevalerio.com/about/ "André Valério About page"
