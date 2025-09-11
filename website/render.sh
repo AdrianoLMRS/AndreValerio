@@ -19,8 +19,8 @@ fi
 echo "🔍 Searching last success run"
 
 RUN_ID=$(curl -s -H "Authorization: token $GITHUB_PAT" \
-    "https://api.github.com/repos/AdrianoLMRS/AndreValerio/actions/workflows/$WORKFLOW_ID/runs?status=success&per_page=1" |
-    jq '.workflow_runs[0].id')
+    "https://api.github.com/repos/AdrianoLMRS/AndreValerio/actions/runs?status=success&per_page=1" \
+    | jq '.workflow_runs[0].id')
 
 
 if [ -z "$RUN_ID" ]; then
