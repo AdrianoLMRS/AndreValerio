@@ -1,7 +1,5 @@
 ---
 
-import { Picture } from 'astro:assets';
-
 import { author } from "@data/constants/author"
 import { getSpotifyToken } from "@utils/Spotify"
 
@@ -27,12 +25,7 @@ const artist = await response.json();
 ---
 
 <div class="artist">
-    <Picture
-        src={artist.images[0]?.url}
-        alt={artist.name}
-        inferSize
-        {/* TODO: SEO things... */}
-    />
+    <img src={artist.images[0]?.url} alt={artist.name} />
 </div>
 
   
@@ -45,7 +38,7 @@ const artist = await response.json();
     .artist {
         padding: 10px;
         img {
-            // object-fit: contain;
+            object-fit: contain;
             background-color: rgba(0, 0, 0, 0);
             box-shadow: $box-shadow 0px 50px 100px -20px, color.adjust($box-shadow, $alpha: 0.5) 0px 30px 60px -30px, color.adjust($box-shadow, $alpha: 0.6) 0px -2px 6px 0px inset;
             border-radius: v.$normal-border-radius;
