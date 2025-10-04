@@ -9,6 +9,7 @@ services:
     buildCommand: npm run render # Get GHA /dist artifact
     staticPublishPath: dist
     autoDeployTrigger: off
+    branch: main
     domains:
       - andrevalerio.com
       - www.andrevalerio.com
