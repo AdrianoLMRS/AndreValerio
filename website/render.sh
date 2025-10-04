@@ -8,12 +8,11 @@ if [ -f .env ]; then
 fi
 
 if [ -z "$GITHUB_PAT" ]; then
-    echo "❌ GITHUB_PAT var is not defined..."
-    exit 1
+    echo "❌ GITHUB_PAT var is not defined...";  exit 1
 fi
-if [ -z "$WORKFLOW_ID" ]; then
-    echo "❌ WORKFLOW_ID var is not defined..."
-    exit 1
+
+if [ -z "$WORFLOW_ID_1" ] || [ -z "$WORFLOW_ID_2" ]; then
+    echo "❌ WORKFLOW_ID vars is not defined..."; exit 1
 fi
 
 REPO="AdrianoLMRS/AndreValerio"
@@ -30,6 +29,9 @@ get_last_success() {
         "https://api.github.com/repos/$REPO/actions/workflows/$workflow_id/runs?status=success&per_page=1" \
         | jq -r '.workflow_runs[0] | {id, created_at}'
 }
+
+W1=$(get_last_success "$WORKFLOW1_ID")
+W2=$(get_last_success "$WORKFLOW2_ID")
 
 W1_ID=$(echo "$W1" | jq -r '.id')
 W1_DATE=$(echo "$W1" | jq -r '.created_at')
