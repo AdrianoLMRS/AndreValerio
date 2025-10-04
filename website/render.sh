@@ -27,7 +27,7 @@ WORKFLOW2_ID=$WORFLOW_ID_2
 get_last_success() {
     local workflow_id=$1
     curl -s -H "Authorization: token $GITHUB_PAT" \
-        "https://api.github.com/repos/$REPO/actions/workflows/$workflow_id/runs?branch=$BRANCH&status=success&per_page=1" \
+        "https://api.github.com/repos/$REPO/actions/workflows/$workflow_id/runs?status=success&per_page=1" \
         | jq -r '.workflow_runs[0] | {id, created_at}'
 }
 
