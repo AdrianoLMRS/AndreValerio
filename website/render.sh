@@ -18,6 +18,26 @@ fi
 REPO="AdrianoLMRS/AndreValerio"
 BRANCH="main"
 
+echo "⏳ Checking if any workflow is still running..."
+
+while true; do
+    RUNNING=$(curl -s -H "Authorization: token $GITHUB_PAT" \
+        "https://api.github.com/repos/$REPO/actions/runs?branch=$BRANCH&status=in_progress&per_page=1" \
+        | jq '.total_count')
+
+    QUEUED=$(curl -s -H "Authorization: token $GITHUB_PAT" \
+        "https://api.github.com/repos/$REPO/actions/runs?branch=$BRANCH&status=queued&per_page=1" \
+        | jq '.total_count')
+
+    if [ "$RUNNING" -eq 0 ] && [ "$QUEUED" -eq 0 ]; then
+        echo "✅ No workflows in progress or queued. Continuing..."
+        break
+    fi
+
+    echo "⚠️ Workflows still running (in_progress=$RUNNING, queued=$QUEUED). Waiting 15s..."
+    sleep 15
+done
+
 echo "🔍 Searching last success run"
 
 WORKFLOW1_ID=$WORFLOW_ID_1
@@ -26,7 +46,7 @@ WORKFLOW2_ID=$WORFLOW_ID_2
 get_last_success() {
     local workflow_id=$1
     curl -s -H "Authorization: token $GITHUB_PAT" \
-        "https://api.github.com/repos/$REPO/actions/workflows/$workflow_id/runs?status=success&per_page=1" \
+        "https://api.github.com/repos/$REPO/actions/workflows/$workflow_id/runs?branch=$BRANCH&status=success&per_page=1" \
         | jq -r '.workflow_runs[0] | {id, created_at}'
 }
 
