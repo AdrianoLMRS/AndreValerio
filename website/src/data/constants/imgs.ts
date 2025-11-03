@@ -1,7 +1,7 @@
-import Banner from '@assets/img/Banner.webp';
-import Banner2 from '@assets/img/Banner-2.webp';
-import Banner3 from '@assets/img/Banner-3.webp';
-import Banner4 from '@assets/img/Banner-4.webp';
+import Banner from '@assets/img/Andre-Valerio-Banner.webp';
+import Banner2 from '@assets/img/Andre-Valerio-Banner-2.webp';
+import Banner3 from '@assets/img/Andre-Valerio-Banner-3.webp';
+import Banner4 from '@assets/img/Andre-Valerio-Banner-4.webp';
 
 const n : number = 48;
 const size : string = String(n);
