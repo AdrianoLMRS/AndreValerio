@@ -1,8 +1,8 @@
-name: Daily Deploy to Render.com
+name: Weekly Deploy to Render.com
 
 on:
   schedule:
-    - cron: '0 0 * * *'  # Runs daily at 00:00 UTC
+    - cron: '0 0 * * 0' # Runs weekly every Sunday at 00:00 UTC
   workflow_dispatch:     # Allows manual triggering of the workflow
 
 # Need this for ci.yml
