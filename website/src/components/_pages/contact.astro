@@ -4,7 +4,7 @@ import { Image } from "astro:assets";
 import Apresentation from "@components/astro/Apresentation.astro"
 
 import Imgs from '@data/constants/imgs';
-import Banner2 from '@assets/img/Banner-2.webp';
+const Banner2 = Imgs.local.AndreValeriobesidetree;
 import { author } from '@data/constants/author';
 import Pages from "@data/constants/pages";
 
@@ -103,6 +103,15 @@ const contacts = [
 <style lang="scss" is:global >
     @use "@styles/mixins" as m;
     @use "@styles/variables" as v;
+
+    #apresentation .wrapper {
+        img {
+            object-position: center 70% !important;
+            @media only screen and (min-width: v.$breakpoint-xxl) {
+                object-position: center 50% !important;
+            }
+        }
+    }
 
     h2 {
         font-size: 2rem;

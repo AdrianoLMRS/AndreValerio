@@ -1,13 +1,14 @@
 ---
 import { Image } from "astro:assets";
+import Imgs from "@data/constants/imgs";
 
 import Apresentation from "@components/astro/Apresentation.astro";
 import AboutP from "@components/astro/aboutP.astro"
 import ScrollAnimation from "@components/ts/scrollAnimation";
 
-import Banner from '@assets/img/Banner.webp';
-import Portrait from '@assets/img/Portrait.webp';
-import Portrait2 from '@assets/img/Portrait-2.webp';
+const Banner = Imgs.local.AndreValerioposing1;
+const Portrait = Imgs.local.AndreValeriohead;
+const Portrait2 = Imgs.local.AndreValerioflorestportrait1;
 import { author } from '@data/constants/author';
 
 const h1Html = `A little about <strong>${author.name}</strong>`;
@@ -31,6 +32,7 @@ const h1Html = `A little about <strong>${author.name}</strong>`;
                         title={`${author.name} (Portrait)`}
                         layout="constrained"
                         priority
+                        width={400}
                     />
                 </div>
                 <div class="image image--second" slot="div-2" >
@@ -40,6 +42,7 @@ const h1Html = `A little about <strong>${author.name}</strong>`;
                         title={`${author.name} (Portrait 2)`}
                         layout="constrained"
                         priority
+                        width={450}
                     />
                 </div>
             </AboutP>

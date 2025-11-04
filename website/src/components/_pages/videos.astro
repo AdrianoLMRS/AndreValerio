@@ -1,7 +1,8 @@
 ---
 import Apresentation from "@components/astro/Apresentation.astro"
 
-import Banner3 from '@assets/img/Banner-3.webp';
+import Imgs from "@data/constants/imgs";
+const Banner3 = Imgs.local.AndreValeriositdown2;
 
 import { author } from '@data/constants/author';
 
@@ -77,8 +78,17 @@ const style = { height1: '315', height2: '100%', width: '100%' };
 </main>
 
 <style lang="scss" define:vars={{ height: `${style.height1}px`, }} is:global >
+    @use "@styles/_variables" as v;
     @forward "@styles/_components/Loading";
     @forward "@styles/_components/box-sh";
+
+    #apresentation .wrapper {
+        img {
+            @media only screen and (min-width: v.$breakpoint-xxl) {
+                object-position: center 30% !important;
+            } 
+        }
+    }
 
     main > section:not(.apresentation), main .videos > section { padding: 20px 0; }
 

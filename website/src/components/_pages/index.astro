@@ -12,7 +12,6 @@ import { YouTube } from '@astro-community/astro-embed-youtube';
 // import "@styles/_pages/index.scss"; // * Import like this if global styles
 
 import Imgs from '@data/constants/imgs';
-import Background from '@assets/img/Bg.webp';
 import { author } from '@data/constants/author';
 import Pages from "@data/constants/pages"
 const { intro } = Imgs.videos;
@@ -37,7 +36,7 @@ const { intro } = Imgs.videos;
                 <div aria-hidden="true" class="overlay"></div>
                 <Picture
                     class="parallax__fixed"
-                    src={Background}
+                    src={Imgs.local.AndreValerioIntro}
                     alt={`${author.name} - ${author.job}`}
                     title={`${author.name} - ${author.job}`}
                     fit="cover"
