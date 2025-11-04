@@ -4,8 +4,9 @@
 import Apresentation from '@components/astro/Apresentation.astro';
 
 // * Data
+import Imgs from '@data/constants/imgs';
 import { author } from '@data/constants/author';
-import Banner4 from '@assets/img/Banner-4.webp';
+const Banner4 = Imgs.local.AndreValerioPlayingGuitarFlorest3;
 
 import { getSpotifyToken } from '@utils/Spotify';
 
@@ -60,6 +61,14 @@ const { items } = await data.json();
     @forward '@styles/_components/Loading';
 
     main > section:not(.apresentation) { padding: 20px 0; }
+
+    #apresentation .wrapper {
+        img {
+            @media only screen and (min-width: v.$breakpoint-xxl) {
+                object-position: center 30% !important;
+            } 
+        }
+    }
 
     .latest {
         text-align: center;
