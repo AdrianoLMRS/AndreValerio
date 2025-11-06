@@ -2,7 +2,7 @@
 import { Image } from 'astro:assets';
 import logoImage from '@assets/favicon-96x96.png';
 
-const size = 48;
+const size: number = 48;
 ---
 
 <div class="logo hide-title"  itemscope itemtype="https://schema.org/Organization">
@@ -14,7 +14,6 @@ const size = 48;
         itemtype="https://schema.org/logo" 
         itemprop="logo"
         loading="eager"
-        width={size}
-        height={size}
+        style=`width: ${size}px; height: ${size}px;`
     />
 </div>
